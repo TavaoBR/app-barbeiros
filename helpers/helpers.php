@@ -2,7 +2,7 @@
 
 function routerConfig():string
 {
-    $rota = "http://localhost/clinica-azevedo";
+    $rota = "http://localhost/app-barbeiros";
     return $rota;
 }
 

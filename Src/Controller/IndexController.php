@@ -8,7 +8,7 @@ use Src\Database\Model\Usuario;
 class IndexController extends TemplateConfig{
 
     public function index(){
-        $this->view("site/index", ["title" => "Clínica Azevedo"]);
+        $this->view("site/index", ["title" => "App Barbeiros"]);
     }
 
     public function test(){
