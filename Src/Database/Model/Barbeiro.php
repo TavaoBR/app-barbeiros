@@ -2,6 +2,6 @@
 
 namespace Src\Database\Model;
 
-class Paciente {
+class Barbeiro {
     
 }
