@@ -1,9 +1,7 @@
 <?php 
 
 namespace Src\Database\Model\Usuario;
-use Src\Database\Model\Models;
 
-class Read extends Models{
+class Read {
     
-    protected string $table = TableDbUsuario();
 }

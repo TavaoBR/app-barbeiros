@@ -10,7 +10,7 @@ class Connection {
 
     private static $db = "mysql";
 
-    private static $dbname = "psicologo";
+    private static $dbname = "barbeirosapp";
 
     private static $user = "root";
 

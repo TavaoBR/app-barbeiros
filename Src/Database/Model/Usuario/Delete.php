@@ -1,10 +1,8 @@
 <?php 
 
 namespace Src\Database\Model\Usuario;
-use Src\Database\Model\Models;
 
-class Delete extends Models{
+class Delete {
  
-    protected string $table = TableDbUsuario();
     
 }

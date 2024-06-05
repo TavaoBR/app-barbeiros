@@ -14,12 +14,15 @@ class IndexController extends TemplateConfig{
     public function test(){
         $usuario = new Usuario;
 
+        $usuario->findBy("usuario", "Gustavo");
+
         $create = $usuario->create([
-          "nome" => "Gustavo",
-          "cpf" => "081.628.985-90"
+          "usuario" => "Gustavo",
+          "viewSenha" => "Meu amigo"
         ]);
 
-        if($create){
+
+        if($create == 1){
           echo "sucesso";
         }else{
           echo "Negado";

@@ -40,9 +40,12 @@ abstract class Models {
 
       $connect = Connection::connect();
 
-      $prepare = $connect->prepare($data);
+      $prepare = $connect->prepare($sql);
 
-      return $prepare->execute($data);
+      $prepare->execute($data);
+     
+      return $prepare->rowCount();
+
     } catch (PDOException $e) {
       var_dump($e->getMessage());
     }
@@ -71,7 +74,10 @@ abstract class Models {
 
       $prepare = $connection->prepare($sql);
 
-      return $prepare->execute($data);
+      $prepare->execute($data);
+      
+      return $prepare->rowCount();
+
     } catch (PDOException $e) {
       var_dump($e->getMessage());
     }
@@ -87,7 +93,7 @@ abstract class Models {
       $prepare = $connection->prepare($sql);
       $prepare->execute($this->filters ? $this->filters->getBind() : []);
 
-      return $prepare->fetchAll(PDO::FETCH_CLASS);
+      return array($prepare->rowCount(), $prepare->fetchAll(PDO::FETCH_CLASS)) ;
     } catch (PDOException $e) {
       var_dump($e->getMessage());
     }
