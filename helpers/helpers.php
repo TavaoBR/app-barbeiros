@@ -112,3 +112,10 @@ function sweetAlertError(string $message){
   
   return $sweet;
 }
+
+
+
+function TableDbUsuario()
+{
+    "usuario";
+}
