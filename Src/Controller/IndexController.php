@@ -4,6 +4,7 @@ namespace Src\Controller;
 use Config\TemplateConfig;
 use Src\Database\Filters;
 use Src\Database\Model\Usuario;
+use Src\POST\Test\Login;
 
 class IndexController extends TemplateConfig{
 
@@ -12,13 +13,18 @@ class IndexController extends TemplateConfig{
     }
 
     public function test(){
-        $usuario = new Usuario;
+
+         $test = new Login;
+
+         $test->result();
+
+        /*$usuario = new Usuario;
 
         $usuario->findBy("usuario", "Gustavo");
 
         $create = $usuario->create([
-          "usuario" => "Gustavo",
-          "viewSenha" => "Meu amigo"
+          "usuario" => "guga_admin",
+          "senha" => md5("guga1234")
         ]);
 
 
@@ -26,7 +32,7 @@ class IndexController extends TemplateConfig{
           echo "sucesso";
         }else{
           echo "Negado";
-        } 
+        }*/
         
 
 

@@ -14,8 +14,8 @@
         ],
         "psr-4": {
             "Config\\": "Config/",
-            "Web\\": "Web",
-            "Src\\": "Src\\"
+            "Web\\": "Web/",
+            "Src\\": "Src/"
         }
     },
     "authors": [

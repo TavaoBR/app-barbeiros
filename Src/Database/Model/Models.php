@@ -112,7 +112,7 @@ abstract class Models {
 
       $prepare->execute($this->filters ? $this->filters->getBind() : [$field => $value]);
 
-      return $prepare->fetchObject();
+      return array($prepare->rowCount(), $prepare->fetchObject());
     } catch (PDOException $e) {
       var_dump($e->getMessage());
     }
