@@ -4,6 +4,7 @@ namespace Src\Controller;
 use Config\TemplateConfig;
 use Src\Database\Filters;
 use Src\Database\Model\Usuario;
+use Src\GET\Usuario as UserGet;
 use Src\POST\Test\Login;
 
 class IndexController extends TemplateConfig{
@@ -12,13 +13,38 @@ class IndexController extends TemplateConfig{
         $this->view("site/index", ["title" => "App Barbeiros"]);
     }
 
+    public function login(){
+      include_once("Web/site/login.php");
+    }
+
     public function test(){
 
-         $test = new Login;
+       session_start();
+       $get = new UserGet();
+
+       
+       if($get->conta() == 1){
+
+        echo "<br>";
+
+       echo $get->usuario();
+       echo "<br>";
+       echo $get->mail();
+       echo "<br>";
+       echo $get->token();
+
+       }else{
+        echo "Não encontrado";
+       }
+
+       
+
+
+         /*$test = new Login;
 
          $test->result();
 
-        /*$usuario = new Usuario;
+        $usuario = new Usuario;
 
         $usuario->findBy("usuario", "Gustavo");
 

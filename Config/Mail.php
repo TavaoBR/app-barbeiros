@@ -75,7 +75,7 @@ class Mail {
 
     private function sendWithTemplate()
     {
-       $path = "App/Web/mail/".$this->template.".php";
+       $path = "Web/mail/".$this->template.".php";
 
        if(!file_exists($path)){
            throw new Exception("Rapaz, esse template {$this->template} não existe");

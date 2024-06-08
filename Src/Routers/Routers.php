@@ -19,6 +19,7 @@ class Routers {
         $router = $this->server();
         $router->group(null)->namespace("Src\Controller");
         $router->get("/", "IndexController:index");
+        $router->get("/login", "IndexController:login");
         $router->get("/test", "IndexController:test");
 
 
@@ -35,6 +36,8 @@ class Routers {
     public function post(){
         $router = $this->server();
 
+        $router->group(null)->namespace("Src\POST");
+        $router->post("/login", "Login:result");
 
         $router->group("oops")->namespace("Src\Controller\Error");
         $router->get("/{errocode}", "ErrorController:notFound");

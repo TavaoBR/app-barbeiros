@@ -3,7 +3,7 @@
 function validateUser(){
     if(!getSession("id") && !getSession("token")){
      setSession("Mensagem", sweetAlertError("Acesso Restrito"));
-     redirect(routerConfig()."/usuario/login");
+     redirect(routerConfig()."/login");
      exit();
     }
  }

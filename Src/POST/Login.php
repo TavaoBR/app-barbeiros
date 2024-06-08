@@ -1,6 +1,6 @@
 <?php 
 
-namespace Src\POST\Usuario;
+namespace Src\POST;
 
 use Src\Database\Model\Usuario;
 use Src\Services\TokenUser;
@@ -22,13 +22,16 @@ class Login {
     }
 
     public function result(){
-
+        session_start();
+        if(!$this->request()){
+            $this->logar();
+        }
     }
 
 
     private function request(){
         $request = [
-           "Nome de Usuario" => $this->usuario,
+           "Usuario" => $this->usuario,
            "Senha" => $this->senha
         ];
 
@@ -79,12 +82,40 @@ class Login {
 
         $find = $this->user->findBy("usuario", $this->usuario);
 
-        if($find[0] == 1){
-         setSession("Mensagem", "Dados Invalidos");
+        if($find[0] == 0){
+         setSession("Mensagem", sweetAlertError("Dados Inválidos"));
+         redirectBack();
         }
 
         $dados = $find[1];
         $id = $dados->id;
+
+        if($dados->tentativas == 5){
+
+            $this->mail->from("jamesgustavo133@gmail.com")
+            ->to($dados->mail)
+            ->message("Seu Login foi Bloqueado por conta das inumeras tentivas de logar")
+            ->template("usuario/LoginBloqueado", ["user" => $this->usuario, "id" => $id])
+            ->subject("Login Bloqueado")
+            ->send();
+            setSession("Mensagem", sweetAlertError("Login Bloqueado por conta das inumeras tentivas de logar. Enviamos um e-mail para recuperação da conta"));
+            redirectBack();
+            
+        }elseif($dados->senha != md5($this->senha)){
+            $this->tentativasLogin($id, $dados->tentativas);
+            $tentativas = 5;
+            $totalTentativasRestantes = $tentativas - $dados->tentativas;
+            setSession("Mensagem", sweetAlertError("Login Inválido. Restão apenas $totalTentativasRestantes"));
+            redirectBack();
+
+        }else{
+          $this->token($id);
+          $this->resetarTentativas($id);
+          setSessions(["id" => $id, "token" => $dados->token]);
+          redirect(routerConfig());
+
+        }
+
 
      }
     
