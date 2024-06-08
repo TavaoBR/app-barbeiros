@@ -9,7 +9,12 @@ function validateUser(){
  }
 
 
- 
+function avatarUser()
+{
+ $get = new \Src\GET\Usuario();
+ echo $get->avatar();
+
+} 
 
 /* function configTemaColor(){
    

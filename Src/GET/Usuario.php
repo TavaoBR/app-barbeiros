@@ -16,6 +16,7 @@ class Usuario {
     private ?string $token = ''; 
     private ?string $nivel = '';
     private ?string $avatar = '';
+    //private ?int $pontos = '';
 
     public function __construct(int $id = null)
     {

@@ -112,7 +112,7 @@ class Login {
           $this->token($id);
           $this->resetarTentativas($id);
           setSessions(["id" => $id, "token" => $dados->token]);
-          redirect(routerConfig());
+          redirect(routerConfig()."/app");
 
         }
 
