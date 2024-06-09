@@ -22,6 +22,11 @@ class Routers {
         $router->get("/login", "IndexController:login");
         $router->get("/test", "IndexController:test");
 
+        $router->group("app")->namespace("Src\Controller\App");
+        $router->get("/", "IndexController:index");
+        $router->get("/perfil", "IndexController:perfil");
+        $router->get("/perfil/publico/{id}", "IndexController:perfilPublico");
+
 
         $router->group("oops")->namespace("Src\Controller\Error");
         $router->get("/{errocode}", "ErrorController:notFound");

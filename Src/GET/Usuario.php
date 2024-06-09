@@ -9,6 +9,7 @@ class Usuario {
     private ModelUsuario $user;
     private int $id;
     private int $conta;
+    //private ?string $nome = '';
     private ?string $usuario = '';
     private ?string $mail = '';
     private ?string $senha = '';
