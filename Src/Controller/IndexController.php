@@ -19,7 +19,9 @@ class IndexController extends TemplateConfig{
 
     public function test(){
 
-       session_start();
+
+
+       /*session_start();
        $get = new UserGet();
 
        
@@ -35,7 +37,7 @@ class IndexController extends TemplateConfig{
 
        }else{
         echo "Não encontrado";
-       }
+       }*/
 
        
 

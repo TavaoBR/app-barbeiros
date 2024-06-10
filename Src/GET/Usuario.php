@@ -9,9 +9,10 @@ class Usuario {
     private ModelUsuario $user;
     private int $id;
     private int $conta;
-    //private ?string $nome = '';
+    private ?string $nome = '';
     private ?string $usuario = '';
     private ?string $mail = '';
+    private ?string $celular = '';
     private ?string $senha = '';
     private ?string $viewSenha = '';
     private ?string $token = ''; 
@@ -31,8 +32,10 @@ class Usuario {
         $this->user = new ModelUsuario;
         $data = $this->user->findBy("id", $this->id);
         $this->conta = $data[0];
+        $this->nome = $data[1]->nome;
         $this->usuario = $data[1]->usuario;
         $this->mail = $data[1]->email;
+        $this->celular = $data[1]->celular;
         $this->senha = $data[1]->senha;
         $this->viewSenha = $data[1]->viewSenha;
         $this->token = $data[1]->token;
@@ -46,6 +49,11 @@ class Usuario {
         return $this->conta;
     }
 
+    public function nome()
+    {
+        return $this->nome;
+    }
+
     public function usuario() 
     {
         return $this->usuario; 
@@ -55,6 +63,11 @@ class Usuario {
     public function mail()
     {
        return $this->mail;
+    }
+
+    public function celular()
+    {
+        return $this->celular;
     }
 
     public function senha()

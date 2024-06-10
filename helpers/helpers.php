@@ -114,8 +114,30 @@ function sweetAlertError(string $message){
 }
 
 
+function formatarNumero($numero) {
+    if ($numero >= 1000000000) {
+        // Bilhões
+        $valor = $numero / 1000000000;
+        $sufixo = 'B';
+    } elseif ($numero >= 1000000) {
+        // Milhões
+        $valor = $numero / 1000000;
+        $sufixo = 'M';
+    } elseif ($numero >= 1000) {
+        // Milhares
+        $valor = $numero / 1000;
+        $sufixo = 'K';
+    } else {
+        // Menor que mil
+        return (string)$numero;
+    }
 
-function TableDbUsuario()
-{
-    "usuario";
+    // Formatar o valor para uma representação adequada
+    if ($valor == (int)$valor) {
+        // Se o valor é inteiro, não mostrar casas decimais
+        return (int)$valor . $sufixo;
+    } else {
+        // Caso contrário, mostrar no máximo duas casas decimais
+        return number_format($valor, 2, '.', '') . $sufixo;
+    }
 }
