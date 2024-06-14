@@ -18,7 +18,7 @@ class IndexController extends TemplateConfig{
         $get = new Usuario();
         
         $this->view("app/usuario/perfil", 
-        ["title" => "Perfil", "usuario" => $get->usuario(), "email" => $get->mail(), "nome" => $get->nome()]);
+        ["title" => "Perfil", "usuario" => $get->usuario(), "email" => $get->mail(), "nome" => $get->nome(), "celular" => $get->celular()]);
         
     }
 

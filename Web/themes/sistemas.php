@@ -39,18 +39,18 @@ validateUser();
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
-        <img src="https://cdn-icons-png.flaticon.com/512/8298/8298837.png" alt="">
-        <span class="d-none d-lg-block">Odonto</span>
+        <!--<img src="<?//=Assests("img/site/pngegg.png")?>" alt="">-->
+        <span class="d-none d-lg-block">Corte aqui</span>
       </a>
       <i class='bx bx-transfer toggle-sidebar-btn'></i>
     </div><!-- End Logo -->
 
-    <div class="search-bar">
+    <!--<div class="search-bar">
       <form class="search-form d-flex align-items-center" method="POST" action="#">
         <input type="text" name="query" placeholder="nome de usuario(exemplo: jamesgu14)" title="Enter search keyword">
         <button type="submit" title="Search"><i class="bx bx-search"></i></button>
       </form>
-    </div><!-- End Search Bar -->
+    </div> End Search Bar -->
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
