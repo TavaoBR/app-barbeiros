@@ -11,6 +11,7 @@ function validateUser(){
 
 function avatarUser()
 {
+ validateUser();   
  $get = new \Src\GET\Usuario();
  echo $get->avatar();
 

@@ -26,8 +26,14 @@ function redirectBack(){
 
 
 function messageSuccess(string $message, string $id = null){
-    $alerta = "<p class='alert alert-success' id='{$id}'>{$message}</p>";
-    return $alerta;
+    $alerta = "
+    <div class='alert alert-success alert-dismissible fade show' role='alert'>
+    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+    {$message}
+    </div>
+
+  ";
+   return $alerta;
 }
 
 function messageError(string $message, string $id = null){

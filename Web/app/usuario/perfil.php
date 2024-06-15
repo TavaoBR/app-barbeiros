@@ -1,6 +1,6 @@
 <?=$this->layout('themes/sistemas', ['title' => $title]);?>
 
-<?php 
+<button?php 
 
 
 
@@ -92,7 +92,7 @@ $pontosFormatados = formatarNumero($pontos);
             
 
             <div class="col-md-8">
-            <form action="#" method="POST" enctype="multipart/form-data">
+            <form action="<?=routerConfig()?>/usuario/atualizar/info/<?=getSession("id")?>" method="POST" enctype="multipart/form-data">
               <div class="card mb-3">
                 <div class="card-body">
                   <div class="row">
@@ -100,7 +100,7 @@ $pontosFormatados = formatarNumero($pontos);
                       <h6 class="mb-0">Nome de usuario</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <input type="text" class="form-control" value="<?=$usuario?>">
+                      <input type="text" name="usuario" class="form-control" value="<?=$usuario?>">
                     </div>
                   </div>
                   <hr>
@@ -109,7 +109,7 @@ $pontosFormatados = formatarNumero($pontos);
                       <h6 class="mb-0">Nome</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <input type="text" class="form-control" value="<?=$nome?>">
+                      <input type="text" name="nome" class="form-control" value="<?=$nome?>">
                     </div>
                   </div>
                   <hr>
@@ -120,7 +120,7 @@ $pontosFormatados = formatarNumero($pontos);
                       <h6 class="mb-0">Email</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <input type="text" class="form-control" value="<?=$email?>">
+                      <input type="email" name="email" class="form-control" value="<?=$email?>">
                     </div>
                   </div>
 
@@ -131,7 +131,7 @@ $pontosFormatados = formatarNumero($pontos);
                       <h6 class="mb-0">Celular</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <input type="text" class="form-control" value="<?=$celular?>">
+                      <input type="text" name="celular" class="form-control" value="<?=$celular?>">
                     </div>
                   </div>
                   <hr>
@@ -149,7 +149,7 @@ $pontosFormatados = formatarNumero($pontos);
 
                   <div class="row">
                     <div class="col-sm-12">
-                      <a class="btn btn-info " target="__blank" href="#">Edit</a>
+                      <button class="btn btn-info "  type="submit">Edit</button>
                       <a class="btn btn-danger " target="__blank" href="#">Trocar senha</a>
                     </div>
                   </div>

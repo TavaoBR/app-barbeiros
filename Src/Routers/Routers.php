@@ -46,6 +46,9 @@ class Routers {
 
         $router->group("oops")->namespace("Src\Controller\Error");
         $router->get("/{errocode}", "ErrorController:notFound");
+
+        $router->group("usuario")->namespace("Src\Post\Usuario");
+        $router->post("/atualizar/info/{id}", "UpdateInfo:Request");
         
         $router->dispatch();
         

@@ -23,7 +23,10 @@ class Usuario {
     public function __construct(int $id = null)
     {
         if($id === null){
-            $this->id = getSession("id");
+            if(getSession("id") === null || is_null(getSession("id"))){
+                redirect(routerConfig()."/login");
+            }
+                $this->id = getSession("id");
         }else{
             $this->id = $id;
         }
