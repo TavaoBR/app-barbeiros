@@ -76,13 +76,9 @@ $pontosFormatados = formatarNumero($pontos);
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" id="imagePreview" alt="Admin" class="rounded-circle" width="150">
+                    <img src="<?=Assests("img/avatar/$id/$avatar")?>" id="imagePreview" alt="Sem avatar" class="rounded-circle" width="150">
                     <div class="mt-3">
-                      <h4>John Doe</h4>
-                      <p class="text-secondary mb-1">Full Stack Developer</p>
-                      <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
-                      <button class="btn btn-primary">Follow</button>
-                      <button class="btn btn-outline-primary">Message</button>
+                      <h4><?=$nome?></h4>
                     </div>
                   </div>
                 </div>
@@ -92,6 +88,7 @@ $pontosFormatados = formatarNumero($pontos);
             
 
             <div class="col-md-8">
+              <?=validateSession("MessageUpdate")?>
             <form action="<?=routerConfig()?>/usuario/atualizar/info/<?=getSession("id")?>" method="POST" enctype="multipart/form-data">
               <div class="card mb-3">
                 <div class="card-body">
@@ -100,7 +97,7 @@ $pontosFormatados = formatarNumero($pontos);
                       <h6 class="mb-0">Nome de usuario</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <input type="text" name="usuario" class="form-control" value="<?=$usuario?>">
+                      <input type="text" name="usuario" class="form-control" value="<?=$usuario?>" required>
                     </div>
                   </div>
                   <hr>
@@ -109,7 +106,7 @@ $pontosFormatados = formatarNumero($pontos);
                       <h6 class="mb-0">Nome</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <input type="text" name="nome" class="form-control" value="<?=$nome?>">
+                      <input type="text" name="nome" class="form-control" value="<?=$nome?>" required>
                     </div>
                   </div>
                   <hr>
@@ -120,7 +117,7 @@ $pontosFormatados = formatarNumero($pontos);
                       <h6 class="mb-0">Email</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <input type="email" name="email" class="form-control" value="<?=$email?>">
+                      <input type="email" name="email" class="form-control" value="<?=$email?>" required> 
                     </div>
                   </div>
 
@@ -131,7 +128,7 @@ $pontosFormatados = formatarNumero($pontos);
                       <h6 class="mb-0">Celular</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <input type="text" name="celular" class="form-control" value="<?=$celular?>">
+                      <input type="text" name="celular" class="form-control" value="<?=$celular?>" required>
                     </div>
                   </div>
                   <hr>
@@ -141,7 +138,7 @@ $pontosFormatados = formatarNumero($pontos);
                       <h6 class="mb-0">Avatar</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <input type="file" class="form-control" accept="image/*" id="fileInput">
+                      <input type="file" name="avatar" class="form-control" accept="image/*" id="fileInput">
                     </div>
                   </div>
 

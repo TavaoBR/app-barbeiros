@@ -52,6 +52,11 @@ class Usuario {
         return $this->conta;
     }
 
+    public function id()
+    {
+        return $this->id;
+    }
+
     public function nome()
     {
         return $this->nome;
