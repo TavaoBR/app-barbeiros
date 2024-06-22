@@ -1,18 +1,9 @@
-<?=$this->layout('themes/sistemas', ['title' => $title]);?>
+<?=$this->layout('themes/site', ['title' => $title]);?>
 
-<button?php 
-
-
-
-$pontos = 15236;
-$pontosFormatados = formatarNumero($pontos);
-
-
-?>
 
 <style>
     body{
-    margin-top:20px;
+    margin-top: 120px;
     color: #1a202c;
     text-align: left;
     background-color: #e2e8f0;    
@@ -76,9 +67,9 @@ $pontosFormatados = formatarNumero($pontos);
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img src="<?=Assests("img/avatar/$id/$avatar")?>" id="imagePreview" alt="Sem avatar" class="rounded-circle" width="150">
+                    <img src="" id="imagePreview" alt="Sem avatar"  width="150">
                     <div class="mt-3">
-                      <h4><?=$nome?></h4>
+                      <h4>Prévia do avatar</h4>
                     </div>
                   </div>
                 </div>
@@ -88,8 +79,8 @@ $pontosFormatados = formatarNumero($pontos);
             
 
             <div class="col-md-8">
-              <?=validateSession("MessageUpdate")?>
-            <form action="<?=routerConfig()?>/usuario/atualizar/info/<?=getSession("id")?>" method="POST" enctype="multipart/form-data">
+              <?=validateSession("MessageRegister")?>
+            <form action="<?=routerConfig()?>/usuario/cadastrar" method="POST" enctype="multipart/form-data">
               <div class="card mb-3">
                 <div class="card-body">
                   <div class="row">
@@ -97,7 +88,7 @@ $pontosFormatados = formatarNumero($pontos);
                       <h6 class="mb-0">Nome de usuario</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <input type="text" name="usuario" class="form-control" value="<?=$usuario?>" required>
+                      <input type="text" name="usuario" class="form-control" >
                     </div>
                   </div>
                   <hr>
@@ -106,7 +97,7 @@ $pontosFormatados = formatarNumero($pontos);
                       <h6 class="mb-0">Nome</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <input type="text" name="nome" class="form-control" value="<?=$nome?>" required>
+                      <input type="text" name="nome" class="form-control"  >
                     </div>
                   </div>
                   <hr>
@@ -117,7 +108,7 @@ $pontosFormatados = formatarNumero($pontos);
                       <h6 class="mb-0">Email</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <input type="email" name="email" class="form-control" value="<?=$email?>" required> 
+                      <input type="email" name="email" class="form-control" > 
                     </div>
                   </div>
 
@@ -128,7 +119,7 @@ $pontosFormatados = formatarNumero($pontos);
                       <h6 class="mb-0">Celular</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <input type="text" name="celular" id="celular" class="form-control" value="<?=$celular?>" required>
+                      <input type="text" name="celular" id="celular" class="form-control" >
                     </div>
                   </div>
                   <hr>
@@ -146,9 +137,8 @@ $pontosFormatados = formatarNumero($pontos);
 
                   <div class="row">
                     <div class="col-sm-12">
-                      <button class="btn btn-info "  type="submit">Edit</button>
-                      <a class="btn btn-danger " target="__blank" href="#">Trocar senha</a>
-                    </div>
+                       <button class="btn btn-success"  type="submit">Salvar</button>
+                     </div>
                   </div>
                 </div>
               </div>
@@ -164,21 +154,27 @@ $pontosFormatados = formatarNumero($pontos);
 
     <script>
 
-        $('#celular').mask("99 9 9999-9999");
+        //$('#celular').mask("99 9 9999-9999");
 
         document.getElementById('fileInput').addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const imagePreview = document.getElementById('imagePreview');
-                    imagePreview.src = e.target.result;
-                    imagePreview.style.display = 'block';
-                }
-                reader.readAsDataURL(file);
-            }
-        });
+          const file = event.target.files[0];
+          if (file) {
+              // Verifica o tamanho do arquivo
+              const maxSizeInMB = 2;
+              const maxSizeInBytes = maxSizeInMB * 1024 * 1024;
+              
+              if (file.size > maxSizeInBytes) {
+                  alert('O arquivo é muito grande. O tamanho máximo permitido é de 2 MB.');
+                  return;
+              }
+
+              const reader = new FileReader();
+              reader.onload = function(e) {
+                  const imagePreview = document.getElementById('imagePreview');
+                  imagePreview.src = e.target.result;
+                  imagePreview.style.display = 'block';
+              }
+              reader.readAsDataURL(file);
+          }
+      });
     </script>
-
-
-

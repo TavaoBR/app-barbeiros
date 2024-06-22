@@ -9,13 +9,32 @@ use Src\POST\Test\Login;
 
 class IndexController extends TemplateConfig{
 
-    public function index(){
+    public function index()
+    {
         $this->view("site/index", ["title" => "App Barbeiros"]);
     }
 
-    public function login(){
+    public function cadastro()
+    {
+       session_start();
+       $this->view("site/cadastro",  ["title" => "Cadastro"]);
+    }
+
+    public function login()
+    {
       include_once("Web/site/login.php");
     }
+
+    public function sair()
+    {
+      session_destroy();
+      session_start();
+      unsetSession("id");
+      unsetSession("token");
+      setSession("Mensagem",sweetAlertSuccess("Deslogado com sucesso"));
+      redirect(routerConfig()."/login");
+    }
+    
 
     public function test(){
 

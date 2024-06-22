@@ -3,6 +3,7 @@ session_start();
 validateUser();
 
 
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -42,7 +43,7 @@ validateUser();
         <!--<img src="<?//=Assests("img/site/pngegg.png")?>" alt="">-->
         <span class="d-none d-lg-block">Corte aqui</span>
       </a>
-      <i class='bx bx-transfer toggle-sidebar-btn'></i>
+      <i class='bx bx-menu toggle-sidebar-btn' ></i>
     </div><!-- End Logo -->
 
     <!--<div class="search-bar">
@@ -205,16 +206,16 @@ validateUser();
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="<?=Assests("assets/img/perfil/").getSession("avatar")?>" alt="Profile" class="rounded-circle">
+            <img src="<?=Assests("img/avatar/")?><?=idUser()?>/<?=avatarUser()?>" alt="Profile" class="rounded-circle">
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
 
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="<?=routerConfig()."/app/perfil"?>">
                 <i class="bx bx-person"></i>
-                <span>My Profile</span>
+                <span>Perfil</span>
               </a>
             </li>
             <li>
@@ -224,14 +225,14 @@ validateUser();
             <li>
               <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                 <i class="bx bx-gear"></i>
-                <span>Account Settings</span>
+                <span>Alterar Senha</span>
               </a>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
 
-            <li>
+            <!--<li>
               <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
                 <i class="bx bx-question-circle"></i>
                 <span>Need Help?</span>
@@ -239,12 +240,12 @@ validateUser();
             </li>
             <li>
               <hr class="dropdown-divider">
-            </li>
+            </li>-->
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="<?=routerConfig()?>/sair">
                 <i class="bx bx-box-arrow-right"></i>
-                <span>Sign Out</span>
+                <span>Sair</span>
               </a>
             </li>
 
@@ -306,17 +307,17 @@ validateUser();
       
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#edit-user" data-bs-toggle="collapse" href="#">
-        <i class='bx bxs-cog' ></i><span>Procedimento</span><i class="bx bx-chevron-down ms-auto"></i>
+        <i class='bx bx-map'></i></i><span>Procurar</span><i class="bx bx-chevron-down ms-auto"></i>
         </a>
         <ul id="edit-user" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="<?=routerConfig()?>/procedimentos">
-              <i class="bx bx-circle"></i><span>Index</span>
+            <a href="<?=routerConfig()?>/app/barbeiro">
+              <i class="bx bx-circle"></i><span>Barbeiro</span>
             </a>
           </li>
           <li>
-            <a href="<?=routerConfig()?>/procedimentos/cadastrar">
-              <i class="bx bx-circle"></i><span>Cadastrar</span>
+            <a href="<?=routerConfig()?>/app/barbearia">
+              <i class="bx bx-circle"></i><span>Barbearia</span>
             </a>
           </li>
         </ul>

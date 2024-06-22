@@ -19,7 +19,9 @@ class Routers {
         $router = $this->server();
         $router->group(null)->namespace("Src\Controller");
         $router->get("/", "IndexController:index");
+        $router->get("/cadastro", "IndexController:cadastro");
         $router->get("/login", "IndexController:login");
+        $router->get("/sair", "IndexController:sair");
         $router->get("/test", "IndexController:test");
 
         $router->group("app")->namespace("Src\Controller\App");
@@ -48,6 +50,7 @@ class Routers {
         $router->get("/{errocode}", "ErrorController:notFound");
 
         $router->group("usuario")->namespace("Src\Post\Usuario");
+        $router->post("/cadastrar", "Register:result");
         $router->post("/atualizar/info/{id}", "UpdateInfo:Result");
         
         $router->dispatch();
