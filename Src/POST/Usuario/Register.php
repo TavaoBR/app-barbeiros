@@ -12,6 +12,8 @@ class Register {
     protected string $usuario;
     protected string $mail;
     protected string $celular;
+    protected string $senha;
+    protected string $confirmarSenha;
     protected  $avatar;
 
     public function __construct()
@@ -23,13 +25,15 @@ class Register {
         $this->mail = $_POST['email'];
         $this->celular = $_POST['celular'];
         $this->avatar = $_FILES['avatar'];
+        $this->senha = $_POST['senha'];
+        $this->confirmarSenha = $_POST['confirmaSenha'];
     }
 
     public function result()
     {
        session_start();
 
-       if(!$this->request()){
+       if(!$this->request() && !$this->validaSenha()){
           echo "Aqui";
        }
     }
@@ -39,8 +43,10 @@ class Register {
         $avatarValue = isset($this->avatar['error']) && $this->avatar['error'] === UPLOAD_ERR_NO_FILE ? null : $this->avatar;
 
        $request = [
-        "Nome de usuario" => $this->usuario,
         "Nome" => $this->nome,
+        "Nome de usuario" => $this->usuario,
+        "Senha" => $this->senha,
+        "Confirma Senha" => $this->confirmarSenha,
         "Email" => $this->mail,
         "Celular" => $this->celular,
         "Avatar" => $avatarValue
@@ -65,7 +71,25 @@ class Register {
 
     private function compareSenha()
     {
-      
+      if($this->senha != $this->confirmarSenha){
+
+         return true;
+      }
+
+      return false;
+    }
+
+    private function validaSenha()
+    {
+       if($this->validate->validarSenha($this->senha) == false){
+         setSession("MessageRegister", sweetAlertWarning("A senha não contém os comportamentos adequado", "Alerta de senha")); 
+         redirectBack();
+          return true;
+       }
+
+       return false;
+
+
     }
 
     private function create()

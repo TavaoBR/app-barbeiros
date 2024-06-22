@@ -34,4 +34,25 @@ class Validate
 
     }
 
+
+    public function validarSenha(string $senha)
+    {
+
+            // Pelo menos 8 caracteres
+            // Pelo menos uma letra maiúscula
+            // Pelo menos uma letra minúscula
+            // Pelo menos um número
+            // Pelo menos um caractere especial
+
+            $regEx = "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/";
+
+            if(preg_match($regEx, $senha)){
+               
+                return true;
+            }
+
+               return false;
+
+    }
+
 }

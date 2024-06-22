@@ -73,6 +73,20 @@
                     </div>
                   </div>
                 </div>
+
+                
+                            <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label class="form-label text-center" for="billing-email-address">A senha precisa conter os seguintes comportamentos</label>
+                                        <ul style="list-style:none;">
+                                            <li ><i class="fa-solid fa-xmark text-danger" id="minimoChar"></i> Precisa conter no minimo 8 caracteres </li>
+                                            <li ><i class="fa-solid fa-xmark text-danger" id="numero"></i> Precisa conter número de 1 até 9</li>
+                                            <li ><i class="fa-solid fa-xmark text-danger" id="maiuscula"></i> Precisa conter uma letra Maiúscula (A ... Z)</li>
+                                            <li ><i class="fa-solid fa-xmark text-danger" id="minuscula"></i> Precisa conter letras Minúsculas (a ... z)</li>
+                                            <li ><i class="fa-solid fa-xmark text-danger" id="simbolo"></i> Precisa conter caracter especial (@ ou ! ou & ou ?)</li>
+                                        </ul>
+                                    </div>
+                                </div>
               </div>
             </div>
 
@@ -83,6 +97,17 @@
             <form action="<?=routerConfig()?>/usuario/cadastrar" method="POST" enctype="multipart/form-data">
               <div class="card mb-3">
                 <div class="card-body">
+
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Nome</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <input type="text" name="nome" class="form-control"  >
+                    </div>
+                  </div>
+                  <hr>
+
                   <div class="row">
                     <div class="col-sm-3">
                       <h6 class="mb-0">Nome de usuario</h6>
@@ -91,13 +116,25 @@
                       <input type="text" name="usuario" class="form-control" >
                     </div>
                   </div>
+
+
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Nome</h6>
+                      <h6 class="mb-0">Senha</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <input type="text" name="nome" class="form-control"  >
+                      <input type="password" name="senha" class="form-control" onkeyup="validaSenha(this.value)" id="senha">
+                    </div>
+                  </div>
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Confirme Senha</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <input type="password" name="confirmaSenha" class="form-control" id="confirmaSenha" >
                     </div>
                   </div>
                   <hr>
@@ -177,4 +214,63 @@
               reader.readAsDataURL(file);
           }
       });
+
+
+      let minimoChar = document.getElementById("minimoChar");
+    let numero = document.getElementById("numero");
+    let maiuscula = document.getElementById("maiuscula");
+    let minuscula = document.getElementById("minuscula");
+    let simbolo =   document.getElementById("simbolo");
+
+    function validaSenha(password){
+       
+        const caracteres = new RegExp('^(?=.*.{8,})');
+        const number = new RegExp('(?=.*[0-9])');
+        const upper = new RegExp('(?=.*[A-Z])');
+        const lower = new RegExp('(?=.*[a-z])');
+        const symbol = new RegExp('(?=.*[!@#\$%\^&\*])');
+
+        if(caracteres.test(password)){
+           minimoChar.classList.remove("fa-xmark", "text-danger");
+           minimoChar.classList.add("fa-circle-check", "text-success");
+        }else{
+          minimoChar.classList.add("fa-xmark", "text-danger");
+          minimoChar.classList.remove("fa-circle-check", "text-success");
+        }
+
+        if(lower.test(password)){
+            minuscula.classList.remove("fa-xmark", "text-danger");
+            minuscula.classList.add("fa-circle-check", "text-success");
+        }else{
+            minuscula.classList.add("fa-xmark", "text-danger");
+            minuscula.classList.remove("fa-circle-check", "text-success");
+        }
+
+        if(number.test(password)){
+            numero.classList.remove("fa-xmark", "text-danger");
+            numero.classList.add("fa-circle-check", "text-success");
+        }else{
+            numero.classList.add("fa-xmark", "text-danger");
+            numero.classList.remove("fa-circle-check", "text-success");
+        }
+
+        if(upper.test(password)){
+            maiuscula.classList.remove("fa-xmark", "text-danger");
+            maiuscula.classList.add("fa-circle-check", "text-success");
+        }else{
+            maiuscula.classList.add("fa-xmark", "text-danger");
+            maiuscula.classList.remove("fa-circle-check", "text-success");
+        }
+
+        if(symbol.test(password)){
+          simbolo.classList.remove("fa-xmark", "text-danger");
+          simbolo.classList.add("fa-circle-check", "text-success");
+        }else{
+          simbolo.classList.add("fa-xmark", "text-danger");
+          simbolo.classList.remove("fa-circle-check", "text-success");
+        }
+
+      }
+
+
     </script>
