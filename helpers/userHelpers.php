@@ -9,31 +9,6 @@ function validateUser(){
  }
 
 
-function avatarUser()
-{
- validateUser();   
- $get = new \Src\GET\Usuario();
- echo $get->avatar();
-
-} 
-
-
-function idUser()
-{
-  validateUser();   
-  $get = new \Src\GET\Usuario();
-  echo $get->id();
-}
-
-
-function nivelUser()
-{
-    validateUser();   
-    $get = new \Src\GET\Usuario();
-    $get->nivel();
-}
-
-
 /* function configTemaColor(){
    
     $read = new \Src\Model\Usuario\Read;

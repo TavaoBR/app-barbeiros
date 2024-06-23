@@ -2,6 +2,7 @@
 session_start();
 validateUser();
 
+$get = new \Src\GET\Usuario();
 
 
 ?>
@@ -206,7 +207,7 @@ validateUser();
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="<?=Assests("img/avatar/")?><?=idUser()?>/<?=avatarUser()?>" alt="Profile" class="rounded-circle">
+            <img src="<?=Assests("img/avatar/")?><?=$get->id()?>/<?=$get->avatar()?>" alt="Profile" class="rounded-circle">
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -223,7 +224,7 @@ validateUser();
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="<?=routerConfig()?>/app/perfil/trocar/senha">
                 <i class="bx bx-gear"></i>
                 <span>Alterar Senha</span>
               </a>
@@ -317,6 +318,25 @@ validateUser();
           </li>
           <li>
             <a href="<?=routerConfig()?>/app/barbearia">
+              <i class="bx bx-circle"></i><span>Barbearia</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#solicitar-acesso" data-bs-toggle="collapse" href="#">
+        <i class='bx bxs-lock-open'></i><span>Solicitar acesso</span><i class="bx bx-chevron-down ms-auto"></i>
+        </a>
+        <ul id="solicitar-acesso" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="<?=routerConfig()?>/app/solicitar/acesso/barbeiro">
+              <i class="bx bx-circle"></i><span>Barbeiro</span>
+            </a>
+          </li>
+          <li>
+            <a href="<?=routerConfig()?>">
               <i class="bx bx-circle"></i><span>Barbearia</span>
             </a>
           </li>

@@ -1,6 +1,6 @@
 <?=$this->layout('themes/sistemas', ['title' => $title]);?>
 
-<button?php 
+<?php 
 
 
 
@@ -155,8 +155,8 @@ $pontosFormatados = formatarNumero($pontos);
 
                   <div class="row">
                     <div class="col-sm-12">
-                      <button class="btn btn-info "  type="submit">Edit</button>
-                      <a class="btn btn-danger " target="__blank" href="#">Trocar senha</a>
+                      <button class="btn btn-info "  type="submit">Salvar</button>
+                      <a class="btn btn-danger " href="<?=routerConfig()?>/app/perfil/trocar/senha">Trocar senha</a>
                     </div>
                   </div>
                 </div>

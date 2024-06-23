@@ -22,12 +22,16 @@ class Routers {
         $router->get("/cadastro", "IndexController:cadastro");
         $router->get("/login", "IndexController:login");
         $router->get("/sair", "IndexController:sair");
+        
+
         $router->get("/test", "IndexController:test");
 
         $router->group("app")->namespace("Src\Controller\App");
         $router->get("/", "IndexController:index");
         $router->get("/perfil", "IndexController:perfil");
+        $router->get("/perfil/trocar/senha", "IndexController:trocarSenha");
         $router->get("/perfil/publico/{id}", "IndexController:perfilPublico");
+        $router->get("/solicitar/acesso/barbeiro", "IndexController:solicitarAcessoBarbeiro");
 
 
         $router->group("oops")->namespace("Src\Controller\Error");
@@ -52,6 +56,7 @@ class Routers {
         $router->group("usuario")->namespace("Src\Post\Usuario");
         $router->post("/cadastrar", "Register:result");
         $router->post("/atualizar/info/{id}", "UpdateInfo:Result");
+        $router->post("/atualizar/senha/{id}", "UpdateSenha:Result");
         
         $router->dispatch();
         

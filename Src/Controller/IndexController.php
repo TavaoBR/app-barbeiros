@@ -1,9 +1,11 @@
 <?php 
 
 namespace Src\Controller;
+use Config\TelegramBot;
 use Config\TemplateConfig;
 use Src\Database\Filters;
 use Src\Database\Model\Usuario;
+use Src\GET\Telegram\DefaultBot;
 use Src\GET\Usuario as UserGet;
 use Src\POST\Test\Login;
 
@@ -38,6 +40,18 @@ class IndexController extends TemplateConfig{
 
     public function test(){
 
+
+      /*$default = new DefaultBot();
+
+      $id = $default->token();
+      $chat = $default->chatId();
+      $text = "Testando alerta 2";
+
+      $send = new TelegramBot($id, $chat, $text);
+
+      $send->send();
+
+      echo "enviado";*/
 
 
        /*session_start();

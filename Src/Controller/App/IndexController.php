@@ -24,9 +24,25 @@ class IndexController extends TemplateConfig{
         
     }
 
+    public function trocarSenha()
+    {
+
+      session_start();
+      $get = new Usuario();
+      $this->view("app/usuario/trocarsenha", ["title" => "Trocar Senha", "id" => $get->id()]);
+
+    }
+
     public function perfilPublico($data)
     {
 
+    }
+
+
+    public function solicitarAcessoBarbeiro()
+    {
+      session_start();
+      $this->view("app/solicitarAcessoBarbeiro", ["title" => "Solicitar Acesso"]);
     }
 
 
