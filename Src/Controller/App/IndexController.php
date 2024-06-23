@@ -20,7 +20,7 @@ class IndexController extends TemplateConfig{
         $this->view("app/usuario/perfil", 
         ["title" => "Perfil", 
         "id" => $get->id(), "avatar" => $get->avatar(),
-        "usuario" => $get->usuario(), "email" => $get->mail(), "nome" => $get->nome(), "celular" => $get->celular()]);
+        "usuario" => $get->usuario(), "email" => $get->mail(), "nome" => $get->nome(), "celular" => $get->celular(), "senha" => $get->viewSenha()]);
         
     }
 

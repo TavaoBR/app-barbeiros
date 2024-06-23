@@ -33,8 +33,8 @@ class Register {
     {
        session_start();
 
-       if(!$this->request() && !$this->validaSenha()){
-          echo "Aqui";
+       if(!$this->request() && !$this->validaSenha() && !$this->compareSenha() && !$this->userName() && !$this->userEmail()){
+          $this->create();
        }
     }
 
@@ -66,13 +66,32 @@ class Register {
     private function userName()
     {
        $select = $this->user->findBy("usuario", $this->usuario);
-       return $select[0];
+       if($select[0] == 1){
+         setSession("MessageRegister", sweetAlertWarning("Nome de usuario já cadastrado", "Alerta de usuario")); 
+         redirectBack();
+         return true;
+       }
+
+       return false;
+    }
+
+    private function userEmail()
+    {
+      $select = $this->user->findBy("email", $this->mail);
+      if($select[0] > 0){
+        setSession("MessageRegister", sweetAlertWarning("E-mail já cadastrado", "Alerta de usuario")); 
+        redirectBack();
+        return true;
+      }
+
+      return false;
     }
 
     private function compareSenha()
     {
       if($this->senha != $this->confirmarSenha){
-
+         setSession("MessageRegister", sweetAlertWarning("As senhas não são iguais", "Alerta de senha")); 
+         redirectBack();
          return true;
       }
 
@@ -94,11 +113,35 @@ class Register {
 
     private function create()
     {
+       $create = $this->user->create([
+          "nome" => $this->nome,
+          "usuario" => $this->usuario,
+          "email" => $this->mail,
+          "celular" => $this->celular,
+          "senha" => md5($this->senha),
+          "viewSenha" => $this->senha,
+          "avatar" => $this->avatar['name']
+       ]);
 
+       if($create > 0){
+         $select = $this->user->findBy("usuario", $this->usuario);
+         $id = $select[1]->id;
+         $this->uploadAvatar($id);
+         setSession("Mensagem", sweetAlertSuccess("Agora faça o login com sua conta", "Cadastro realizado"));
+         redirect(routerConfig()."/login");
+       }else{
+
+       }
     }
 
     private function uploadAvatar($id)
     {
+
+      $file = $this->avatar['tmp_name'];
+      $foto = $this->avatar['name'];
+      $_UP['pasta'] = "Public/img/avatar/$id/";
+      mkdir($_UP['pasta'], 0777);
+      move_uploaded_file($file, $_UP['pasta'].$foto);
       
     }
 

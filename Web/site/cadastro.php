@@ -191,7 +191,7 @@
 
     <script>
 
-        //$('#celular').mask("99 9 9999-9999");
+        $('#celular').mask("99 9 9999-9999");
 
         document.getElementById('fileInput').addEventListener('change', function(event) {
           const file = event.target.files[0];

@@ -53,14 +53,19 @@ function messageWarning(string $message, string $id = null){
 }
 
 
-function sweetAlertSuccess(string $message){
+function sweetAlertSuccess(string $message, string $title = null){
+
+    if($title == "" OR $title == null){
+        $title = "Não está esquecendo algo";
+     }
+
     $sweet = "
     <script>
 
     function alert(){
         Swal.fire({
             icon: 'success',
-            title: 'Sucesso',
+            title: '$title',
             text: '$message',
           });
     }

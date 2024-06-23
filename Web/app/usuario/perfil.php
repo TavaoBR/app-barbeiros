@@ -111,6 +111,15 @@ $pontosFormatados = formatarNumero($pontos);
                   </div>
                   <hr>
 
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Senha <i class="fa-solid fa-eye text-primary" id="visualizarSenha" onclick="toggleSenhaVisibility()" style="cursor:pointer"></i></h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">  
+                      <input type="password"  class="form-control" value="<?=$senha?>" id="senha">
+                    </div>
+                  </div>
+                  <hr>
 
                   <div class="row">
                     <div class="col-sm-3">
@@ -178,6 +187,22 @@ $pontosFormatados = formatarNumero($pontos);
                 reader.readAsDataURL(file);
             }
         });
+
+
+        function toggleSenhaVisibility() {
+        var senhaInput = document.getElementById("senha");
+        var visualizarSenhaIcon = document.getElementById("visualizarSenha");
+
+        if (senhaInput.type === "password") {
+            senhaInput.type = "text";
+            visualizarSenhaIcon.classList.remove("fa-eye");
+            visualizarSenhaIcon.classList.add("fa-eye-slash");
+        } else {
+            senhaInput.type = "password";
+            visualizarSenhaIcon.classList.remove("fa-eye-slash");
+            visualizarSenhaIcon.classList.add("fa-eye");
+        }
+    }
     </script>
 
 
