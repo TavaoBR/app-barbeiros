@@ -116,7 +116,7 @@ $pontosFormatados = formatarNumero($pontos);
                       <h6 class="mb-0">Senha <i class="fa-solid fa-eye text-primary" id="visualizarSenha" onclick="toggleSenhaVisibility()" style="cursor:pointer"></i></h6>
                     </div>
                     <div class="col-sm-9 text-secondary">  
-                      <input type="password"  class="form-control" value="<?=$senha?>" id="senha">
+                      <input type="password"  class="form-control" value="<?=$senha?>" id="senha" readonly>
                     </div>
                   </div>
                   <hr>
