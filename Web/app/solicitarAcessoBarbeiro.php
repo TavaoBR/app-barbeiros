@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <h2> Solicitar acesso como barbeiro </h2>
 
-    
+
      
 </div>
 
@@ -97,7 +97,7 @@ text-decoration:none;
 <section id="pricing" class="pricing-content section-padding">
 	<div class="container">					
 		<div class="section-title text-center">
-			<h2>Planos de contração</h2>
+			<h2>Planos de contratação</h2>
 		</div>				
 		<div class="row text-center">									
 			<div class="col-lg-4 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0" style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeInUp;">
@@ -119,7 +119,7 @@ text-decoration:none;
 						<div class="pricing-price">
 							
 						</div>
-						<a href="#" class="price_btn">Order Now</a>
+						
 					</div>
 				</div>
 
@@ -143,7 +143,7 @@ text-decoration:none;
 						<div class="pricing-price">
 							
 						</div>
-						<a href="#" class="price_btn">Order Now</a>
+						
 					</div>
 				</div>
 			</div><!--- END COL -->	
@@ -152,11 +152,11 @@ text-decoration:none;
 					<div class="single-pricing">
 						<div class="price-head">		
 							<h2>Vitalício</h2>
-							<h1 class="price">R$ 5.000</h1>
+							<h1 class="price">R$ 3.000</h1>
 							<span>Plano para resto da vida</span>
 						</div>
 						<ul>
-                            <li><b>Plano </b> Resto da vida</li>
+                            <li><b>Sem </b> cobrança</li>
                             <li><b>Sem Limite </b> de Agendamentos</li>
 							<li><b>100</b> Fotos na galeria</li>
                             <li><b>Prioridade</b> Na listagem</li>
@@ -166,7 +166,7 @@ text-decoration:none;
 						<div class="pricing-price">
 							
 						</div>
-						<a href="#" class="price_btn">Order Now</a>
+						
 					</div>
 				</div>
 			</div><!--- END COL -->			  
