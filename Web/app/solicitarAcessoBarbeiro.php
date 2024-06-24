@@ -332,14 +332,16 @@ text-decoration:none;
 
 
 
-	<script>
+<script>
 
-$('.mySelect2').select2();
+		$('#celular').mask("99 9 9999-9999");
 
-// Aqui está a solução
-$('.mySelect2').on('select2:unselect', function(evt) {
-  console.log(evt.params.data);
-})
+		$('.mySelect2').select2();
+
+		// Aqui está a solução
+		$('.mySelect2').on('select2:unselect', function(evt) {
+		console.log(evt.params.data);
+		})
 
     const estadoSelect = document.getElementById('estadoSelect');
     const municipioSelect = document.getElementById('municipioSelect');
