@@ -41,7 +41,7 @@ class IndexController extends TemplateConfig{
     public function test(){
 
 
-      /*$default = new DefaultBot();
+      $default = new DefaultBot();
 
       $id = $default->token();
       $chat = $default->chatId();
@@ -51,7 +51,7 @@ class IndexController extends TemplateConfig{
 
       $send->send();
 
-      echo "enviado";*/
+      echo "enviado";
 
 
        /*session_start();

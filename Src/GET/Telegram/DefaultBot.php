@@ -8,8 +8,8 @@ class DefaultBot {
     protected string $chatId;
 
     public function __construct(){
-        $this->token = "7168680151:AAFqWgw4DMCgAe7RSXB2rGzzClaTW45X7m0";
-        $this->chatId = "-4267389941";
+        $this->token = $_ENV['TELEGRAM_TOKEN'];
+        $this->chatId = $_ENV['TELEGRAM_ID_CHAT'];
     }
     
 
