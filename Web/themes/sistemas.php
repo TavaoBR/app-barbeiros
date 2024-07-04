@@ -4,6 +4,7 @@ validateUser();
 
 $get = new \Src\GET\Usuario();
 
+$nivel = $get->nivel();
 
 ?>
 <!DOCTYPE html>
@@ -277,25 +278,37 @@ $get = new \Src\GET\Usuario();
           <span>Home</span>
         </a>
       </li>
-      </li>
+      </li>-->
 
 
-
+  <?php 
+  if($nivel == 1):
+  ?>
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#edit-user" data-bs-toggle="collapse" href="#">
-        <i class='bx bxs-cog' ></i><span>Perfil</span><i class="bx bx-chevron-down ms-auto"></i>
+        <i class='bx bxs-id-card'></i><span>Admin</span><i class="bx bx-chevron-down ms-auto"></i>
         </a>
         <ul id="edit-user" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="#">
-              <i class="bx bx-circle"></i><span>Alterar senha</span>
+            <a href="<?=routerConfig()?>/app/admin/solicitacoes/acesso/barbeiro">
+              <i class="bx bx-circle"></i><span>Solicitações Acesso Barbeiros</span>
             </a>
           </li>
+
           <li>
             <a href="#">
-              <i class="bx bx-circle"></i><span>Alterar dados cadastrais</span>
+              <i class="bx bx-circle"></i><span>Solicitações Acesso Barbearias</span>
             </a>
           </li>
+
+
+          <li>
+            <a href="#">
+              <i class="bx bx-circle"></i><span>Usuários</span>
+            </a>
+          </li>
+
+
           <li>
             <a href="#">
               <i class="bx bx-circle"></i><span>Alterar Dados de login</span>
@@ -304,7 +317,11 @@ $get = new \Src\GET\Usuario();
 
         
         </ul>
-      </li>-->
+      </li>
+
+  <?php 
+    endif;
+  ?>     
       
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#edit-user" data-bs-toggle="collapse" href="#">

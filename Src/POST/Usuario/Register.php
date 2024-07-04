@@ -103,7 +103,7 @@ class Register {
        if($this->validate->validarSenha($this->senha) == false){
          setSession("MessageRegister", sweetAlertWarning("A senha não contém os comportamentos adequado", "Alerta de senha")); 
          redirectBack();
-          return true;
+         return true;
        }
 
        return false;
@@ -130,7 +130,8 @@ class Register {
          setSession("Mensagem", sweetAlertSuccess("Agora faça o login com sua conta", "Cadastro realizado"));
          redirect(routerConfig()."/login");
        }else{
-
+        setSession("MessageRegister", sweetAlertWarning("Parece que você já solicitou acesso ao plataforma como barbeiro", "Alerta")); 
+        redirectBack();
        }
     }
 

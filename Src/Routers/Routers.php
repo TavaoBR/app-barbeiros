@@ -27,12 +27,19 @@ class Routers {
         $router->get("/test", "IndexController:test");
 
         $router->group("app")->namespace("Src\Controller\App");
+        $router->get("/acesso/negado", "IndexController:acessoNegado");
         $router->get("/", "IndexController:index");
+        
         $router->get("/perfil", "IndexController:perfil");
         $router->get("/perfil/trocar/senha", "IndexController:trocarSenha");
+        $router->get("/perfil/historico/solicitacao/acesso/barbeiro", "IndexController:solicitacaoAcessoBarbeiro");
         $router->get("/perfil/publico/{id}", "IndexController:perfilPublico");
+        
         $router->get("/solicitar/acesso/barbeiro", "IndexController:solicitarAcessoBarbeiro");
-
+        
+        $router->get("/admin", "AdminController:index");
+        $router->get("/admin/barbeiros", "AdminController:barbeiros");
+        $router->get("/admin/solicitacoes/acesso/barbeiro", "AdminController:solicitacoesBarbeiro");   
 
         $router->group("oops")->namespace("Src\Controller\Error");
         $router->get("/{errocode}", "ErrorController:notFound");
@@ -55,6 +62,7 @@ class Routers {
 
         $router->group("usuario")->namespace("Src\Post\Usuario");
         $router->post("/cadastrar", "Register:result");
+        $router->post("/solicitacao/acesso/barbeiro/{id}", "SolicitarAcessoBarbeiro:result");
         $router->post("/atualizar/info/{id}", "UpdateInfo:Result");
         $router->post("/atualizar/senha/{id}", "UpdateSenha:Result");
         

@@ -148,7 +148,7 @@ text-decoration:none;
 	
 	  <div class="col-lg-12">
 		<?=validateSession("MessageRegister")?>
-	  <form action="#" method="POST" enctype="multipart/form-data">
+	  <form action="<?=routerConfig()?>/usuario/solicitacao/acesso/barbeiro/<?=$id?>" method="POST" enctype="multipart/form-data">
 		<div class="card mb-3">
 		  <div class="card-body">
 
@@ -157,7 +157,7 @@ text-decoration:none;
 				<h6 class="mb-0">Nome</h6>
 			  </div>
 			  <div class="col-sm-9 text-secondary">
-				<input type="text" name="nome" class="form-control"  >
+				<input type="text" name="nome" class="form-control"  value="<?=$nome?>">
 			  </div>
 			</div>
 			<hr>
@@ -167,7 +167,7 @@ text-decoration:none;
 				<h6 class="mb-0">Email Para contato</h6>
 			  </div>
 			  <div class="col-sm-9 text-secondary">
-				<input type="email" name="email" class="form-control" > 
+				<input type="email" name="email" class="form-control" value="<?=$email?>"> 
 			  </div>
 			</div>
 
@@ -178,7 +178,7 @@ text-decoration:none;
 				<h6 class="mb-0">Celular para Contato</h6>
 			  </div>
 			  <div class="col-sm-9 text-secondary">
-				<input type="text" name="celular" id="celular" class="form-control" >
+				<input type="text" name="celular" id="celular" class="form-control" value="<?=$celular?>">
 			  </div>
 			</div>
 
@@ -189,7 +189,7 @@ text-decoration:none;
 				<h6 class="mb-0">Estado</h6>
 			  </div>
 			  <div class="col-sm-9 text-secondary">
-			  <select name="estado" id="estadoSelect" onchange="carregarMunicipios()" class="form-control mySelect2">
+			  <select name="uf" id="estadoSelect" onchange="carregarMunicipios()" class="form-control mySelect2">
                    <option value="">Selecione...</option>
               </select>
 			  </div>
@@ -211,19 +211,67 @@ text-decoration:none;
 			</div>
 
 
+			<hr>
+
+			<div class="row">
+			  <div class="col-sm-3">
+				<h6 class="mb-0">Cep</h6>
+			  </div>
+			  <div class="col-sm-9 text-secondary">
+				<input type="text" name="cep" class="form-control"  id="cep">
+			  </div>
+			</div>
+
 
 			<hr>
+
+			<div class="row">
+			  <div class="col-sm-3">
+				<h6 class="mb-0">Bairro</h6>
+			  </div>
+			  <div class="col-sm-9 text-secondary">
+				<input type="text" name="bairro" class="form-control"  id="bairro">
+			  </div>
+			</div>
+
+
+			<hr>
+
+			<div class="row">
+			  <div class="col-sm-3">
+				<h6 class="mb-0">Endereço</h6>
+			  </div>
+			  <div class="col-sm-9 text-secondary">
+				<input type="text" name="endereco" class="form-control"  id="endereco">
+			  </div>
+			</div>
+
+			<hr>
+
+			<div class="row">
+			  <div class="col-sm-3">
+				<h6 class="mb-0">Número da casa</h6>
+			  </div>
+			  <div class="col-sm-9 text-secondary">
+				<input type="text" name="numero" class="form-control" >
+			  </div>
+			</div>
+
+
+			<hr>
+
+
 
 			<div class="row">
 			  <div class="col-sm-3">
 				<h6 class="mb-0">Plano</h6>
 			  </div>
 			  <div class="col-sm-9 text-secondary">
-				<select name="" id="" class="form-control">
+				<select name="plano" id="" class="form-control">
                    <option value="">Selecione uma opção</option>
-				   <option value="">Gratuito</option>
-				   <option value="">Mensal</option>
-				   <option value="">Vitalicio</option>
+				   <option value="Gratuito">Gratuito</option>
+				   <option value="Mensal R$180,00">Mensal</option>
+				   <option value="Vitalicio R$2000,00">Vitalicio</option>
 				</select>
 			  </div>
 			</div>
@@ -256,32 +304,7 @@ text-decoration:none;
 			<h2>Planos de contratação</h2>
 		</div>				
 		<div class="row text-center">									
-			<div class="col-lg-4 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0" style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeInUp;">
-
-                <div class="pricing_design">
-					<div class="single-pricing">
-						<div class="price-head">		
-							<h2>Gratuito</h2>
-							<h1>R$0</h1>
-							<span>Sem cobrança</span>
-						</div>
-						<ul>
-                            <li><b>10</b> Agendamentos por dia</li>
-							<li><b>20</b> Fotos na galeria</li>
-                            <li><b> Sem Prioridade </b> Na listagem </li>
-                            <li><b>Link </b> Para agendamento </li>
-							<li><b>Suporte </b> Limitado</li>
-						</ul>
-						<div class="pricing-price">
-							
-						</div>
-						
-					</div>
-				</div>
-
-
-			</div><!--- END COL -->	
-			<div class="col-lg-4 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s" data-wow-offset="0" style="visibility: visible; animation-duration: 1s; animation-delay: 0.2s; animation-name: fadeInUp;">
+		   <div class="col-lg-4 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s" data-wow-offset="0" style="visibility: visible; animation-duration: 1s; animation-delay: 0.2s; animation-name: fadeInUp;">
                 <div class="pricing_design">
 					<div class="single-pricing">
 						<div class="price-head">		
@@ -308,7 +331,7 @@ text-decoration:none;
 					<div class="single-pricing">
 						<div class="price-head">		
 							<h2>Vitalício</h2>
-							<h1 class="price">R$ 3.000</h1>
+							<h1 class="price">R$ 2.000</h1>
 							<span>Plano para resto da vida</span>
 						</div>
 						<ul>
@@ -335,6 +358,7 @@ text-decoration:none;
 <script>
 
 		$('#celular').mask("99 9 9999-9999");
+		$('#cep').mask("99999-999");
 
 		$('.mySelect2').select2();
 
@@ -342,6 +366,28 @@ text-decoration:none;
 		$('.mySelect2').on('select2:unselect', function(evt) {
 		console.log(evt.params.data);
 		})
+
+
+	
+		$(document).ready(function () {
+            $("#cep").blur(function () {
+                const cep = $(this).val().replace(/\D/g, ''); // Remove caracteres não numéricos
+
+                if (cep.length !== 8) {
+                    alert("CEP inválido. Certifique-se de inserir 8 números.");
+                    return;
+                }
+
+                $.get(`https://viacep.com.br/ws/${cep}/json/`, function (data) {
+                    $("#endereco").val(data.logradouro);
+                    $("#bairro").val(data.bairro);
+                })
+                .fail(function () {
+                    console.error("Erro ao buscar CEP.");
+                });
+            });
+        });		
+		
 
     const estadoSelect = document.getElementById('estadoSelect');
     const municipioSelect = document.getElementById('municipioSelect');

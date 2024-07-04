@@ -7,9 +7,10 @@ use Src\Database\Filters;
 use Src\Database\Model\Usuario;
 use Src\GET\Telegram\DefaultBot;
 use Src\GET\Usuario as UserGet;
-use Src\POST\Test\Login;
 
 class IndexController extends TemplateConfig{
+
+    protected $_smane;
 
     public function index()
     {

@@ -2,11 +2,15 @@
 
 namespace Src\GET;
 
+use Src\Database\Filters;
+use Src\Database\Model\AcessoBarbeiro;
 use Src\Database\Model\Usuario as ModelUsuario;
 
 class Usuario {
 
+    private AcessoBarbeiro $acesso;
     private ModelUsuario $user;
+    private Filters $filers;
     private int $id;
     private int $conta;
     private ?string $nome = '';
@@ -32,7 +36,10 @@ class Usuario {
         }
  
         
+        
         $this->user = new ModelUsuario;
+        $this->filers = new Filters;
+        $this->acesso = new AcessoBarbeiro;
         $data = $this->user->findBy("id", $this->id);
         $this->conta = $data[0];
         $this->nome = $data[1]->nome;
@@ -101,6 +108,14 @@ class Usuario {
     public function nivel()
     {
         return $this->nivel;
+    }
+
+
+    public function historicoSolicitacaoAcesso()
+    {
+      
+      $select = $this->acesso->findBy("fk", $this->id());
+      return $select;
     }
 
 
