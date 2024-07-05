@@ -1,0 +1,85 @@
+function UpdateAndamento(id) {
+    // Mostrar o SweetAlert de "Aguarde"
+    Swal.fire({
+        title: 'Aguarde',
+        text: 'Estamos enviando sua requisição...',
+        allowOutsideClick: false,
+        showCancelButton: false,
+        showConfirmButton: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
+
+    setTimeout(() => {
+        $.ajax({
+            url: `${url}/solicitacoes/acesso/barbeiro/andamento/${id}`,
+            type: 'POST',
+            dataType: 'json',
+            success: function(response) {
+                // Fechar o SweetAlert de "Aguarde"
+                Swal.close();
+    
+                if (response.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sucesso',
+                        text: response.message
+                    }).then(function() {
+                        location.reload();
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Erro',
+                        text: response.message
+                    });
+                }
+            },
+            error: function() {
+                // Fechar o SweetAlert de "Aguarde"
+                Swal.close();
+    
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro',
+                    text: 'Ocorreu um erro ao processar o request.'
+                });
+            }
+        });
+
+
+    }, 2000); 
+
+    
+}
+
+
+function UpdateAprovado(id)
+{
+    Swal.fire({
+        title: 'Aguarde',
+        text: 'Estamos enviando sua requisição...',
+        allowOutsideClick: false,
+        showCancelButton: false,
+        showConfirmButton: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
+}
+
+
+function UpdateReprovado(id)
+{
+    Swal.fire({
+        title: 'Aguarde',
+        text: 'Estamos enviando sua requisição...',
+        allowOutsideClick: false,
+        showCancelButton: false,
+        showConfirmButton: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
+}

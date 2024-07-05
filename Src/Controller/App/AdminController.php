@@ -7,33 +7,40 @@ use Src\GET\Usuario;
 
 class AdminController extends TemplateConfig {
 
+    private function verificarNivel()
+    {
+      $get = new Usuario();
+      if($get->nivel() != 1){
+        redirect(routerConfig()."/app/acesso/negado");
+      }
+    }
+
     public function index()
     {
-
+      session_start();
+      $this->verificarNivel();
     }
 
     public function barbeiros()
     {
-
+      session_start();
+      $this->verificarNivel();
     }
 
     public function barbearias()
     {
+      session_start();
+      $this->verificarNivel();
 
     }
 
     public function solicitacoesBarbeiro()
     {
-       session_start();
-       $get = new Usuario();
-       $acesso = new Barbeiro();
-
-       if($get->nivel() == 1){
+        session_start();
+        $this->verificarNivel();
+        $acesso = new Barbeiro();
         $this->view("app/admin/solicitacoes/acessoBarbeiro",  ["title" => "Solicitações Acesso", 
         "conta" => $acesso->conta(), "data" => $acesso->getAll(), "pagination" => $acesso->pagination()]);
-       }else{
-         redirect(routerConfig()."/app/acesso/negado");
-       } 
        
     }
 

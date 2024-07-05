@@ -324,96 +324,80 @@ body{
 <div class="container-fluid">
     <h2> Solicitações de Acesso para barbeiros</h2>
     <div class="row">
+      <?=$pagination?>
+    </div>
+    <div class="row">
+  <?php 
+   foreach($data as $b):
+    $status = $b->status;
+  ?>
     <div class="col-lg-4">
         <div class="card card-margin">
             <div class="card-header no-border">
-                <h5 class="card-title">MOM</h5>
+                <h5 class="card-title">#<?=$b->id?></h5>
             </div>
             <div class="card-body pt-0">
                 <div class="widget-49">
                     <div class="widget-49-title-wrapper">
-                        <div class="widget-49-date-primary">
-                            <span class="widget-49-date-day">09</span>
-                            <span class="widget-49-date-month">apr</span>
+                        <div class="widget-49-date-<?=colorStatusAcesso($status)?>">
+                            <i class="fa-solid fa-circle text-<?=colorStatusAcesso($status)?>"></i>
                         </div>
                         <div class="widget-49-meeting-info">
-                            <span class="widget-49-pro-title">PRO-08235 DeskOpe. Website</span>
-                            <span class="widget-49-meeting-time">12:00 to 13.30 Hrs</span>
+                            <span class="widget-49-pro-title"><?=$b->nome?></span>
                         </div>
                     </div>
                     <ol class="widget-49-meeting-points">
-                        <li class="widget-49-meeting-item"><span>Expand module is removed</span></li>
-                        <li class="widget-49-meeting-item"><span>Data migration is in scope</span></li>
-                        <li class="widget-49-meeting-item"><span>Session timeout increase to 30 minutes</span></li>
+                        <li class="widget-49-meeting-item"><span>Status: <?=tipoStatusAcesso($status)?></span></li>
+                        <li class="widget-49-meeting-item"><span>Data Solicitda: <?=date("d/m/Y", strtotime($b->data))?></span></li>
+                        <li class="widget-49-meeting-item"><span>Plano: <?=$b->plano?></span></li>
+                        <li class="widget-49-meeting-item"><span>E-mail: <?=$b->email?></span></li>
+                        <li class="widget-49-meeting-item"><span>Celular: <?=$b->celular?></span></li>
+                        <li class="widget-49-meeting-item"><span>Cep: <?=$b->cep?></span></li>
+                        <li class="widget-49-meeting-item"><span>Uf: <?=$b->uf?> </span></li>
+                        <li class="widget-49-meeting-item"><span>Cidade: <?=$b->cidade?> </span></li>
+                        <li class="widget-49-meeting-item"><span>Bairro: <?=$b->bairro?></span></li>
+                        <li class="widget-49-meeting-item"><span>Endereço: <?=$b->endereco?></span></li>
+                        <li class="widget-49-meeting-item"><span>Número da casa: <?=$b->numero?></span></li>
                     </ol>
                     <div class="widget-49-meeting-action">
-                        <a href="#" class="btn btn-sm btn-flash-border-primary">View All</a>
+                      <?php 
+                       if($b->status == 1):
+                      ?>
+                      <button class="btn btn-sm btn-primary" onclick="UpdateAndamento(<?=$b->id?>)">Em Andamento</button>
+                      <?php 
+                       endif;
+                      ?>
+
+                      <?php 
+                       if($b->status == 2):
+                      ?>
+
+                      <button class="btn btn-sm btn-success" onclick="UpdateAprovado(<?=$b->id?>)">Aprovar</button>
+                      <button class="btn btn-sm btn-danger" onclick="UpdateReprovado(<?=$b->id?>)">Reprovar</button>
+
+                      <?php 
+                       endif;
+                      ?>                      
+                      
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-4">
-        <div class="card card-margin">
-            <div class="card-header no-border">
-                <h5 class="card-title">MOM</h5>
-            </div>
-            <div class="card-body pt-0">
-                <div class="widget-49">
-                    <div class="widget-49-title-wrapper">
-                        <div class="widget-49-date-warning">
-                            <span class="widget-49-date-day">13</span>
-                            <span class="widget-49-date-month">apr</span>
-                        </div>
-                        <div class="widget-49-meeting-info">
-                            <span class="widget-49-pro-title">PRO-08235 Lexa Corp.</span>
-                            <span class="widget-49-meeting-time">12:00 to 13.30 Hrs</span>
-                        </div>
-                    </div>
-                    <ol class="widget-49-meeting-points">
-                        <li class="widget-49-meeting-item"><span>Scheming module is removed</span></li>
-                        <li class="widget-49-meeting-item"><span>App design contract confirmed</span></li>
-                        <li class="widget-49-meeting-item"><span>Client request to send invoice</span></li>
-                    </ol>
-                    <div class="widget-49-meeting-action">
-                        <a href="#" class="btn btn-sm btn-flash-border-warning">View All</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4">
-        <div class="card card-margin">
-            <div class="card-header no-border">
-                <h5 class="card-title">MOM</h5>
-            </div>
-            <div class="card-body pt-0">
-                <div class="widget-49">
-                    <div class="widget-49-title-wrapper">
-                        <div class="widget-49-date-success">
-                            <span class="widget-49-date-day">22</span>
-                            <span class="widget-49-date-month">apr</span>
-                        </div>
-                        <div class="widget-49-meeting-info">
-                            <span class="widget-49-pro-title">PRO-027865 Opera module</span>
-                            <span class="widget-49-meeting-time">12:00 to 13.30 Hrs</span>
-                        </div>
-                    </div>
-                    <ol class="widget-49-meeting-points">
-                        <li class="widget-49-meeting-item"><span>Scope is revised and updated</span></li>
-                        <li class="widget-49-meeting-item"><span>Time-line has been changed</span></li>
-                        <li class="widget-49-meeting-item"><span>Received approval to start wire-frame</span></li>
-                    </ol>
-                    <div class="widget-49-meeting-action">
-                        <a href="#" class="btn btn-sm btn-flash-border-success">View All</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+  <?php 
+  endforeach;
+  ?>  
+
 </div>
+  <div class="row">
+      <?=$pagination?>
+  </div>
 </div>
 
+<script>
+  var url = "<?=routerConfig()?>";
+</script>
+<script src="<?=Assests("assets/js/solicitacao/SolicitacaoBarbeiroAcesso.js")?>"></script>
 
 <?php 
  else:

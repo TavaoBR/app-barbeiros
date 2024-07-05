@@ -65,6 +65,12 @@ class Routers {
         $router->post("/solicitacao/acesso/barbeiro/{id}", "SolicitarAcessoBarbeiro:result");
         $router->post("/atualizar/info/{id}", "UpdateInfo:Result");
         $router->post("/atualizar/senha/{id}", "UpdateSenha:Result");
+
+        $router->group("solicitacoes")->namespace("Src\POST\Solicitacoes");
+        $router->post("/acesso/barbeiro/andamento/{id}", "UpdateSolicitacaoBarbeiro:Andamento");
+        $router->post("/acesso/barbeiro/aprovado/{id}", "UpdateSolicitacaoBarbeiro:Aprovado");
+        $router->post("/acesso/barbeiro/reprovado/{id}", "UpdateSolicitacaoBarbeiro:Reprovado");
+        $router->post("/acesso/barbeiro/cancelado/{id}", "UpdateSolicitacaoBarbeiro:Cancelado");
         
         $router->dispatch();
         

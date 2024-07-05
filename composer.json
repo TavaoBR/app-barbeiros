@@ -11,7 +11,8 @@
         "files": [
             "helpers/sessionsHelpers.php",
             "helpers/userHelpers.php",
-            "helpers/helpers.php"
+            "helpers/helpers.php",
+            "helpers/solicitacaoAcesso.php"
         ],
         "psr-4": {
             "Config\\": "Config/",

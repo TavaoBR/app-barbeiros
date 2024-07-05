@@ -269,7 +269,6 @@ text-decoration:none;
 			  <div class="col-sm-9 text-secondary">
 				<select name="plano" id="" class="form-control">
                    <option value="">Selecione uma opção</option>
-				   <option value="Gratuito">Gratuito</option>
 				   <option value="Mensal R$180,00">Mensal</option>
 				   <option value="Vitalicio R$2000,00">Vitalicio</option>
 				</select>

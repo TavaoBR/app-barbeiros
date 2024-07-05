@@ -120,7 +120,8 @@ class Register {
           "celular" => $this->celular,
           "senha" => md5($this->senha),
           "viewSenha" => $this->senha,
-          "avatar" => $this->avatar['name']
+          "avatar" => $this->avatar['name'],
+          "nivel" => 2
        ]);
 
        if($create > 0){
