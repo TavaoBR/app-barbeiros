@@ -2,6 +2,7 @@
 
 namespace Src\Database\Model;
 
-class Barbeiro {
+class Barbeiro extends Models{
     
+    protected string $table = 'perfilbarbeiro';
 }

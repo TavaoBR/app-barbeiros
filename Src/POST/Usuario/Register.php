@@ -40,7 +40,7 @@ class Register {
 
     private function request()
     {
-        $avatarValue = isset($this->avatar['error']) && $this->avatar['error'] === UPLOAD_ERR_NO_FILE ? null : $this->avatar;
+       $avatarValue = isset($this->avatar['error']) && $this->avatar['error'] === UPLOAD_ERR_NO_FILE ? null : $this->avatar;
 
        $request = [
         "Nome" => $this->nome,
