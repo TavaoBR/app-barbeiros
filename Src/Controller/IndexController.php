@@ -7,6 +7,7 @@ use Src\Database\Filters;
 use Src\Database\Model\Usuario;
 use Src\GET\Telegram\DefaultBot;
 use Src\GET\Usuario as UserGet;
+use Src\Services\Whatsapp;
 
 class IndexController extends TemplateConfig{
 
@@ -42,7 +43,10 @@ class IndexController extends TemplateConfig{
     public function test(){
 
 
-      $default = new DefaultBot();
+      /*$zap = new Whatsapp("+5579991917634", "Olá meu eu");
+      $zap->send();*/
+
+      /*$default = new DefaultBot();
 
       $id = $default->token();
       $chat = $default->chatId();
@@ -52,7 +56,7 @@ class IndexController extends TemplateConfig{
 
       $send->send();
 
-      echo "enviado";
+      echo "enviado";*/
 
 
        /*session_start();

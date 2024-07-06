@@ -5,6 +5,8 @@ validateUser();
 $get = new \Src\GET\Usuario();
 
 $nivel = $get->nivel();
+$token = $get->token();
+$id = $get->id();
 
 ?>
 <!DOCTYPE html>
@@ -322,6 +324,42 @@ $nivel = $get->nivel();
   <?php 
     endif;
   ?>     
+
+
+  <?php 
+  if($nivel == 3):
+  ?>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#edit-user" data-bs-toggle="collapse" href="#">
+        <i class='bx bx-map'></i></i><span>Barbeiro</span><i class="bx bx-chevron-down ms-auto"></i>
+        </a>
+        <ul id="edit-user" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="<?=routerConfig()?>/app/barbeiro/perfil/<?=$token?>">
+              <i class="bx bx-circle"></i><span>Perfil</span>
+            </a>
+          </li>
+          <li>
+            <a href="<?=routerConfig()?>/app/barbeiro/agenda/<?=$token?>">
+              <i class="bx bx-circle"></i><span>Agenda</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="<?=routerConfig()?>/app/barbeiro/agenda/cadastro/<?=$token?>">
+              <i class="bx bx-circle"></i><span>Cadastrar Agenda</span>
+            </a>
+          </li>
+
+
+        </ul>
+      </li>
+
+
+  <?php 
+  endif;
+  ?>
       
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#edit-user" data-bs-toggle="collapse" href="#">

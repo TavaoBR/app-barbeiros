@@ -41,6 +41,8 @@ class Routers {
         $router->get("/admin/barbeiros", "AdminController:barbeiros");
         $router->get("/admin/solicitacoes/acesso/barbeiro", "AdminController:solicitacoesBarbeiro");   
 
+        $router->get("/barbeiro/perfil/{token}", "BarbeiroController:perfil");
+
         $router->group("oops")->namespace("Src\Controller\Error");
         $router->get("/{errocode}", "ErrorController:notFound");
         
@@ -55,6 +57,7 @@ class Routers {
         $router = $this->server();
 
         $router->group(null)->namespace("Src\POST");
+        $router->post("/zap", "Index:enviar");
         $router->post("/login", "Login:result");
 
         $router->group("oops")->namespace("Src\Controller\Error");

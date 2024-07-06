@@ -297,10 +297,10 @@ body .fc-widget-header a {
         <div class="profile-header-cover"></div>
         <div class="profile-header-content">
             <div class="profile-header-img">
-                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
+                <img src="<?=Assests("img/avatar/$fk/$avatar")?>" alt="" />
             </div>
             <div class="profile-header-info">
-                <h4 class="m-t-sm">Testando</h4>
+                <h4 class="m-t-sm"><?=$nome?></h4>
                 <p class="m-b-sm">UXUI + Frontend Developer</p>
                 <a href="#" class="btn btn-xs btn-primary mb-4">Edit Profile</a>
             </div>

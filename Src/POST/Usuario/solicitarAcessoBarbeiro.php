@@ -6,6 +6,7 @@ use Config\TelegramBot;
 use Src\Database\Model\AcessoBarbeiro;
 use Src\Services\Datas;
 use Src\Services\Validate;
+use Src\Services\Whatsapp;
 
 class solicitarAcessoBarbeiro {
 
@@ -94,7 +95,8 @@ class solicitarAcessoBarbeiro {
         ]);
 
         if($create > 0){
-          $this->alertaBot($id);
+          //$this->alertaBot($id);
+          $this->whatsappAlert($id);
           setSession("MessageRegister",sweetAlertSuccess("Sua Solicitação foi enviada, agora aguarde a equipe entrar em contato com você","Solicitação Enviada"));
           redirectBack();
         }else{
@@ -137,5 +139,23 @@ class solicitarAcessoBarbeiro {
         $bot = new TelegramBot($_ENV['TELEGRAM_TOKEN'], $_ENV['TELEGRAM_ID_CHAT'], $message);
 
         return $bot->send();
+    }
+
+    private function whatsappAlert($id)
+    {
+
+        $data = $this->datas->dataAtual();
+
+        $message = "
+          🧏 Nova solicitação Barbeiro:
+          \n 🔢 Id: $id
+          \n 📆 Data: $data
+          \n 👨‍💻 Nome: {$this->nome}
+          \n 📋 Plano: {$this->plano}
+        ";
+
+       $send = new Whatsapp($this->celular, $message);
+
+       return $send->send();
     }
 }

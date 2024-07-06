@@ -356,7 +356,7 @@ text-decoration:none;
 
 <script>
 
-		$('#celular').mask("99 9 9999-9999");
+		$('#celular').mask("+9999999999999");
 		$('#cep').mask("99999-999");
 
 		$('.mySelect2').select2();

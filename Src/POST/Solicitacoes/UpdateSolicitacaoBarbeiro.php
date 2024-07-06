@@ -5,9 +5,12 @@ namespace Src\POST\Solicitacoes;
 use Src\Database\Model\AcessoBarbeiro;
 use Src\Database\Model\Barbeiro;
 use Src\Database\Model\Usuario;
+use Src\Services\Whatsapp;
+use Src\Services\Datas;
 
 class UpdateSolicitacaoBarbeiro {
   
+    private Datas $datas;
     private  AcessoBarbeiro $acesso;
     private Barbeiro $barbeiro;  
     private Usuario $user;
@@ -17,6 +20,7 @@ class UpdateSolicitacaoBarbeiro {
         $this->acesso = new AcessoBarbeiro;
         $this->barbeiro = new Barbeiro;
         $this->user = new Usuario;
+        $this->datas = new Datas;
     } 
 
     public function Andamento($data)
@@ -26,10 +30,13 @@ class UpdateSolicitacaoBarbeiro {
         $update = $this->acesso->update("id", $id, ["status" => 2]);
 
         if($update > 0){
-           $response = [
-              "success" => true,
-              "message" => "Solicitação em Andamento" 
-           ];
+            $data = $this->selectDados($id);
+            $celular = $data->celular;
+            $this->whatsappAlertAndamento($celular);
+            $response = [
+                "success" => true,
+                "message" => "Solicitação em Andamento" 
+            ];
         }else{
             $response = [
                 "success" => false,
@@ -65,7 +72,7 @@ class UpdateSolicitacaoBarbeiro {
         
 
         if($create > 0 && $update > 0 && $updateUser > 0){
-
+            $this->whatsappAlertAprovado($data->celular);
             $response = [
                 "success" => true,
                 "message" => "Solicitação Aprovado. Conta de Barbeiro criado com sucesso" 
@@ -118,6 +125,34 @@ class UpdateSolicitacaoBarbeiro {
         $get = new \Src\GET\Usuario($id);
         $token = $get->token();
         return $token;
+    }
+
+    private function whatsappAlertAndamento($to)
+    {
+        $data = $this->datas->dataAtual();
+        $message =  "
+        🧏 Sua solicitação está em analise:
+          \n 📆 Data: $data
+          \n Sua solicitação está em analise no momento
+        ";
+        $send = new Whatsapp($to, $message);
+
+        return $send->send();
+
+    }
+
+    private function whatsappAlertAprovado($to)
+    {
+        $data = $this->datas->dataAtual();
+        $message =  "
+          ✅ Sua solicitação foi Aprovado:
+          \n 📆 Data: $data
+          \n Parabéns sua solicitação para ser barbeiro na plataforma foi aprovada
+        ";
+
+        $send = new Whatsapp($to, $message);
+
+        return $send->send();
     }
 
 }
