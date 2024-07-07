@@ -60,11 +60,11 @@ $id = $get->id();
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
 
-        <li class="nav-item d-block d-lg-none">
+       <!-- <li class="nav-item d-block d-lg-none">
           <a class="nav-link nav-icon search-bar-toggle " href="#">
             <i class="bx bx-search"></i>
           </a>
-        </li><!-- End Search Icon-->
+        </li>--><!-- End Search Icon-->
 
         <!--<li class="nav-item dropdown">
 

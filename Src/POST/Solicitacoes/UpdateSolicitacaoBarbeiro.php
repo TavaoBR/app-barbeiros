@@ -64,6 +64,7 @@ class UpdateSolicitacaoBarbeiro {
           "bairro" => $data->bairro,
           "endereco" => $data->endereco,
           "numero" => $data->numero,
+          "online" => 1
         ]; 
 
         $create = $this->barbeiro->create($request);

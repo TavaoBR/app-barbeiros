@@ -21,7 +21,10 @@ class BarbeiroController  extends TemplateConfig{
         $this->verificarNivel();
         $barbeiro = new Barbeiro($data['token']);
         $usuario =  new Usuario($barbeiro->fk());
-        $this->view("app/barbeiro/perfil", ["title" => "Perfil", "fk" => $barbeiro->fk(), "avatar" => $usuario->avatar(), "nome" => $usuario->nome()]);
+        $this->view("app/barbeiro/perfil", 
+        ["title" => "Perfil", "fk" => $barbeiro->fk(), "celular" => $usuario->celular(), "email" => $usuario->mail(), "avatar" => $usuario->avatar(), "nome" => $usuario->nome(),
+        "endereco" => $barbeiro->endereco(), "bairro" => $barbeiro->bairro(), "numero" => $barbeiro->numero(), "cidade" => $barbeiro->cidade(), "estado" => $barbeiro->estado()
+      ]);
     }
 
     public function agenda($data)
