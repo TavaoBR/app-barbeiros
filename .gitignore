@@ -1,4 +1,5 @@
 /vendor/
 /Public/img/galeria
 .env
+git rm --cached .env
 
