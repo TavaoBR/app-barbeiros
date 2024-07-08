@@ -6,15 +6,15 @@ use PDO;
 class Connection {
 
     
-    private static $host = "127.0.0.1";
+    private static $host = '193.203.175.94';
 
-    private static $db = "mysql";
+    private static $db = 'mysql';
 
-    private static $dbname = "barbeirosapp";
+    private static $dbname = 'u736474566_dataBase';
 
-    private static $user = "root";
+    private static $user = 'u736474566_dataBase';
 
-    private static $password = "";
+    private static $password = 'rF2E0L0|';
 
     private static $port = 3306;
 
