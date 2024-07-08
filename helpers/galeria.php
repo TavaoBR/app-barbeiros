@@ -21,7 +21,7 @@ function pegarImagens($id)
          }  
          closedir($open);
        }else{ 
-          echo "Erro";
+          echo "Nenhuma imagem encontrada";
        }
    }else{
      echo "Nenhuma imagem encontrada";

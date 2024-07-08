@@ -18,6 +18,8 @@ class Barbeiro {
     private string $numero;
     private ?int $pontos = null;
     private ?int $avaliacao = null;
+    private ?int $online = null;
+    private string $token;
 
     public function __construct(string $token)
     {
@@ -33,6 +35,8 @@ class Barbeiro {
         $this->estado = $data->estado;
         $this->bairro = $data->bairro;
         $this->numero = $data->numero;
+        $this->online = $data->online;
+        $this->token = $data->token;
     }
 
     public function conta()
@@ -79,7 +83,15 @@ class Barbeiro {
         return $this->cidade;
     }
 
+    public function online()
+    {
+        return $this->online;
+    }
 
+    public function token()
+    {
+        return $this->token;
+    }
 
 
 

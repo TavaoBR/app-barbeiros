@@ -42,6 +42,7 @@ class Routers {
         $router->get("/admin/solicitacoes/acesso/barbeiro", "AdminController:solicitacoesBarbeiro");   
 
         $router->get("/barbeiro/perfil/{token}", "BarbeiroController:perfil");
+        $router->get("/barbeiro/perfil/galeria/adicionar/imagens/{token}", "BarbeiroController:addImagens");
 
         $router->group("oops")->namespace("Src\Controller\Error");
         $router->get("/{errocode}", "ErrorController:notFound");
@@ -75,6 +76,11 @@ class Routers {
         $router->post("/acesso/barbeiro/reprovado/{id}", "UpdateSolicitacaoBarbeiro:Reprovado");
         $router->post("/acesso/barbeiro/cancelado/{id}", "UpdateSolicitacaoBarbeiro:Cancelado");
         
+        $router->group("barbeiro")->namespace("Src\POST\Barbeiro");
+        $router->post("/online/{id}", "UpdateOnOff:Online");
+        $router->post("/offline/{id}", "UpdateOnOff:Offline");
+        $router->post("/galeria/imagens", "GaleriaAddImagens:adicionar");
+
         $router->dispatch();
         
         if($router->error()){

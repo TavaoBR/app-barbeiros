@@ -1,4 +1,7 @@
 <?=$this->layout('themes/sistemas', ['title' => $title]);?>
+
+
+
 <style>
     .profile-info-list {
     padding: 0;
@@ -303,8 +306,23 @@
             <div class="profile-header-info">
                 <h4 class="m-t-sm"><?=$nome?></h4>
                 <a href="#" class="btn btn-xs btn-primary mb-4">Edit Profile</a>
-                <a href="#" class="btn btn-xs btn-success mb-4">Ficar Online</a>
-                <a href="#" class="btn btn-xs btn-danger mb-4">Ficar Offline</a>
+                <?php 
+                 if($online == 2 OR $online == null):
+                ?>
+                    <button  class="btn btn-xs btn-success mb-4" onclick="FicarOnline(<?=$id?>)">Ficar Online</button>
+                <?php 
+                 endif;
+                ?>
+
+                <?php 
+                 if($online == 1):
+                ?>
+                    <button  class="btn btn-xs btn-danger mb-4" onclick="FicarOffline(<?=$id?>)" >Ficar Offline</button>
+                <?php 
+                 endif;
+                ?>
+                
+                
             </div>
         </div>
 
@@ -315,7 +333,9 @@
             <div class="col-md-8">
                 <div class="tab-content p-0">
                     <div class="tab-pane active show" id="profile-photos">
-                        <div class="m-b-10"><b>Galeria (<?=totalGaleria($fk)?>)</b></div>
+                        <div class="m-b-10"><b>Galeria (<?=totalGaleria($fk)?>)</b>
+                          <a href="<?=routerConfig()?>/app/barbeiro/perfil/galeria/adicionar/imagens/<?=$token?>"> Adicionar Imagens</a>     
+                        </div>
                         <ul class="img-grid-list">
                             <?php 
                              pegarImagens($fk);
@@ -356,3 +376,9 @@
         </div>
     </div>
 </div>
+
+<script>
+    var url = "<?=routerConfig()?>";
+</script>
+
+<script src="<?=Assests("assets/js/barbeiro/OnOff.js")?>"></script>
