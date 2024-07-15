@@ -22,6 +22,7 @@ class Routers {
         $router->get("/cadastro", "IndexController:cadastro");
         $router->get("/login", "IndexController:login");
         $router->get("/sair", "IndexController:sair");
+        $router->get("/recuperar/conta/{token}", "IndexController:recuperar");
         
 
         $router->get("/test", "IndexController:test");
@@ -43,6 +44,7 @@ class Routers {
 
         $router->get("/barbeiro/perfil/{token}", "BarbeiroController:perfil");
         $router->get("/barbeiro/perfil/galeria/adicionar/imagens/{token}", "BarbeiroController:addImagens");
+        $router->get("/barbeiro/atendimento/cadastro/horarios/{token}", "BarbeiroController:cadastrarHorarios"); 
 
         $router->group("oops")->namespace("Src\Controller\Error");
         $router->get("/{errocode}", "ErrorController:notFound");
@@ -58,7 +60,6 @@ class Routers {
         $router = $this->server();
 
         $router->group(null)->namespace("Src\POST");
-        $router->post("/zap", "Index:enviar");
         $router->post("/login", "Login:result");
 
         $router->group("oops")->namespace("Src\Controller\Error");
@@ -69,17 +70,21 @@ class Routers {
         $router->post("/solicitacao/acesso/barbeiro/{id}", "SolicitarAcessoBarbeiro:result");
         $router->post("/atualizar/info/{id}", "UpdateInfo:Result");
         $router->post("/atualizar/senha/{id}", "UpdateSenha:Result");
+        $router->post("/atualizar/senha/{id}", "UpdateSenha:Result");
+        $router->post("/recuperar/conta/{id}", "RecuperarConta:Recuperar");
 
         $router->group("solicitacoes")->namespace("Src\POST\Solicitacoes");
         $router->post("/acesso/barbeiro/andamento/{id}", "UpdateSolicitacaoBarbeiro:Andamento");
         $router->post("/acesso/barbeiro/aprovado/{id}", "UpdateSolicitacaoBarbeiro:Aprovado");
         $router->post("/acesso/barbeiro/reprovado/{id}", "UpdateSolicitacaoBarbeiro:Reprovado");
-        $router->post("/acesso/barbeiro/cancelado/{id}", "UpdateSolicitacaoBarbeiro:Cancelado");
+       
         
         $router->group("barbeiro")->namespace("Src\POST\Barbeiro");
         $router->post("/online/{id}", "UpdateOnOff:Online");
         $router->post("/offline/{id}", "UpdateOnOff:Offline");
         $router->post("/galeria/imagens", "GaleriaAddImagens:adicionar");
+        $router->post("/atendimento/cadastro/horarios/{id}", "CadastroHorarios:Result");
+
 
         $router->dispatch();
         

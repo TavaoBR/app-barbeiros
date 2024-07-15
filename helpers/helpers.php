@@ -154,3 +154,15 @@ function formatarNumero($numero) {
 }
 
 
+function gerarSenha(int $comprimento) {
+    $caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&';
+    $senha = '';
+    $max = strlen($caracteres) - 1;
+    
+    for ($i = 0; $i < $comprimento; $i++) {
+        $indice = rand(0, $max);
+        $senha .= $caracteres[$indice];
+    }
+    
+    return $senha;
+}

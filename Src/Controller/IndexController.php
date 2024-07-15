@@ -38,10 +38,38 @@ class IndexController extends TemplateConfig{
       setSession("Mensagem",sweetAlertSuccess("Deslogado com sucesso"));
       redirect(routerConfig()."/login");
     }
+
+    public function recuperar($data)
+    { 
+      $token = $data['token'];
+      $usuario = new Usuario;
+      $select = $usuario->findBy("token", $token);
+      $conta = $select[0];
+      $dados = $select[1];
+
+      $this->view("site/usuario/recuperarConta",  ["title" => "Recuperar Conta", "conta" => $conta, "usuario" => $dados->usuario, "id" => $dados->id]);
+
+    }
     
 
     public function test(){
 
+      $start = 8; // Hora inicial
+      $end = 22; // Hora final
+
+      // Array para armazenar os intervalos de tempo
+      $times = [];
+
+      for ($hour = $start; $hour <= $end; $hour++) {
+          for ($minute = 0; $minute < 60; $minute += 30) {
+              // Formata a hora e minuto com dois dígitos
+              $formattedTime = str_pad($hour, 2, "0", STR_PAD_LEFT) . ":" . str_pad($minute, 2, "0", STR_PAD_LEFT);
+              $times[] = $formattedTime;
+          }
+      }
+
+      // Imprime o array de intervalos de tempo
+      print_r($times);
 
       /*$zap = new Whatsapp("+5579991917634", "Olá meu eu");
       $zap->send();*/

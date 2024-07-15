@@ -331,10 +331,10 @@ $id = $get->id();
   ?>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#edit-user" data-bs-toggle="collapse" href="#">
+        <a class="nav-link collapsed" data-bs-target="#barbeiro" data-bs-toggle="collapse" href="#">
         <i class='bx bx-map'></i></i><span>Barbeiro</span><i class="bx bx-chevron-down ms-auto"></i>
         </a>
-        <ul id="edit-user" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="barbeiro" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="<?=routerConfig()?>/app/barbeiro/perfil/<?=$token?>">
               <i class="bx bx-circle"></i><span>Perfil</span>
@@ -347,8 +347,8 @@ $id = $get->id();
           </li>
 
           <li>
-            <a href="<?=routerConfig()?>/app/barbeiro/agenda/cadastro/<?=$token?>">
-              <i class="bx bx-circle"></i><span>Cadastrar Agenda</span>
+            <a href="<?=routerConfig()?>/app/barbeiro/atendimento/cadastro/horarios/<?=$token?>">
+              <i class="bx bx-circle"></i><span>Cadastrar Horarios</span>
             </a>
           </li>
 
@@ -362,10 +362,10 @@ $id = $get->id();
   ?>
       
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#edit-user" data-bs-toggle="collapse" href="#">
+        <a class="nav-link collapsed" data-bs-target="#procurar" data-bs-toggle="collapse" href="#">
         <i class='bx bx-map'></i></i><span>Procurar</span><i class="bx bx-chevron-down ms-auto"></i>
         </a>
-        <ul id="edit-user" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="procurar" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="<?=routerConfig()?>/app/barbeiro">
               <i class="bx bx-circle"></i><span>Barbeiro</span>

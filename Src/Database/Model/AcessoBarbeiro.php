@@ -4,6 +4,6 @@ namespace Src\Database\Model;
 
 class AcessoBarbeiro extends Models {
 
-    protected string $table = 'soliticarAcessoBarbeiro';
+    protected string $table = 'soliticaracessobarbeiro';
 
 }

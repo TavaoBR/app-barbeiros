@@ -10,7 +10,7 @@ use PDO;
 
 abstract class Models {
 
-   private string $fields = '*';
+  private string $fields = '*';
   private ?Filters $filters = null;
   private string $pagination = '';
   protected string $table;

@@ -6,8 +6,8 @@ use Src\Services\Validate;
 
 class Register {
 
-    protected $user;
-    protected $validate;
+    protected Usuario $user;
+    protected Validate $validate;
     protected string $nome;
     protected string $usuario;
     protected string $mail;
@@ -131,8 +131,8 @@ class Register {
          setSession("Mensagem", sweetAlertSuccess("Agora faça o login com sua conta", "Cadastro realizado"));
          redirect(routerConfig()."/login");
        }else{
-        setSession("MessageRegister", sweetAlertWarning("Parece que você já solicitou acesso ao plataforma como barbeiro", "Alerta")); 
-        redirectBack();
+         setSession("MessageRegister", sweetAlertError("Ocorreu algum erro, por favor tente mais tarde ou entre em contato com o suporte"));
+         redirectBack();
        }
     }
 

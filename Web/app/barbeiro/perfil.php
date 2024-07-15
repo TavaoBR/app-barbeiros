@@ -371,6 +371,10 @@
                         <div class="field">E-Mail Contato</div>
                         <div class="value"><?=$email?></div>
                     </li>
+                    <li>
+                    <div class="field">Horário de atendimento</div>
+                    <div class="value"><?=date("H:i", strtotime($horaInicial))?> Às <?=date("H:i", strtotime($horaFinal))?></div>
+                    </li>
                 </ul>
             </div>
         </div>

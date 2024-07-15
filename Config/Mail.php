@@ -19,7 +19,7 @@ class Mail {
     public function __construct(){
         $this->mail = new PHPMailer(true);
         $this->mail->isSMTP();
-        $this->mail->Host = 'sandbox.smtp.mailtrap.io';
+        $this->mail->Host = 'smtp.hostinger.com';
         $this->mail->SMTPAuth = true;
         $this->mail->Username = 'e7145d6dfd0d27';
         $this->mail->Password = '4e7e60455a34ef';
