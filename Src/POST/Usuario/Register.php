@@ -56,7 +56,7 @@ class Register {
 
         setSession("MessageRegister", messageWarning($this->validate->validate($request)));
         redirectBack();
-      
+        return true;
        }
 
        return false;

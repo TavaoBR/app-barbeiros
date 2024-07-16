@@ -352,6 +352,12 @@ $id = $get->id();
             </a>
           </li>
 
+          <li>
+            <a href="<?=routerConfig()?>/app/barbeiro/servicos/cadastrar/<?=$token?>">
+              <i class="bx bx-circle"></i><span>Cadastrar Serviços</span>
+            </a>
+          </li>
+
 
         </ul>
       </li>

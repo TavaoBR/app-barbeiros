@@ -1,8 +1,10 @@
 <?=$this->layout('themes/sistemas', ['title' => $title]);?>
 
+<?php 
+ if($conta > 0):
+?>
 <style>
     body{
-    margin-top: 120px;
     color: #1a202c;
     text-align: left;
     background-color: #e2e8f0;    
@@ -55,7 +57,9 @@
     box-shadow: none!important;
 }
 </style>
-
+<?php 
+ if($contaHorario < 1):
+?>
 
 <div class="container-fluid">
   <h2> Cadastrar Horários de atendimento</h2>
@@ -130,3 +134,24 @@
             removeHalfHourOptions('end-time');
         });
     </script>
+
+<?php 
+else:
+?>
+
+<h2> Você ja cadastrou seus horarios de atendimento</h2>
+
+<?php 
+endif;
+?>
+
+
+
+<?php 
+else:
+?>
+ <h2> Nenhum dado encontrado</h2>
+<?php 
+ endif;
+?>
+

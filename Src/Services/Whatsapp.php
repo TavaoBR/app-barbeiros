@@ -42,7 +42,7 @@ class Whatsapp
     private function curl()
     {
        $curl = curl_init();
-       curl_setopt_array($curl, array(
+       curl_setopt_array($curl, [
         CURLOPT_URL => $this->url(),
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => "",
@@ -53,10 +53,10 @@ class Whatsapp
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "POST",
         CURLOPT_POSTFIELDS => http_build_query($this->param()),
-        CURLOPT_HTTPHEADER => array(
+        CURLOPT_HTTPHEADER => [
             "content-type: application/x-www-form-urlencoded"
-        ),
-       ));
+        ],
+       ]);
 
        $response = curl_exec($curl);
        //$err = curl_error($curl);

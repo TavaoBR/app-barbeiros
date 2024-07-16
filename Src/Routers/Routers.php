@@ -45,6 +45,8 @@ class Routers {
         $router->get("/barbeiro/perfil/{token}", "BarbeiroController:perfil");
         $router->get("/barbeiro/perfil/galeria/adicionar/imagens/{token}", "BarbeiroController:addImagens");
         $router->get("/barbeiro/atendimento/cadastro/horarios/{token}", "BarbeiroController:cadastrarHorarios"); 
+        $router->get("/barbeiro/servicos/cadastrar/{token}", "BarbeiroController:cadastrarServicos");
+    
 
         $router->group("oops")->namespace("Src\Controller\Error");
         $router->get("/{errocode}", "ErrorController:notFound");

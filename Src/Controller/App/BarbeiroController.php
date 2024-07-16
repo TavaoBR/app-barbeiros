@@ -2,6 +2,7 @@
 
 namespace Src\Controller\App;
 use Config\TemplateConfig;
+use League\Plates\Template\Func;
 use Src\Database\Filters;
 use Src\Database\Model\HorarioAtendimento;
 use Src\GET\Barbeiro\Barbeiro;
@@ -52,19 +53,34 @@ class BarbeiroController  extends TemplateConfig{
       }
     }
 
+    private function verificaPeril(string $token)
+    {
+        $get = new Usuario();
+        if($get->token() != $token){
+          $this->perfilPublico($token);
+          return true;
+        }
+
+        return false;
+    }
+
 
 
     public function perfil($data)
     {
         session_start();
-        $this->verificarNivel();
-        $barbeiro = new Barbeiro($data['token']);
-        $usuario =  new Usuario($barbeiro->fk());
-        $this->view("app/barbeiro/perfil", 
-        ["title" => "Perfil", "id" => $barbeiro->id(),"fk" => $barbeiro->fk(), "token" => $barbeiro->token(), "celular" => $usuario->celular(), "email" => $usuario->mail(), "avatar" => $usuario->avatar(), "nome" => $usuario->nome(),
-        "endereco" => $barbeiro->endereco(), "bairro" => $barbeiro->bairro(), "numero" => $barbeiro->numero(), "cidade" => $barbeiro->cidade(), "estado" => $barbeiro->estado(), "online" => $barbeiro->online(), 
-        "horaInicial" => $this->horarioInicial($barbeiro->id())->hora, "horaFinal" => $this->horariofinal($barbeiro->id())->hora
-      ]);
+        
+        if(!$this->verificaPeril($data['token'])){
+          $this->verificarNivel();
+          $barbeiro = new Barbeiro($data['token']);
+          $usuario =  new Usuario($barbeiro->fk());
+          $this->view("app/barbeiro/perfil", 
+          ["title" => "Perfil", "id" => $barbeiro->id(),"fk" => $barbeiro->fk(), "token" => $barbeiro->token(), "celular" => $usuario->celular(), "email" => $usuario->mail(), "avatar" => $usuario->avatar(), "nome" => $usuario->nome(),
+          "endereco" => $barbeiro->endereco(), "bairro" => $barbeiro->bairro(), "numero" => $barbeiro->numero(), "cidade" => $barbeiro->cidade(), "estado" => $barbeiro->estado(), "online" => $barbeiro->online(), 
+          "horaInicial" => $this->horarioInicial($barbeiro->id())->hora, "horaFinal" => $this->horariofinal($barbeiro->id())->hora
+        ]);
+        }
+        
     }
 
     public function addImagens($data)
@@ -81,18 +97,33 @@ class BarbeiroController  extends TemplateConfig{
       $this->verificarNivel();
     }
 
-    public function cadastrarAgenda($data)
-    {
-      session_start();
-      $this->verificarNivel();
-    }
-
     public function cadastrarHorarios($data)
     {
         session_start();
         $this->verificarNivel();
         $barbeiro = new Barbeiro($data['token']);
-        $this->view("app/barbeiro/atendimento/cadastrarHorarios", ["title" => "Cadastrar Horarios", "id" => $barbeiro->id(), "conta" => $barbeiro->conta()]);
+        $this->view("app/barbeiro/atendimento/cadastrarHorarios", 
+        ["title" => "Cadastrar Horarios", "id" => $barbeiro->id(), "conta" => $barbeiro->conta(), "contaHorario" => $this->contaRegistroHorarios($barbeiro->id())]);
+    }
+
+    public function perfilPublico($token)
+    {
+      session_start();
+        $barbeiro = new Barbeiro($token);
+        $usuario =  new Usuario($barbeiro->fk());
+        $this->view("app/barbeiro/perfilPublico", 
+        ["title" => "Perfil", "id" => $barbeiro->id(),"fk" => $barbeiro->fk(), "token" => $barbeiro->token(), "celular" => $usuario->celular(), "email" => $usuario->mail(), "avatar" => $usuario->avatar(), "nome" => $usuario->nome(),
+        "endereco" => $barbeiro->endereco(), "bairro" => $barbeiro->bairro(), "numero" => $barbeiro->numero(), "cidade" => $barbeiro->cidade(), "estado" => $barbeiro->estado(), "online" => $barbeiro->online(), 
+        "horaInicial" => $this->horarioInicial($barbeiro->id())->hora, "horaFinal" => $this->horariofinal($barbeiro->id())->hora
+      ]);
+    }
+
+    public function cadastrarServicos($data)
+    {
+      session_start();
+      $this->verificarNivel();
+      $barbeiro = new Barbeiro($data['token']);
+      $this->view("app/barbeiro/servicos/cadastro", ["title" => "Cadastro"]); 
     }
 
 
