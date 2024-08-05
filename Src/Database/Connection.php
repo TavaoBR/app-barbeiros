@@ -5,31 +5,23 @@ namespace Src\Database;
 use PDO;
 class Connection {
 
-    
-    private static $host = '193.203.175.94';
+    private static $connection = null;
 
-    private static $db = 'mysql';
+    public static function connect(){
 
-    private static $dbname = 'u736474566_dataBase';
+        $host = $_ENV['HOST_DB'];
+        $db = $_ENV['DB'];
+        $dbname = $_ENV['DB_NAME'];
+        $user = $_ENV['DB_USER'];
+        $password = $_ENV['DB_PASSWORD'];
+        $port = 3306;
 
-    private static $user = 'u736474566_dataBase';
-
-    private static $password = 'rF2E0L0|';
-
-    private static $port = 3306;
-
-     private static $connection = null;
-
-     public static function connect(){
-
-        if(!self::$connection){
-            self::$connection = new PDO(self::$db.":host=".self::$host.";port=".self::$port.";dbname=".self::$dbname, self::$user, self::$password, [
+        if (!self::$connection) {
+            self::$connection = new PDO($db . ":host=" . $host . ";port=" . $port . ";dbname=" . $dbname, $user, $password, [
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
             ]);
         }
 
         return self::$connection;
-
-     }
-
+    }
 }

@@ -93,7 +93,7 @@ abstract class Models {
       $prepare = $connection->prepare($sql);
       $prepare->execute($this->filters ? $this->filters->getBind() : []);
 
-      return array($prepare->rowCount(), $prepare->fetchAll(PDO::FETCH_CLASS)) ;
+      return [$prepare->rowCount(), $prepare->fetchAll(PDO::FETCH_CLASS)] ;
     } catch (PDOException $e) {
       var_dump($e->getMessage());
     }
@@ -112,7 +112,7 @@ abstract class Models {
 
       $prepare->execute($this->filters ? $this->filters->getBind() : [$field => $value]);
 
-      return array($prepare->rowCount(), $prepare->fetchObject());
+      return [$prepare->rowCount(), $prepare->fetchObject()];
     } catch (PDOException $e) {
       var_dump($e->getMessage());
     }

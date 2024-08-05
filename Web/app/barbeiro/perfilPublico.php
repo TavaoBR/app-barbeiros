@@ -319,7 +319,7 @@
                  if($online == 1):
                 ?>
                      <a  class="btn btn-xs btn-success mb-4" >Online</a>
-                     <a href="#" class="btn btn-xs btn-primary mb-4">Agendar Agora</a>
+                     <a href="<?=routerConfig()?>/app/agendar/barbeiro/<?=$token?>" class="btn btn-xs btn-primary mb-4">Agendar Agora</a>
                 <?php 
                  endif;
                 ?>

@@ -2,7 +2,7 @@
 
 <style>
   .bg-secondary-soft {
-    background-color: rgba(208, 212, 217, 0.1) !important;
+    background-color: #fff !important;
 }
 .rounded {
     border-radius: 5px !important;
@@ -63,25 +63,32 @@
 		<div class="col-12">
 			<!-- Page title -->
 			<div class="my-5">
-				<h3>Cadastro Serviço</h3>
+            <?=validateSession("Message")?>
 			</div>
 			<!-- Form START -->
-			<form class="file-upload">
+			<form class="file-upload" action="<?=routerConfig()?>/barbeiro/servicos/cadastro/<?=$id?>" method="POST">
 				<div class="row mb-5 gx-5">
 					<!-- Contact detail -->
 					<div class="col-xxl-8 mb-5 mb-xxl-0">
 						<div class="bg-secondary-soft px-4 py-5 rounded">
 							<div class="row g-3">
-								<h4 class="mb-4 mt-0">Serviço</h4>
+								<h4 class="mb-4 mt-0">Cadastro Serviços</h4>
 								<!-- First Name -->
 								<div class="col-md-6">
 									<label class="form-label"> Nome </label>
-									<input type="text" class="form-control" placeholder="Exemplo: Corte cabelo na tesoura" aria-label="First name" >
+									<input type="text" name="nome" class="form-control" placeholder="Exemplo: Corte cabelo na tesoura" aria-label="First name" >
 								</div>
 
-                <div class="col-md-6">
+                                
+
+                                <div class="col-md-6">
 									<label class="form-label"> Valor </label>
-									<input type="number" class="form-control" placeholder="Exemplo: 30" aria-label="First name" value="Scaralet">
+									<input type="text" name="valor" class="form-control" placeholder="Exemplo: 30.5"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')">
+								</div>
+
+                                <div class="col-md-12">
+									<label class="form-label"> Descrição </label>
+                                    <textarea name="descricao" id="" rows="5" cols="5" class="form-control"></textarea>
 								</div>
 							</div> <!-- Row END -->
 						</div>

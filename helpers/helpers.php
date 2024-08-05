@@ -166,3 +166,25 @@ function gerarSenha(int $comprimento) {
     
     return $senha;
 }
+
+
+function dataAtual()
+{
+    $data = new \Src\Services\Datas;
+    return $data->dataAtual();
+}
+
+function diaSemanaEmPortugues($diaIngles) {
+    $diasDaSemana = [
+        'Monday' => 'Segunda-feira',
+        'Tuesday' => 'Terça-feira',
+        'Wednesday' => 'Quarta-feira',
+        'Thursday' => 'Quinta-feira',
+        'Friday' => 'Sexta-feira',
+        'Saturday' => 'Sábado',
+        'Sunday' => 'Domingo'
+    ];
+    
+    return $diasDaSemana[$diaIngles];
+}
+

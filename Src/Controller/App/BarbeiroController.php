@@ -123,7 +123,7 @@ class BarbeiroController  extends TemplateConfig{
       session_start();
       $this->verificarNivel();
       $barbeiro = new Barbeiro($data['token']);
-      $this->view("app/barbeiro/servicos/cadastro", ["title" => "Cadastro"]); 
+      $this->view("app/barbeiro/servicos/cadastro", ["title" => "Cadastro", "conta" => $barbeiro->conta(), "id" => $barbeiro->id()]); 
     }
 
 

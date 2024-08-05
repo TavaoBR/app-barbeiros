@@ -1,8 +1,13 @@
 <?=$this->layout('themes/sistemas', ['title' => $title]);?>
 
+<?=validateSession("MessageSuccess")?>
+
 <?php 
  if($conta > 0):
+
 ?>
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <style>
     body{
     color: #1a202c;
@@ -110,8 +115,10 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script>
+      $('#itens').select2();
         // Remove as opções de tempo com "30" minutos
         function removeHalfHourOptions(inputId) {
             const timeInput = document.getElementById(inputId);

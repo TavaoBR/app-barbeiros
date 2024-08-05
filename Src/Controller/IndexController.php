@@ -54,7 +54,47 @@ class IndexController extends TemplateConfig{
 
     public function test(){
 
-      $start = 8; // Hora inicial
+      $data = "2024-08-04";
+      $fk = "12";
+      
+       $fecth = agendaBarbeiroData($fk, $data);
+      
+       $fecth1 = horariosAtendimentoBarbeiro($fk);
+
+
+
+       if($fecth[0] > 0){
+
+        $horarioAgendamento = [];
+
+        foreach($fecth[1] as $consulta){
+          
+          $horarioAgendamento[] = $consulta->horario;
+       }
+       
+
+       foreach($fecth1[1] as $horas){
+            if(!in_array($horas->hora, $horarioAgendamento)){
+               echo $horas->hora . "<br>";
+            } 
+       }
+
+       }else{
+
+        foreach($fecth1[1] as $horas){
+             echo $horas->hora . "<br>";
+        }
+
+       }
+
+       
+
+
+
+
+      //include_once("Web/site/test.php");
+
+      /*$start = 8; // Hora inicial
       $end = 22; // Hora final
 
       // Array para armazenar os intervalos de tempo
@@ -69,7 +109,7 @@ class IndexController extends TemplateConfig{
       }
 
       // Imprime o array de intervalos de tempo
-      print_r($times);
+      print_r($times);*/
 
       /*$zap = new Whatsapp("+5579991917634", "Olá meu eu");
       $zap->send();*/

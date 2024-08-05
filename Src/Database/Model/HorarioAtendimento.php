@@ -6,4 +6,5 @@ class HorarioAtendimento extends Models {
 
     protected string $table = 'horariosatendimentobarbeiro';
     
+    
 }

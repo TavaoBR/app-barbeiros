@@ -15,7 +15,8 @@
             "helpers/userHelpers.php",
             "helpers/helpers.php",
             "helpers/solicitacaoAcesso.php",
-            "helpers/galeria.php"
+            "helpers/galeria.php",
+            "helpers/DataBase.php"
         ],
         "psr-4": {
             "Config\\": "Config/",

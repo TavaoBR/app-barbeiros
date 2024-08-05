@@ -121,6 +121,7 @@ class Register {
           "senha" => md5($this->senha),
           "viewSenha" => $this->senha,
           "avatar" => $this->avatar['name'],
+          "tentativas" => 1,
           "nivel" => 2
        ]);
 

@@ -30,7 +30,7 @@ class Routers {
         $router->group("app")->namespace("Src\Controller\App");
         $router->get("/acesso/negado", "IndexController:acessoNegado");
         $router->get("/", "IndexController:index");
-        
+        $router->get("/agendar/barbeiro/{token}", "IndexController:Barbeiroagendarhoje");
         $router->get("/perfil", "IndexController:perfil");
         $router->get("/perfil/trocar/senha", "IndexController:trocarSenha");
         $router->get("/perfil/historico/solicitacao/acesso/barbeiro", "IndexController:solicitacaoAcessoBarbeiro");
@@ -86,6 +86,8 @@ class Routers {
         $router->post("/offline/{id}", "UpdateOnOff:Offline");
         $router->post("/galeria/imagens", "GaleriaAddImagens:adicionar");
         $router->post("/atendimento/cadastro/horarios/{id}", "CadastroHorarios:Result");
+        $router->post("/servicos/cadastro/{id}", "CadastrarServicos:Result");
+        $router->post("/agenda/consultar/{fk}", "ConsultarHorarioDisponivel:Result");
 
 
         $router->dispatch();

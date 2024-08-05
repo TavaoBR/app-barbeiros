@@ -1,0 +1,8 @@
+                                                        <div class='mb-4'>
+                                                        <label class='form-label' for='billing-city'>Escolha Horario</label>
+                                                        <br>
+                                                                    <div class='btn-group'>
+                                                                    <input type='radio' class='btn-check ' name='options' id='<?=$hora?>' autocomplete='off'   />
+                                                                    <label class='btn btn-dark'  for='<?=$hora?>' data-mdb-ripple-init><?=$hora?></label>
+                                                                    </div>
+                                                        </div>

@@ -2,10 +2,24 @@
 
 namespace Src\Controller\App;
 use Config\TemplateConfig;
+use Src\Database\Filters;
+use Src\Database\Model\Barbeiro;
+use Src\Database\Model\HorarioAtendimento;
+use Src\Database\Model\ServicoBarbeiro;
 use Src\GET\Usuario;
 
 class IndexController extends TemplateConfig{
+    
+    private Barbeiro $barbeiro;
+    private ServicoBarbeiro $servicos;
+    private Filters $filters;
 
+    public function __construct()
+    {
+      $this->barbeiro = new Barbeiro;
+      $this->filters = new Filters;
+      $this->servicos = new ServicoBarbeiro;
+    }
 
     public function index()
     {
@@ -59,6 +73,19 @@ class IndexController extends TemplateConfig{
       $get = new Usuario();
       $this->view("app/usuario/solicitacaoAcesso/barbeiro", ["title" => "Solicitacao Acesso", "conta" => $get->historicoSolicitacaoAcesso()[0], "data" => $get->historicoSolicitacaoAcesso()[1]]);
     }
+
+    public function Barbeiroagendarhoje($data)
+    {
+       session_start();
+       $token = $data['token'];
+       $barbeiro = $this->barbeiro->findBy("token", $token);
+       $id = $barbeiro[1]->id; 
+       $servico = $this->servicos->fetchAll();
+
+       $this->view("app/usuario/barbeiro/agendar", ["title" => "Agendar", "id" => $id, "servicos" => $servico[1]]);
+         
+    }
+
 
 
 }
