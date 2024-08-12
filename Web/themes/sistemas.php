@@ -44,18 +44,18 @@ $id = $get->id();
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
-        <!--<img src="<?//=Assests("img/site/pngegg.png")?>" alt="">-->
-        <span class="d-none d-lg-block">Corte aqui</span>
+        <img src="https://cdn-icons-png.flaticon.com/512/5087/5087032.png" alt="">
+        <span class="d-none d-lg-block">CorteApp</span>
       </a>
-      <i class='bx bx-menu toggle-sidebar-btn' ></i>
+      <i class='bx bx-menu toggle-sidebar-btn'></i>
     </div><!-- End Logo -->
 
-    <!--<div class="search-bar">
+    <div class="search-bar">
       <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="nome de usuario(exemplo: jamesgu14)" title="Enter search keyword">
+        <input type="text" name="query" placeholder="pesquise o nome aqui" title="Enter search keyword">
         <button type="submit" title="Search"><i class="bx bx-search"></i></button>
       </form>
-    </div> End Search Bar -->
+    </div> <!--End Search Bar -->
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
@@ -293,16 +293,9 @@ $id = $get->id();
         <ul id="edit-user" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="<?=routerConfig()?>/app/admin/solicitacoes/acesso/barbeiro">
-              <i class="bx bx-circle"></i><span>Solicitações Acesso Barbeiros</span>
+              <i class="bx bx-circle"></i><span>Solicitações de Acesso </span>
             </a>
           </li>
-
-          <li>
-            <a href="#">
-              <i class="bx bx-circle"></i><span>Solicitações Acesso Barbearias</span>
-            </a>
-          </li>
-
 
           <li>
             <a href="#">
@@ -341,7 +334,7 @@ $id = $get->id();
             </a>
           </li>
           <li>
-            <a href="<?=routerConfig()?>/app/barbeiro/agenda/<?=$token?>">
+            <a href="<?=routerConfig()?>/app/barbeiro/agenda/<?=$token?>/<?=dataAtual()?>">
               <i class="bx bx-circle"></i><span>Agenda</span>
             </a>
           </li>
@@ -387,21 +380,10 @@ $id = $get->id();
 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#solicitar-acesso" data-bs-toggle="collapse" href="#">
-        <i class='bx bxs-lock-open'></i><span>Solicitar acesso</span><i class="bx bx-chevron-down ms-auto"></i>
+        <a href="<?=routerConfig()?>/app/solicitar/acesso/barbeiro" class="nav-link collapsed" href="#">
+        <i class='bx bxs-lock-open'></i>
+          <span>Solicitar acesso</span>
         </a>
-        <ul id="solicitar-acesso" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="<?=routerConfig()?>/app/solicitar/acesso/barbeiro">
-              <i class="bx bx-circle"></i><span>Barbeiro</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?=routerConfig()?>">
-              <i class="bx bx-circle"></i><span>Barbearia</span>
-            </a>
-          </li>
-        </ul>
       </li>
 
       <!-- End Charts Nav -->

@@ -83,18 +83,15 @@ class BarbeiroController  extends TemplateConfig{
         
     }
 
-    public function addImagens($data)
-    {
-      session_start();
-      $this->verificarNivel();
-      $barbeiro = new Barbeiro($data['token']);
-      $this->view("app/barbeiro/addImagens", ["title" => "Adicionar Imagens a galeria", "fk" => $barbeiro->fk()]);
-    }
 
     public function agenda($data)
     {
       session_start();
-      $this->verificarNivel();
+      if(!$this->verificaPeril($data['token'])){
+        $this->verificarNivel();
+        $this->view("app/barbeiro/agenda/index", ["title" => "Agenda {$data['data']}"]);
+      }
+     
     }
 
     public function cadastrarHorarios($data)
@@ -125,6 +122,5 @@ class BarbeiroController  extends TemplateConfig{
       $barbeiro = new Barbeiro($data['token']);
       $this->view("app/barbeiro/servicos/cadastro", ["title" => "Cadastro", "conta" => $barbeiro->conta(), "id" => $barbeiro->id()]); 
     }
-
 
 }

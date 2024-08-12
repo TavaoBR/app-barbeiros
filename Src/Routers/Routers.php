@@ -35,6 +35,7 @@ class Routers {
         $router->get("/perfil/trocar/senha", "IndexController:trocarSenha");
         $router->get("/perfil/historico/solicitacao/acesso/barbeiro", "IndexController:solicitacaoAcessoBarbeiro");
         $router->get("/perfil/publico/{id}", "IndexController:perfilPublico");
+        $router->get("/perfil/historico/agenda/barbeiro", "IndexController:historicoAgendaBarbeiro");
         
         $router->get("/solicitar/acesso/barbeiro", "IndexController:solicitarAcessoBarbeiro");
         
@@ -46,6 +47,7 @@ class Routers {
         $router->get("/barbeiro/perfil/galeria/adicionar/imagens/{token}", "BarbeiroController:addImagens");
         $router->get("/barbeiro/atendimento/cadastro/horarios/{token}", "BarbeiroController:cadastrarHorarios"); 
         $router->get("/barbeiro/servicos/cadastrar/{token}", "BarbeiroController:cadastrarServicos");
+        $router->get("/barbeiro/agenda/{token}/{data}", "BarbeiroController:agenda");
     
 
         $router->group("oops")->namespace("Src\Controller\Error");
@@ -72,8 +74,8 @@ class Routers {
         $router->post("/solicitacao/acesso/barbeiro/{id}", "SolicitarAcessoBarbeiro:result");
         $router->post("/atualizar/info/{id}", "UpdateInfo:Result");
         $router->post("/atualizar/senha/{id}", "UpdateSenha:Result");
-        $router->post("/atualizar/senha/{id}", "UpdateSenha:Result");
         $router->post("/recuperar/conta/{id}", "RecuperarConta:Recuperar");
+        $router->post("/agendar/barbeiro/{fk}", "AgendarBarbeiro:Result");
 
         $router->group("solicitacoes")->namespace("Src\POST\Solicitacoes");
         $router->post("/acesso/barbeiro/andamento/{id}", "UpdateSolicitacaoBarbeiro:Andamento");

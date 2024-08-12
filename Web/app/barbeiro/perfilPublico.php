@@ -337,12 +337,6 @@
                     <div class="tab-pane active show" id="profile-photos">
                         <div class="m-b-10"><b>Galeria (Total de fotos: <?=totalGaleria($fk)?>)</b>    
                         </div>
-                        <ul class="img-grid-list">
-                            <?php 
-                             pegarImagens($fk);
-                            ?>
-                                                        
-                        </ul>
                     </div>                    
                 </div>
             </div>

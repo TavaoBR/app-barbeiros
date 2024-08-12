@@ -302,8 +302,9 @@ a {
 <div class="container-fluid">
 
     <div class="row">
-    <form>    
+    <form action="<?=routerConfig()?>/usuario/agendar/barbeiro/<?=$id?>" method="POST">    
         <div class="col-xl-12">
+        <?=validateSession("MessageAgenda")?>
             <div class="card">
                 <div class="card-body">
                     <ol class="activity-checkout mb-0 px-4 mt-3">
@@ -315,41 +316,33 @@ a {
                             </div>
                             <div class="feed-item-list">
                                 <div>
-                                    <h5 class="font-size-16 mb-1">Billing Info</h5>
-                                    <p class="text-muted text-truncate mb-4">Sed ut perspiciatis unde omnis iste</p>
+                                    <h5 class="font-size-16 mb-1">Agendar</h5>
+                                    <p class="text-muted text-truncate mb-4">Preencha e verifique se os dados estão corretos</p>
                                     <div class="mb-3">
                                         
                                             <input type="hidden" id="valorTotal" name="valorTotal" value="">
                                             <input type="hidden" id="itensEscolhidos" name="itensEscolhidos" value="">
+                                            <input type="hidden" id="horarioEscolhidos" name="horarioEscolhidos" value="">
                                             
                                             <div>
                                                 <div class="row">
                                                     <div class="col-lg-4">
                                                         <div class="mb-3">
                                                             <label class="form-label" for="billing-name">Nome</label>
-                                                            <input type="text" class="form-control" id="billing-name" placeholder="Enter name">
+                                                            <input type="text" name="nome" class="form-control" id="billing-name" placeholder="Enter name" value="<?=$nome?>">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-4">
                                                         <div class="mb-3">
-                                                            <label class="form-label" for="billing-email-address"></label>
-                                                            <input type="email" class="form-control" id="billing-email-address" placeholder="Enter email">
+                                                            <label class="form-label" for="billing-phone">Telefone para contato</label>
+                                                            <input type="text" name="celular" class="form-control" id="celular"  value="<?=$celular?>">
                                                         </div>
                                                     </div>
+
                                                     <div class="col-lg-4">
-                                                        <div class="mb-3">
-                                                            <label class="form-label" for="billing-phone">Phone</label>
-                                                            <input type="text" class="form-control" id="billing-phone" placeholder="Enter Phone no.">
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-
-                                                <div class="col-lg-4">
                                                         <div class="mb-3">
                                                             <label class="form-label" for="billing-phone">Serviço</label>
-                                                            <select name="" id="itens" multiple class="form-control"> 
+                                                            <select  id="itens" multiple class="form-control"> 
                                                                  <option value="" disabled> Selecione as opções de corte </option>
                                                                  <?php 
                                                                    foreach($servicos as $itens):
@@ -365,11 +358,16 @@ a {
                                                             </select>
                                                         </div>
                                                     </div>
+                                                </div>
+
+                                                <div class="row">
+
+
 
                                                     <div class="col-lg-4">
                                                         <div class="mb-3">
                                                             <label class="form-label" for="billing-phone">Data</label>
-                                                            <input type="date" id="data" class="form-control"  max="<?=$data2[6]?>">
+                                                            <input type="date" name="data" id="data" class="form-control" min="<?=$hoje?>" >
                                                         </div>
                                                     </div>
 
@@ -396,7 +394,7 @@ a {
                 </div> <!-- end col -->
                 <div class="col">
                     <div class="text-end mt-2 mt-sm-0">
-                        <button class="btn btn-success">Agendar</button>
+                        <button class="btn btn-success" type="submit">Agendar</button>
                     </div>
                 </div> <!-- end col -->
             </div> <!-- end row-->
@@ -410,7 +408,10 @@ a {
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script>
-    
+
+
+    $('#celular').mask("+9999999999999");
+
     $(document).ready(function() {
 
         $('#itens').select2();
@@ -427,7 +428,11 @@ a {
                 
                 $('#itensEscolhidos').val(chosenItems.join(', '));
             });
+            
+
+            
         });
+        
 </script>
 
 <script>

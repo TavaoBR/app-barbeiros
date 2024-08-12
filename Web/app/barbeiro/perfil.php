@@ -336,12 +336,6 @@
                         <div class="m-b-10"><b>Galeria (<?=totalGaleria($fk)?>)</b>
                           <a href="<?=routerConfig()?>/app/barbeiro/perfil/galeria/adicionar/imagens/<?=$token?>"> Adicionar Imagens</a>     
                         </div>
-                        <ul class="img-grid-list">
-                            <?php 
-                             pegarImagens($fk);
-                            ?>
-                                                        
-                        </ul>
                     </div>                    
                 </div>
             </div>

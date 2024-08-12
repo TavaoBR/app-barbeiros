@@ -56,8 +56,8 @@ class ConsultarHorarioDisponivel {
             if (!empty($horariosExibir)) {
                 foreach ($horariosExibir as $hora) {
                     $html .= "<div class='btn-group' style='margin-right: 10px;'>
-                    <input type='radio' class='btn-check' name='options' id='horario-$hora' value='$hora' autocomplete='off' />
-                    <label class='btn btn-dark' for='horario-$hora'>$hora</label>
+                    <input type='radio' class='btn-check' name='horario' id='horario-$hora' value='$hora' autocomplete='off' />
+                    <label class='btn btn-primary' for='horario-$hora'>$hora</label>
                     </div>";
                 }
             }
