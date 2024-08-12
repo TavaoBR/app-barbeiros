@@ -6,6 +6,7 @@ use Src\Database\Filters;
 use Src\Database\Model\Barbeiro;
 use Src\Database\Model\ServicoBarbeiro;
 use Src\GET\Usuario;
+use Src\GET\Pesquisa;
 
 class IndexController extends TemplateConfig{
     
@@ -92,6 +93,14 @@ class IndexController extends TemplateConfig{
         $get = new Usuario();
         $agenda = HistoricoAgendaUsuarioBarbeiro($get->id());
         $this->view("app/usuario/barbeiro/historico", ["title" => "Historico Agendamento Barbeiro"]);
+    }
+
+    public function resultaPesquisa($data)
+    {
+      session_start();
+      $nome = $data['nome'];
+      $pequisa = new Pesquisa($nome);
+      dd($pequisa->Result());
     }
 
 

@@ -30,6 +30,7 @@ class Routers {
         $router->group("app")->namespace("Src\Controller\App");
         $router->get("/acesso/negado", "IndexController:acessoNegado");
         $router->get("/", "IndexController:index");
+        $router->get("/pesquisa/resultado/{nome}", "IndexController:resultaPesquisa");
         $router->get("/agendar/barbeiro/{token}", "IndexController:Barbeiroagendarhoje");
         $router->get("/perfil", "IndexController:perfil");
         $router->get("/perfil/trocar/senha", "IndexController:trocarSenha");

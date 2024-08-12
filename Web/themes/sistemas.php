@@ -51,11 +51,27 @@ $id = $get->id();
     </div><!-- End Logo -->
 
     <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="pesquise o nome aqui" title="Enter search keyword">
+      <form class="search-form d-flex align-items-center" id="searchForm">
+        <input type="text" name="nome" id="searchQuery" placeholder="pesquise o nome aqui" title="Enter search keyword">
         <button type="submit" title="Search"><i class="bx bx-search"></i></button>
       </form>
     </div> <!--End Search Bar -->
+
+    <script>
+$(document).ready(function() {
+  $('#searchForm').on('submit', function(e) {
+    e.preventDefault(); // Evita o envio tradicional do formulário
+
+    var searchQuery = $('#searchQuery').val(); // Captura o valor do campo de busca
+
+    // Construir a URL dinamicamente com o valor do campo de busca
+    var url = `<?=routerConfig()?>/app/pesquisa/resultado/${encodeURIComponent(searchQuery)}`;
+
+    // Redireciona para a nova URL
+    window.location.href = url;
+  });
+});
+    </script>
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">

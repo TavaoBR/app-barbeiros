@@ -58,3 +58,18 @@ function horariosAtendimentoBarbeiro(int $fk)
     return [$query->rowCount(), $query->fetchAll(\PDO::FETCH_CLASS)];
     
 }
+
+
+function pesquisa(string $nome)
+{
+   $db = new \Src\Database\Connection;
+
+   $connect = $db::connect();
+
+    $select = "SELECT * FROM perfilbarbeiro WHERE nomeBarbeiro like :nome ORDER BY nomeBarbeiro ASC";
+    $query = $connect->prepare($select);
+    $query->bindValue(":nome", "%$nome%");
+    $query->execute();
+    return [$query->rowCount(), $query->fetchAll(\PDO::FETCH_CLASS)];
+
+}
