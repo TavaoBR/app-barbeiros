@@ -64,8 +64,11 @@ $(document).ready(function() {
 
     var searchQuery = $('#searchQuery').val(); // Captura o valor do campo de busca
 
-    // Construir a URL dinamicamente com o valor do campo de busca
-    var url = `<?=routerConfig()?>/app/pesquisa/resultado/${encodeURIComponent(searchQuery)}`;
+    // Substitui espaços por hífens
+    var formattedQuery = searchQuery.replace(/ /g, '-');
+
+    // Construir a URL dinamicamente com o valor formatado
+    var url = `<?=routerConfig()?>/app/pesquisa/resultado/${encodeURIComponent(formattedQuery)}`;
 
     // Redireciona para a nova URL
     window.location.href = url;

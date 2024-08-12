@@ -97,10 +97,20 @@ class IndexController extends TemplateConfig{
 
     public function resultaPesquisa($data)
     {
-      session_start();
-      $nome = $data['nome'];
-      $pequisa = new Pesquisa($nome);
-      dd($pequisa->Result());
+        session_start();
+    
+        // Mantém os espaços e substitui os hífens por espaços
+        $cleanString = preg_replace('/[^a-zA-Z0-9-]/', '', $data['nome']); // Mantém hífens e remove outros caracteres especiais
+        $cleanString = str_replace('-', ' ', $cleanString); // Substitui hífens por espaços
+        $nome = trim($cleanString); // Remove espaços no início e no fim
+        $pesquisa = new Pesquisa($nome);
+        $result = $pesquisa->Result();
+    
+        if($result[0] > 0){
+            $this->view("app/resultadoPesquisa", ["title" => "Resultado", "data" => $result[1], "nomePesquisa" => $nome, "total" => $result[0]]);
+        }else{
+            $this->view("error/PesquisaNaoEncontrada", ["title" => "Pesquisa não encontrada"]);
+        }
     }
 
 
