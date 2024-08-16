@@ -49,6 +49,7 @@ class Routers {
         $router->get("/barbeiro/atendimento/cadastro/horarios/{token}", "BarbeiroController:cadastrarHorarios"); 
         $router->get("/barbeiro/servicos/cadastrar/{token}", "BarbeiroController:cadastrarServicos");
         $router->get("/barbeiro/agenda/{token}/{data}", "BarbeiroController:agenda");
+        $router->get("/barbeiro/configuracao/{token}", "BarbeiroController:configuracao");
     
 
         $router->group("oops")->namespace("Src\Controller\Error");

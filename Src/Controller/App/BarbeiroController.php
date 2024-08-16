@@ -83,6 +83,17 @@ class BarbeiroController  extends TemplateConfig{
         
     }
 
+    public function addImage($data)
+    {
+      session_start();
+      if(!$this->verificaPeril($data['token'])){
+         $this->verificarNivel();
+         $barbeiro = new Barbeiro($data['token']);
+         $id = $barbeiro->id();
+         $this->view("app/barbeiro/addAvatar",["title" => "Adicionar Foto de perfil", "id" => $id]);
+      }
+    }
+
 
     public function agenda($data)
     {
@@ -121,6 +132,15 @@ class BarbeiroController  extends TemplateConfig{
       $this->verificarNivel();
       $barbeiro = new Barbeiro($data['token']);
       $this->view("app/barbeiro/servicos/cadastro", ["title" => "Cadastro", "conta" => $barbeiro->conta(), "id" => $barbeiro->id()]); 
+    }
+
+    public function configuracao($data)
+    {
+      session_start();
+      if(!$this->verificaPeril($data['token'])){
+        $this->verificarNivel();
+        $this->view("app/barbeiro/configuracao", ["title" => "Index"]);
+      }
     }
 
 }

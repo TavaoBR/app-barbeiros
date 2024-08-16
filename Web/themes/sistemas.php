@@ -352,6 +352,13 @@ $(document).ready(function() {
               <i class="bx bx-circle"></i><span>Perfil</span>
             </a>
           </li>
+
+          <li>
+            <a href="<?=routerConfig()?>/app/barbeiro/configuracao/<?=$token?>">
+              <i class="bx bx-circle"></i><span>Configuração</span>
+            </a>
+          </li>
+
           <li>
             <a href="<?=routerConfig()?>/app/barbeiro/agenda/<?=$token?>/<?=dataAtual()?>">
               <i class="bx bx-circle"></i><span>Agenda</span>
