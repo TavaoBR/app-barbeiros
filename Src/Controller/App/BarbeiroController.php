@@ -73,9 +73,8 @@ class BarbeiroController  extends TemplateConfig{
         if(!$this->verificaPeril($data['token'])){
           $this->verificarNivel();
           $barbeiro = new Barbeiro($data['token']);
-          $usuario =  new Usuario($barbeiro->fk());
           $this->view("app/barbeiro/perfil", 
-          ["title" => "Perfil", "id" => $barbeiro->id(),"fk" => $barbeiro->fk(), "token" => $barbeiro->token(), "celular" => $usuario->celular(), "email" => $usuario->mail(), "avatar" => $usuario->avatar(), "nome" => $usuario->nome(),
+          ["title" => "Perfil", "id" => $barbeiro->id(),"fk" => $barbeiro->fk(), "token" => $barbeiro->token(), "celular" => $barbeiro->celular(), "avatar" => $barbeiro->avatar(), "nome" => $barbeiro->nome(),
           "endereco" => $barbeiro->endereco(), "bairro" => $barbeiro->bairro(), "numero" => $barbeiro->numero(), "cidade" => $barbeiro->cidade(), "estado" => $barbeiro->estado(), "online" => $barbeiro->online(), 
           "horaInicial" => $this->horarioInicial($barbeiro->id())->hora, "horaFinal" => $this->horariofinal($barbeiro->id())->hora
         ]);
@@ -83,7 +82,7 @@ class BarbeiroController  extends TemplateConfig{
         
     }
 
-    public function addImage($data)
+    public function addAvatar($data)
     {
       session_start();
       if(!$this->verificaPeril($data['token'])){
@@ -108,19 +107,21 @@ class BarbeiroController  extends TemplateConfig{
     public function cadastrarHorarios($data)
     {
         session_start();
-        $this->verificarNivel();
-        $barbeiro = new Barbeiro($data['token']);
-        $this->view("app/barbeiro/atendimento/cadastrarHorarios", 
-        ["title" => "Cadastrar Horarios", "id" => $barbeiro->id(), "conta" => $barbeiro->conta(), "contaHorario" => $this->contaRegistroHorarios($barbeiro->id())]);
+        if(!$this->verificaPeril($data['token'])){
+          $this->verificarNivel();
+          $barbeiro = new Barbeiro($data['token']);
+          $this->view("app/barbeiro/atendimento/cadastrarHorarios", 
+          ["title" => "Cadastrar Horarios", "id" => $barbeiro->id(), "conta" => $barbeiro->conta(), "contaHorario" => $this->contaRegistroHorarios($barbeiro->id())]);
+        }
+        
     }
 
     public function perfilPublico($token)
     {
       session_start();
         $barbeiro = new Barbeiro($token);
-        $usuario =  new Usuario($barbeiro->fk());
         $this->view("app/barbeiro/perfilPublico", 
-        ["title" => "Perfil", "id" => $barbeiro->id(),"fk" => $barbeiro->fk(), "token" => $barbeiro->token(), "celular" => $usuario->celular(), "email" => $usuario->mail(), "avatar" => $usuario->avatar(), "nome" => $usuario->nome(),
+        ["title" => "Perfil", "id" => $barbeiro->id(),"fk" => $barbeiro->fk(), "token" => $barbeiro->token(), "celular" => $barbeiro->celular(), "avatar" => $barbeiro->avatar(), "nome" => $barbeiro->nome(),
         "endereco" => $barbeiro->endereco(), "bairro" => $barbeiro->bairro(), "numero" => $barbeiro->numero(), "cidade" => $barbeiro->cidade(), "estado" => $barbeiro->estado(), "online" => $barbeiro->online(), 
         "horaInicial" => $this->horarioInicial($barbeiro->id())->hora, "horaFinal" => $this->horariofinal($barbeiro->id())->hora
       ]);
@@ -139,7 +140,7 @@ class BarbeiroController  extends TemplateConfig{
       session_start();
       if(!$this->verificaPeril($data['token'])){
         $this->verificarNivel();
-        $this->view("app/barbeiro/configuracao", ["title" => "Index"]);
+        $this->view("app/barbeiro/configuracao", ["title" => "Index", "token" => $data['token']]);
       }
     }
 

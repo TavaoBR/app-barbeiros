@@ -50,6 +50,8 @@ class Routers {
         $router->get("/barbeiro/servicos/cadastrar/{token}", "BarbeiroController:cadastrarServicos");
         $router->get("/barbeiro/agenda/{token}/{data}", "BarbeiroController:agenda");
         $router->get("/barbeiro/configuracao/{token}", "BarbeiroController:configuracao");
+        $router->get("/barbeiro/perfil/editar/{token}", "BarbeiroController:configuracao");
+        $router->get("/barbeiro/perfil/avatar/{token}", "BarbeiroController:addAvatar");
     
 
         $router->group("oops")->namespace("Src\Controller\Error");
@@ -92,6 +94,7 @@ class Routers {
         $router->post("/atendimento/cadastro/horarios/{id}", "CadastroHorarios:Result");
         $router->post("/servicos/cadastro/{id}", "CadastrarServicos:Result");
         $router->post("/agenda/consultar/{fk}", "ConsultarHorarioDisponivel:Result");
+        $router->post("/perfil/avatar/{id}","Avatar:Result");
 
 
         $router->dispatch();

@@ -133,7 +133,7 @@ class UpdateInfo {
         } 
     }
 
-    private function createFolder($id)
+    private function createFolder(int $id)
     {
         $file = $this->avatar['tmp_name'];
         $foto = $this->avatar['name'];

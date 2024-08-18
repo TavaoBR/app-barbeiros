@@ -10,6 +10,9 @@ class Barbeiro {
     private int $conta;
     private int $id;
     private int $fk;
+    private string $nome;
+    private string $celular;
+    private string $avatar;
     private string $cep;
     private string $endereco;
     private string $cidade;
@@ -29,6 +32,9 @@ class Barbeiro {
         $data = $find[1];
         $this->id = $data->id;
         $this->fk = $data->fk;
+        $this->nome = $data->nomeBarbeiro;
+        $this->celular = $data->celular;
+        $this->avatar = $data->avatarBarbeiro;
         $this->cep = $data->cep;
         $this->endereco = $data->endereco;
         $this->cidade = $data->cidade;
@@ -52,6 +58,21 @@ class Barbeiro {
     public function fk()
     {
         return $this->fk;
+    }
+
+    public function nome()
+    {
+       return $this->nome;
+    }
+
+    public function celular()
+    {
+        return $this->celular;
+    }
+
+    public function avatar()
+    {
+       return $this->avatar;
     }
 
     public function cep()

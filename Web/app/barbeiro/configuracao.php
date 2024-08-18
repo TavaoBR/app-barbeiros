@@ -327,7 +327,7 @@
                         <li class="widget-49-meeting-item"><span><i class="fa-solid fa-image-portrait"></i>: Colocar ou Alterar foto de perfil</span></li>
                     </ol>
                     <div class="widget-49-meeting-action">
-                        <a href="#" class="btn btn-sm btn-info"><i class="fa-solid fa-image-portrait text-white"></i></a>
+                        <a href="<?=routerConfig()?>/app/barbeiro/perfil/avatar/<?=$token?>" class="btn btn-sm btn-info"><i class="fa-solid fa-image-portrait text-white"></i></a>
                         <a href="#" class="btn btn-sm btn-primary"><i class="fa-solid fa-user-pen"></i></a>
                     </div>
                 </div>

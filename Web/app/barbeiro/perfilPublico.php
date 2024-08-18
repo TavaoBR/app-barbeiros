@@ -305,25 +305,7 @@
             </div>
             <div class="profile-header-info">
                 <h4 class="m-t-sm"><?=$nome?></h4>
-                <?php 
-                 if($online == 2 OR $online == null):
-                ?>
-                    <a  class="btn btn-xs btn-danger mb-4" >Offline</a>
-                    <a href="#" class="btn btn-xs btn-primary mb-4">Agendar Outro dia</a>
-                   
-                <?php 
-                 endif;
-                ?>
-
-                <?php 
-                 if($online == 1):
-                ?>
-                     <a  class="btn btn-xs btn-success mb-4" >Online</a>
-                     <a href="<?=routerConfig()?>/app/agendar/barbeiro/<?=$token?>" class="btn btn-xs btn-primary mb-4">Agendar Agora</a>
-                <?php 
-                 endif;
-                ?>
-                
+                <a href="<?=routerConfig()?>/app/agendar/barbeiro/<?=$token?>" class="btn btn-xs btn-primary mb-4">Agendar Agora</a>   
                 <a href="#" class="btn btn-xs btn-warning mb-4">Avaliar</a>
             </div>
         </div>
