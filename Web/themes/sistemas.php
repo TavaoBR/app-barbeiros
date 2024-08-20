@@ -43,7 +43,7 @@ $id = $get->id();
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="<?=routerConfig()?>/app/perfil" class="logo d-flex align-items-center">
         <img src="https://cdn-icons-png.flaticon.com/512/5087/5087032.png" alt="">
         <span class="d-none d-lg-block">CorteApp</span>
       </a>
@@ -356,12 +356,6 @@ $(document).ready(function() {
           <li>
             <a href="<?=routerConfig()?>/app/barbeiro/configuracao/<?=$token?>">
               <i class="bx bx-circle"></i><span>Configuração</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="<?=routerConfig()?>/app/barbeiro/agenda/<?=$token?>/<?=dataAtual()?>">
-              <i class="bx bx-circle"></i><span>Agenda</span>
             </a>
           </li>
 

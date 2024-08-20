@@ -384,7 +384,7 @@ ul.friend-list .right p {
                     <ul class=" nav nav-tabs justify-content-center s-nav">
                         <li><a >Editar</a></li>
                         <li><a class="active" >Perfil</a></li>
-                        <li><a >Agenda</a></li>
+                        <li><a href="<?=routerConfig()?>/app/barbeiro/agenda/<?=$token?>/<?=dataAtual()?>">Agenda</a></li>
                         <li><a >Horário de Atendimento</a></li>
                         <li><a >Serviços</a></li>
                     </ul>
