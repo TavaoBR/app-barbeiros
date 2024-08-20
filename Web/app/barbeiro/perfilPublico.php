@@ -2,365 +2,508 @@
 
 
 
-<style>
-    .profile-info-list {
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
-    }
-    .friend-list,
-    .img-grid-list {
-        margin: -1px;
-        list-style-type: none;
-    }
-    .profile-info-list > li.title {
-        font-size: 0.625rem;
-        font-weight: 700;
-        color: #8a8a8f;
-        padding: 0 0 0.3125rem;
-    }
-    .profile-info-list > li + li.title {
-        padding-top: 1.5625rem;
-    }
-    .profile-info-list > li {
-        padding: 0.625rem 0;
-    }
-    .profile-info-list > li .field {
-        font-weight: 700;
-    }
-    .profile-info-list > li .value {
-        color: #666;
-    }
-    .profile-info-list > li.img-list a {
-        display: inline-block;
-    }
-    .profile-info-list > li.img-list a img {
-        max-width: 2.25rem;
-        -webkit-border-radius: 2.5rem;
-        -moz-border-radius: 2.5rem;
-        border-radius: 2.5rem;
-    }
-    .coming-soon-cover img,
-    .email-detail-attachment .email-attachment .document-file img,
-    .email-sender-img img,
-    .friend-list .friend-img img,
-    .profile-header-img img {
-        max-width: 100%;
-    }
-    .table.table-profile th {
-        border: none;
-        color: #000;
-        padding-bottom: 0.3125rem;
-        padding-top: 0;
-    }
-    .table.table-profile td {
-        border-color: #c8c7cc;
-    }
-    .table.table-profile tbody + thead > tr > th {
-        padding-top: 1.5625rem;
-    }
-    .table.table-profile .field {
-        color: #666;
-        font-weight: 600;
-        width: 25%;
-        text-align: right;
-    }
-    .table.table-profile .value {
-        font-weight: 500;
-    }
-    .profile-header {
-        position: relative;
-        overflow: hidden;
-    }
-    .profile-header .profile-header-cover {
-        background: url() center no-repeat;
-        background-size: 100% auto;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-    }
-    .profile-header .profile-header-cover:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.25) 0, rgba(0, 0, 0, 0.85) 100%);
-    }
-    .profile-header .profile-header-content,
-    .profile-header .profile-header-tab,
-    .profile-header-img,
-    body .fc-icon {
-        position: relative;
-    }
-    .profile-header .profile-header-tab {
-        background: #fff;
-        list-style-type: none;
-        margin: -1.25rem 0 0;
-        padding: 0 0 0 8.75rem;
-        border-bottom: 1px solid #c8c7cc;
-        white-space: nowrap;
-    }
-    .profile-header .profile-header-tab > li {
-        display: inline-block;
-        margin: 0;
-    }
-    .profile-header .profile-header-tab > li > a {
-        display: block;
-        color: #000;
-        line-height: 1.25rem;
-        padding: 0.625rem 1.25rem;
-        text-decoration: none;
-        font-weight: 700;
-        font-size: 0.75rem;
-        border: none;
-    }
-    .profile-header .profile-header-tab > li.active > a,
-    .profile-header .profile-header-tab > li > a.active {
-        color: #007aff;
-    }
-    .profile-header .profile-header-content:after,
-    .profile-header .profile-header-content:before {
-        content: "";
-        display: table;
-        clear: both;
-    }
-    .profile-header .profile-header-content {
-        color: #fff;
-        padding: 1.25rem;
-    }
-    body .fc th a,
-    body .fc-ltr .fc-basic-view .fc-day-top .fc-day-number,
-    body .fc-widget-header a {
-        color: #000;
-    }
-    .profile-header-img {
-        float: left;
-        width: 7.5rem;
-        height: 7.5rem;
-        overflow: hidden;
-        z-index: 10;
-        margin: 0 1.25rem -1.25rem 0;
-        padding: 0.1875rem;
-        -webkit-border-radius: 0.25rem;
-        -moz-border-radius: 0.25rem;
-        border-radius: 0.25rem;
-        background: #fff;
-    }
-    .profile-header-info h4 {
-        font-weight: 500;
-        margin-bottom: 0.3125rem;
-    }
-    .profile-container {
-        padding: 1.5625rem;
-    }
-    @media (max-width: 967px) {
-        .profile-header-img {
-            width: 5.625rem;
-            height: 5.625rem;
-            margin: 0;
-        }
-        .profile-header-info {
-            margin-left: 6.5625rem;
-            padding-bottom: 0.9375rem;
-        }
-        .profile-header .profile-header-tab {
-            padding-left: 0;
-        }
-    }
-    @media (max-width: 767px) {
-        .profile-header .profile-header-cover {
-            background-position: top;
-        }
-        .profile-header-img {
-            width: 3.75rem;
-            height: 3.75rem;
-            margin: 0;
-        }
-        .profile-header-info {
-            margin-left: 4.6875rem;
-            padding-bottom: 0.9375rem;
-        }
-        .profile-header-info h4 {
-            margin: 0 0 0.3125rem;
-        }
-        .profile-header .profile-header-tab {
-            white-space: nowrap;
-            overflow: scroll;
-            padding: 0;
-        }
-        .profile-container {
-            padding: 0.9375rem 0.9375rem 3.6875rem;
-        }
-        .friend-list > li {
-            float: none;
-            width: auto;
-        }
-    }
-    .profile-info-list {
-        padding: 0;
-        margin: 0;
-        list-style-type: none;
-    }
-    .friend-list,
-    .img-grid-list {
-        margin: -1px;
-        list-style-type: none;
-    }
-    .profile-info-list > li.title {
-        font-size: 0.625rem;
-        font-weight: 700;
-        color: #8a8a8f;
-        padding: 0 0 0.3125rem;
-    }
-    .profile-info-list > li + li.title {
-        padding-top: 1.5625rem;
-    }
-    .profile-info-list > li {
-        padding: 0.625rem 0;
-    }
-    .profile-info-list > li .field {
-        font-weight: 700;
-    }
-    .profile-info-list > li .value {
-        color: #666;
-    }
-    .profile-info-list > li.img-list a {
-        display: inline-block;
-    }
-    .profile-info-list > li.img-list a img {
-        max-width: 2.25rem;
-        -webkit-border-radius: 2.5rem;
-        -moz-border-radius: 2.5rem;
-        border-radius: 2.5rem;
-    }
-    .coming-soon-cover img,
-    .email-detail-attachment .email-attachment .document-file img,
-    .email-sender-img img,
-    .friend-list .friend-img img,
-    .profile-header-img img {
-        max-width: 100%;
-    }
-    .table.table-profile th {
-        border: none;
-        color: #000;
-        padding-bottom: 0.3125rem;
-        padding-top: 0;
-    }
-    .table.table-profile td {
-        border-color: #c8c7cc;
-    }
-    .table.table-profile tbody + thead > tr > th {
-        padding-top: 1.5625rem;
-    }
-    .table.table-profile .field {
-        color: #666;
-        font-weight: 600;
-        width: 25%;
-        text-align: right;
-    }
-    .table.table-profile .value {
-        font-weight: 500;
-    }
 
-    .friend-list,
-    .img-grid-list {
-        margin: -1px;
-        list-style-type: none;
-    }
-    .img-grid-list {
-        padding: 0;
-    }
-    .img-grid-list > li {
-        float: left;
-        width: 20%;
-        padding: 1px;
-    }
-    .img-grid-list > li a {
-        position: relative;
-        overflow: hidden;
-        padding-top: 75%;
-        display: block;
-    }
-    .img-grid-list > li a img {
-        position: absolute;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        max-width: 100%;
-    }
+<style>
+    /*social */
+.card-one {
+    position: relative;
+    width: 300px;
+    background: #fff;
+    box-shadow: 0 10px 7px -5px rgba(0, 0, 0, 0.4);
+}
+.card {
+    margin-bottom: 35px;
+    box-shadow: 0 10px 20px 0 rgba(26, 44, 57, 0.14);
+    border: none;
+}
+
+.follower-wrapper li {
+    list-style-type: none;
+    color: #fff;
+    display: inline-block;
+    float: left;
+    margin-right: 20px;
+}
+
+.social-profile {
+    color: #fff;
+}
+
+.social-profile a {
+    color: #fff;
+}
+
+.social-profile {
+    position: relative;
+    margin-bottom: 150px;
+}
+
+.social-profile .user-profile {
+    position: absolute;
+    bottom: -75px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    left: 50px;
+}
+
+.social-nav {
+    position: absolute;
+    bottom: 0;
+}
+
+.social-prof {
+    color: #333;
+    text-align: center;
+}
+
+.social-prof .wrapper {
+    width: 70%;
+    margin: auto;
+    margin-top: -100px;
+}
+
+.social-prof img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 5px solid #fff;
+    /*border: 10px solid #70b5e6ee;*/
+}
+
+.social-prof h3 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.social-prof p {
+    font-size: 18px;
+}
+
+.social-prof .nav-tabs {
+    border: none;
+}
+
+.card .nav>li {
+    position: relative;
+    display: block;
+}
+
+.card .nav>li>a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    font-weight: 300;
+    border-radius: 4px;
+}
+
+.card .nav>li>a:focus,
+.card .nav>li>a:hover {
+    text-decoration: none;
+    background-color: #eee;
+}
+
+.card .s-nav>li>a.active {
+    text-decoration: none;
+    background-color: #3afe;
+    color: #fff;
+}
+
+.text-blue {
+    color: #3afe;
+}
+
+ul.friend-list {
+    margin: 0;
+    padding: 0;
+}
+
+ul.friend-list li {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+}
+
+ul.friend-list li:hover {
+    background: rgba(0, 0, 0, .1);
+    cursor: pointer;
+}
+
+ul.friend-list .left img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+ul.friend-list li {
+    padding: 10px;
+}
+
+ul.friend-list .right h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+ul.friend-list .right p {
+    font-size: 11px;
+    color: #6c757d;
+    margin: 0;
+}
+
+.social-timeline-card .dropdown-toggle::after {
+    display: none;
+}
+
+.info-card h4 {
+    font-size: 15px;
+}
+
+.info-card h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.social-about .social-info {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.social-about p {
+    margin-bottom: 20px;
+}
+
+.info-card i {
+    color: #3afe;
+}
+
+.card-one {
+    position: relative;
+    width: 300px;
+    background: #fff;
+    box-shadow: 0 10px 7px -5px rgba(0, 0, 0, 0.4);
+}
+
+.card-one .header {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    background-color: #3afe;
+}
+
+.card-one .header::before,
+.card-one .header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: inherit;
+}
+
+.card-one .header::before {
+    -webkit-transform: skewY(-8deg);
+    transform: skewY(-8deg);
+    -webkit-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+}
+
+.card-one .header::after {
+    -webkit-transform: skewY(8deg);
+    transform: skewY(8deg);
+    -webkit-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+}
+
+.card-one .header .avatar {
+    position: absolute;
+    left: 50%;
+    top: 30px;
+    margin-left: -50px;
+    z-index: 5;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #ccc;
+    border: 3px solid #fff;
+}
+
+.card-one .header .avatar img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: auto;
+}
+
+.card-one h3 {
+    position: relative;
+    margin: 80px 0 30px;
+    text-align: center;
+}
+
+.card-one h3::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    margin-left: -15px;
+    width: 30px;
+    height: 1px;
+    background: #000;
+}
+
+.card-one .desc {
+    padding: 0 1rem 2rem;
+    text-align: center;
+    line-height: 1.5;
+    color: #777;
+}
+
+.card-one .contacts {
+    width: 200px;
+    max-width: 100%;
+    margin: 0 auto 3rem;
+}
+
+.card-one .contacts a {
+    display: block;
+    width: 33.333333%;
+    float: left;
+    text-align: center;
+    color: #c8c;
+}
+
+.card-one .contacts a:hover {
+    color: #333;
+}
+
+.card-one .contacts a:hover .fa::before {
+    color: #fff;
+}
+
+.card-one .contacts a:hover .fa::after {
+    width: 100%;
+    height: 100%;
+}
+
+.card-one .contacts a .fa {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    line-height: 39px;
+    overflow: hidden;
+    text-align: center;
+    font-size: 1.3em;
+}
+
+.card-one .contacts a .fa:before {
+    position: relative;
+    z-index: 1;
+}
+
+.card-one .contacts a .fa::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background: #c8c;
+    transition: width .3s, height .3s;
+}
+
+.card-one .contacts a:last-of-type .fa {
+    line-height: 36px;
+}
+
+.card-one .footer {
+    position: relative;
+    padding: 1rem;
+    background-color: #3afe;
+    text-align: center;
+}
+
+.card-one .footer a {
+    padding: 0 1rem;
+    color: #e2e2e2;
+    transition: color .4s;
+}
+
+.card-one .footer a:hover {
+    color: #c8c;
+}
+
+.card-one .footer::before {
+    content: '';
+    position: absolute;
+    top: -27px;
+    left: 50%;
+    margin-left: -15px;
+    border: 15px solid transparent;
+    border-bottom-color: #3afe;
+}
+
+#gallery li {
+    width: 24%;
+    float: left;
+    margin: 6px;
+   
+}
+
+
+/*end social*/
 </style>
 
-<div id="content" class="container-fluid p-0">
-    <h2> Perfil Barbeiro</h2>
-    <div class="profile-header">
-        <div class="profile-header-cover"></div>
-        <div class="profile-header-content">
-            <div class="profile-header-img">
-                <img src="<?=Assests("img/avatar/$fk/$avatar")?>" alt="" />
-            </div>
-            <div class="profile-header-info">
-                <h4 class="m-t-sm"><?=$nome?></h4>
-                <a href="<?=routerConfig()?>/app/agendar/barbeiro/<?=$token?>" class="btn btn-xs btn-primary mb-4">Agendar Agora</a>   
-                <a href="#" class="btn btn-xs btn-warning mb-4">Avaliar</a>
-            </div>
-        </div>
 
-    </div>
 
-    <div class="profile-container">
-        <div class="row row-space-20">
-            <div class="col-md-8">
-                <div class="tab-content p-0">
-                    <div class="tab-pane active show" id="profile-photos">
-                        <div class="m-b-10"><b>Galeria (Total de fotos: <?=totalGaleria($fk)?>)</b>    
-                        </div>
-                    </div>                    
+
+
+<div class="container">
+
+    <div class="img" style="background-image: linear-gradient(150deg, rgba(63, 174, 255, .3)15%, rgba(63, 174, 255, .3)70%, rgba(63, 174, 255, .3)94%), url();
+    height: 350px;background-size: cover;"></div>
+    <div class="card social-prof">
+        <div class="card-body">
+            <div class="wrapper">
+                <img src="<?=Assests("img/barbeiro/$id/$avatar")?>" alt="" class="user-profile">
+                <h3><?=$nome?></h3>
+                <p>Whatsapp: <?=$celular?></p>
+            </div>
+            <div class="row ">
+                <div class="col-lg-12">
+                    <ul class=" nav nav-tabs justify-content-center s-nav">
+                        <li><a class="active" >Perfil</a></li>
+                        <li><a href="<?=routerConfig()?>/app/agendar/barbeiro/<?=$token?>">Agendar</a></li>
+                    </ul>
                 </div>
             </div>
-
-            <div class="col-md-4 hidden-xs hidden-sm">
-                <ul class="profile-info-list">
-                    <li class="title">Informações</li>
-                    <li>
-                        <div class="field">Cidade/Estado:</div>
-                        <div class="value"><?=$cidade?>/<?=$estado?></div>
-                    </li>
-                    <li>
-                        <div class="field">Endereço</div>
-                        <div class="value">
-                           <b>Bairro: </b> <?=$bairro?>
-                           <br>
-                           <b>Rua: </b> <?=$endereco?>
-                           <br>
-                           <b>Número: </b> <?=$numero?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body info-card social-about">
+                    <h2 class="text-blue">Sobre</h2>
+                    <h4 class="mb-3"><strong>Informações Pessoais</strong></h4>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="social-info">
+                                <i class="fas fa-regular fa-clock mr-2"></i>
+                                <span>Atendimento: <?=date("H:i", strtotime($horaInicial))?> Às <?=date("H:i", strtotime($horaFinal))?></span>
+                            </div>
                         </div>
-                    </li>
-                    <li>
-                    <div class="field">Horário de atendimento</div>
-                    <div class="value"><?=date("H:i", strtotime($horaInicial))?> Às <?=date("H:i", strtotime($horaFinal))?></div>
-                    </li>
-                    <li>
-                        <div class="field">Telefone Contato</div>
-                        <div class="value"><?=$celular?></div>
-                    </li>
-                    <li>
-                        <div class="field">E-Mail Contato</div>
-                        <div class="value"><?=$email?></div>
-                    </li>
-                   
-                </ul>
+
+                        <div class="col-6">
+                            <div class="social-info">
+                                <i class="fas fa-map-marker-alt mr-2"></i>
+                                <span>Cidade/Estado: <?=$cidade?>/<?=$estado?> </span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                    <div class="col-6">
+                            <div class="social-info">
+                                <i class="fas fa-map-marker-alt mr-2"></i>
+                                <span>Bairro: <?=$bairro?></span>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="social-info">
+                                <i class="fas fa-map-marker-alt mr-2"></i>
+                                <span>Endereço: <?=$endereco?> - <?=$numero?></span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card info-card">
+                <div class="card-body">
+                    <h2 class="text-blue">Avaliação</h2>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h4>Nota</h4>
+                            <div class="mb-3">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+    <div class="col-lg-6">
+            <div class="card info-card">
+                <div class="card-body">
+                    <h2 class="text-blue">Comentários</h2>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h4><strong>Creative Arts - 2016-19</strong></h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <h4><strong>Web Media - 2014-16</strong></h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <h4><strong>Global Infosoft - 2012-14</strong></h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <h4><strong>Freelancer - 2011-12</strong></h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card info-card">
+                <div class="card-body">
+                    <h2 class="text-blue">Work</h2>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h4><strong>Creative Arts - 2016-19</strong></h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <h4><strong>Web Media - 2014-16</strong></h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <h4><strong>Global Infosoft - 2012-14</strong></h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <h4><strong>Freelancer - 2011-12</strong></h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-    var url = "<?=routerConfig()?>";
-</script>
-
-<script src="<?=Assests("assets/js/barbeiro/OnOff.js")?>"></script>

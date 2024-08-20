@@ -89,7 +89,7 @@ class AgendarBarbeiro {
     {
         $select = $this->barbeiro->findBy("id", $id); 
 
-        return $select[1]->fk;
+        return $select[1]->celular;
     }
 
     private function selectUsuarioCelular(int $id)
@@ -117,7 +117,7 @@ class AgendarBarbeiro {
 
         if($create > 0){
          setSession("MessageAgenda", sweetAlertSuccess("Você acabou de agendar seu corte, por favor aguarde a confirmação Barbeiro 😁", "Sucesso ao Agendar"));
-         $celular = $this->selectUsuarioCelular($this->selectBarbeiro($fkBarbeiro));
+         $celular = $this->selectBarbeiro($fkBarbeiro);
          $this->alertarWhatsappBarbeiro($celular, $horario);
          redirectBack();
         }else{

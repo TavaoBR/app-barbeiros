@@ -387,28 +387,16 @@ $(document).ready(function() {
   ?>
       
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#procurar" data-bs-toggle="collapse" href="#">
-        <i class='bx bx-map'></i></i><span>Procurar</span><i class="bx bx-chevron-down ms-auto"></i>
-        </a>
-        <ul id="procurar" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="<?=routerConfig()?>/app/barbeiro">
-              <i class="bx bx-circle"></i><span>Barbeiro</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?=routerConfig()?>/app/barbearia">
-              <i class="bx bx-circle"></i><span>Barbearia</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-
-
-      <li class="nav-item">
         <a href="<?=routerConfig()?>/app/solicitar/acesso/barbeiro" class="nav-link collapsed" href="#">
         <i class='bx bxs-lock-open'></i>
           <span>Solicitar acesso</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="<?=routerConfig()?>/app/barbeiro" class="nav-link collapsed" href="#">
+        <i class='bx bx-map'></i>
+         <span>Procurar</span>
         </a>
       </li>
 

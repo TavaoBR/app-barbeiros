@@ -73,9 +73,8 @@ h4 {
                         <div class="">
                             <h4><?=$dado->nomeBarbeiro?></h4>
                             <p class="text-muted"><?=$dado->cidade?> - <?=$dado->estado?></p>
-                            <p class="text-muted"><?=$dado->endereco?> - <?=$dado->numero?>, <?=$dado->bairro?></p>
                         </div>
-                        <a href="<?=routerConfig()?>/app/agendar/barbeiro/<?=$dado->token?>" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light">Agendar</a>
+                        <a href="<?=routerConfig()?>/app/barbeiro/perfil/<?=$dado->token?>" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light">Perfil</a>
                         <div class="mt-4">
                             <!--<div class="row">
                                 <div class="col-4">

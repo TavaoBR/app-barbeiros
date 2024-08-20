@@ -2,8 +2,8 @@
 
 namespace Src\Controller\App;
 use Config\TemplateConfig;
-use League\Plates\Template\Func;
 use Src\Database\Filters;
+use Src\Database\Model\AgendaBarbeiro;
 use Src\Database\Model\HorarioAtendimento;
 use Src\GET\Barbeiro\Barbeiro;
 use Src\GET\Usuario\Usuario;
@@ -93,17 +93,6 @@ class BarbeiroController  extends TemplateConfig{
       }
     }
 
-
-    public function agenda($data)
-    {
-      session_start();
-      if(!$this->verificaPeril($data['token'])){
-        $this->verificarNivel();
-        $this->view("app/barbeiro/agenda/index", ["title" => "Agenda {$data['data']}"]);
-      }
-     
-    }
-
     public function cadastrarHorarios($data)
     {
         session_start();
@@ -142,6 +131,19 @@ class BarbeiroController  extends TemplateConfig{
         $this->verificarNivel();
         $this->view("app/barbeiro/configuracao", ["title" => "Index", "token" => $data['token']]);
       }
+    }
+
+    public function agenda($data)
+    {
+      session_start();
+      if(!$this->verificaPeril($data['token'])){
+        $this->verificarNivel();
+        $barbeiro = new Barbeiro($data['token']);
+        $id = $barbeiro->id();
+        $dados = agendaBarbeiroDataOrderDesc($id, $data['data']);
+        $this->view("app/barbeiro/agenda/index", ["title" => "Agenda {$data['data']}", "array" => $dados[1], "conta" => $dados[1], "dia" => date("d/m/Y", strtotime($data['data']))]);
+      }
+     
     }
 
 }
