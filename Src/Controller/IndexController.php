@@ -4,9 +4,12 @@ namespace Src\Controller;
 use Config\TelegramBot;
 use Config\TemplateConfig;
 use Src\Database\Filters;
+use Src\Database\Model\AgendaBarbeiro;
+use Src\Database\Model\Barbeiro;
 use Src\Database\Model\Usuario;
 use Src\GET\Telegram\DefaultBot;
 use Src\GET\Usuario as UserGet;
+use Src\Services\CodigoAgendamento;
 use Src\Services\Whatsapp;
 
 class IndexController extends TemplateConfig{
@@ -54,7 +57,15 @@ class IndexController extends TemplateConfig{
 
     public function test(){
 
-      $data = "2024-08-04";
+      /*$barbeiro = new Barbeiro;
+      $select = $barbeiro->findBy("id", 12);
+      dd($select);*/
+
+      $agenda = new AgendaBarbeiro;
+      $select = $agenda->findBy("codigo", "9MEHDHS");
+      dd($select);
+
+      /*$data = "2024-08-04";
       $fk = "12";
       
        $fecth = agendaBarbeiroData($fk, $data);
@@ -85,9 +96,12 @@ class IndexController extends TemplateConfig{
              echo $horas->hora . "<br>";
         }
 
-       }
+       }*/
 
-       
+
+       /*$instancia = new CodigoAgendamento;
+       echo $instancia->result();*/
+      
 
 
 

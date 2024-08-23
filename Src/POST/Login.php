@@ -98,18 +98,16 @@ class Login {
             ->template("usuario/LoginBloqueado", ["user" => $this->usuario, "id" => $id])
             ->subject("Login Bloqueado")
             ->send();*/
-            //$this->alertaWhatsapp($dados->celular, $dados->token);
+            $this->alertaWhatsapp($dados->celular, $dados->token);
             setSession("Mensagem", sweetAlertError("Login Bloqueado por conta das inumeras tentivas de logar. Enviamos um link para seu Whatsapp ou E-mail com link de recuperação da conta"));
-            echo "Aqui 1";
-            //redirectBack();
+            redirectBack();
             
         }elseif($dados->senha != md5($this->senha)){
             $this->tentativasLogin($id, $dados->tentativas);
             $tentativas = 5;
             $totalTentativasRestantes = $tentativas - $dados->tentativas;
             setSession("Mensagem", sweetAlertError("Login Inválido. Restão apenas $totalTentativasRestantes"));
-            echo "Aqui 2";
-            //redirectBack();
+            redirectBack();
 
         }else{
           $this->token($id);

@@ -95,6 +95,8 @@ class Routers {
         $router->post("/servicos/cadastro/{id}", "CadastrarServicos:Result");
         $router->post("/agenda/consultar/{fk}", "ConsultarHorarioDisponivel:Result");
         $router->post("/perfil/avatar/{id}","Avatar:Result");
+        $router->post("/agenda/confirmar/{codigo}","AtendimentoUpdate:ConfirmarAtendimento");
+        $router->post("/agenda/cancelar/{codigo}","AtendimentoUpdate:CancelarAtendimento");
 
 
         $router->dispatch();

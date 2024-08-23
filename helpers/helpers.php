@@ -174,6 +174,12 @@ function dataAtual()
     return $data->dataAtual();
 }
 
+function horarioAtual()
+{
+    $hora = new \Src\Services\Datas;
+    return $hora->horaAtual();
+}
+
 function diaSemanaEmPortugues($diaIngles) {
     $diasDaSemana = [
         'Monday' => 'Segunda-feira',
@@ -188,3 +194,27 @@ function diaSemanaEmPortugues($diaIngles) {
     return $diasDaSemana[$diaIngles];
 }
 
+
+function statusAgendamento(int $status){
+
+    switch($status){
+        case 1:
+            $status = "Novo agendamento";
+        break;
+        
+        case 2:
+           $status = "Aguardando Confirmação Cliente";
+        break;
+
+        case 3:
+            $status = "Cancelado";
+        break;    
+
+        case 4:
+            $status = "Concluido";
+        break;    
+    }
+
+    return $status;
+
+} 

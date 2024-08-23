@@ -45,7 +45,7 @@ function UpdateAndamento(id) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Erro',
-                    text: 'Ocorreu um erro ao processar o request.'
+                    text: jqXHR.responseText || 'Ocorreu um erro ao processar o request.'
                 }).then(function() {
                     location.reload();
                 });

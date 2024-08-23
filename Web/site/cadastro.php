@@ -161,7 +161,7 @@
 
     <script>
 
-        $('#celular').mask("+9999999999999");
+        $('#celular').mask("+5599999999999");
 
         document.getElementById('customFile').addEventListener('change', function(event) {
           const file = event.target.files[0];
