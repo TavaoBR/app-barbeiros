@@ -69,17 +69,13 @@ class Routers {
 
         $router->group(null)->namespace("Src\POST");
         $router->post("/login", "Login:result");
-
-        $router->group("oops")->namespace("Src\Controller\Error");
-        $router->get("/{errocode}", "ErrorController:notFound");
-
-        $router->group("usuario")->namespace("Src\Post\Usuario");
-        $router->post("/cadastrar", "Register:result");
-        $router->post("/solicitacao/acesso/barbeiro/{id}", "SolicitarAcessoBarbeiro:result");
+        $router->post("/cadastrar", "Register:Result");
+        $router->post("/solicitacao/acesso/barbeiro/{id}", "SolicitarAcessoBarbeiro:Result");
         $router->post("/atualizar/info/{id}", "UpdateInfo:Result");
         $router->post("/atualizar/senha/{id}", "UpdateSenha:Result");
         $router->post("/recuperar/conta/{id}", "RecuperarConta:Recuperar");
         $router->post("/agendar/barbeiro/{fk}", "AgendarBarbeiro:Result");
+
 
         $router->group("solicitacoes")->namespace("Src\POST\Solicitacoes");
         $router->post("/acesso/barbeiro/andamento/{id}", "UpdateSolicitacaoBarbeiro:Andamento");
@@ -99,7 +95,12 @@ class Routers {
         $router->post("/agenda/cancelar/{codigo}","AtendimentoUpdate:CancelarAtendimento");
 
 
+        $router->group("oops")->namespace("Src\Controller\Error");
+        $router->get("/{errocode}", "ErrorController:notFound");
+
         $router->dispatch();
+
+        
         
         if($router->error()){
             $router->redirect("/oops/{$router->error()}");

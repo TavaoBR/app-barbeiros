@@ -76,7 +76,7 @@
 				<h3>Cadastro</h3>
 			</div>
 			<!-- Form START -->
-			<form class="file-upload" action="<?=routerConfig()?>/usuario/cadastrar" method="POST" enctype="multipart/form-data">
+			<form class="file-upload" action="<?=routerConfig()?>/cadastrar" method="POST" enctype="multipart/form-data">
 				<div class="row mb-5 gx-5">
 					<!-- Contact detail -->
 					<div class="col-xxl-8 mb-5 mb-xxl-0">

@@ -87,7 +87,7 @@
 
             <div class="col-md-8">
               <?=validateSession("MessageSenha")?>
-            <form action="<?=routerConfig()?>/usuario/atualizar/senha/<?=$id?>" method="POST" enctype="multipart/form-data">
+            <form action="<?=routerConfig()?>/atualizar/senha/<?=$id?>" method="POST" enctype="multipart/form-data">
               <div class="card mb-3">
                 <div class="card-body">
 

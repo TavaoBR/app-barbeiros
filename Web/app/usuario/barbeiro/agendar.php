@@ -302,7 +302,7 @@ a {
 <div class="container-fluid">
 
     <div class="row">
-    <form action="<?=routerConfig()?>/usuario/agendar/barbeiro/<?=$id?>" method="POST">    
+    <form action="<?=routerConfig()?>/agendar/barbeiro/<?=$id?>" method="POST">    
         <div class="col-xl-12">
         <?=validateSession("MessageAgenda")?>
             <div class="card">

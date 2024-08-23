@@ -89,7 +89,7 @@ $pontosFormatados = formatarNumero($pontos);
 
             <div class="col-md-8">
               <?=validateSession("MessageUpdate")?>
-            <form action="<?=routerConfig()?>/usuario/atualizar/info/<?=getSession("id")?>" method="POST" enctype="multipart/form-data">
+            <form action="<?=routerConfig()?>/atualizar/info/<?=getSession("id")?>" method="POST" enctype="multipart/form-data">
               <div class="card mb-3">
                 <div class="card-body">
                   <div class="row">
