@@ -114,5 +114,18 @@ class IndexController extends TemplateConfig{
     }
 
 
+    public function confirmarPresenca()
+    {
+      session_start();
+      $this->view("app/usuario/barbeiro/confirmarPresenca", ["title" => "Confirmar Presença"]);
+    }
+
+    public function cancelarPresenca()
+    {
+      session_start();
+      $this->view("app/usuario/barbeiro/CancelarPresenca", ["title" => "Cancelar Presença"]);
+    }
+
+
 
 }

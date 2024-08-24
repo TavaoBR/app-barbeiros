@@ -32,6 +32,8 @@ class Routers {
         $router->get("/", "IndexController:index");
         $router->get("/pesquisa/resultado/{nome}", "IndexController:resultaPesquisa");
         $router->get("/agendar/barbeiro/{token}", "IndexController:Barbeiroagendarhoje");
+        $router->get("/agenda/confirmar/presenca", "IndexController:confirmarPresenca");
+        $router->get("/agenda/cancelar/presenca", "IndexController:cancelarPresenca");
         $router->get("/perfil", "IndexController:perfil");
         $router->get("/perfil/trocar/senha", "IndexController:trocarSenha");
         $router->get("/perfil/historico/solicitacao/acesso/barbeiro", "IndexController:solicitacaoAcessoBarbeiro");
@@ -75,6 +77,8 @@ class Routers {
         $router->post("/atualizar/senha/{id}", "UpdateSenha:Result");
         $router->post("/recuperar/conta/{id}", "RecuperarConta:Recuperar");
         $router->post("/agendar/barbeiro/{fk}", "AgendarBarbeiro:Result");
+        $router->post("/agenda/confirmar/presenca", "Atendimento:confirmarPresenca");
+        $router->post("/agenda/cancelar/presenca", "Atendimento:cancelarPresenca");
 
 
         $router->group("solicitacoes")->namespace("Src\POST\Solicitacoes");

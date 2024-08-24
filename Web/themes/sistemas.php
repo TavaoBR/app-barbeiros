@@ -394,6 +394,21 @@ $(document).ready(function() {
         </a>
       </li>
 
+
+      <li class="nav-item">
+        <a href="<?=routerConfig()?>/app/agenda/confirmar/presenca" class="nav-link collapsed" href="#">
+          <i class='bx bxs-check-shield'></i>
+          <span>Confirmar Presença</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="<?=routerConfig()?>/app/agenda/cancelar/presenca" class="nav-link collapsed" href="#">
+          <i class='bx bxs-message-alt-x'></i>
+         <span>Cancelar Presença</span>
+        </a>
+      </li>
+
       <!-- End Charts Nav -->
 
 
@@ -418,34 +433,34 @@ $(document).ready(function() {
       </li>-->
 
 
-      <li class="nav-item">
+      <!--<li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#suporte" data-bs-toggle="collapse" href="#">
         <i class='bx bxs-comment-detail'></i><span>Suporte</span><i class="bx bx-chevron-down ms-auto"></i>
         </a>
         <ul id="suporte" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           
           <li>
-            <a href="charts-chartjs.html">
+            <a href="#">
               <i class="bx bx-circle"></i><span>Relatar problema</span>
             </a>
           </li>
 
           <li>
-            <a href="charts-apexcharts.html">
+            <a href="#">
               <i class="bx bx-circle"></i><span>Ajuda</span>
             </a>
           </li>
 
         </ul>
-      </li><!-- End Charts Nav -->
+      </li>--><!-- End Charts Nav -->
 
 
-      <li class="nav-item">
+      <!--<li class="nav-item">
         <a class="nav-link collapsed" href="#">
          <i class='bx bxs-message-check'></i>
           <span>Tire suas dúvidas</span>
         </a>
-      </li><!-- End Dashboard Nav -->
+      </li>--><!-- End Dashboard Nav -->
 
 
 
