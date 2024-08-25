@@ -28,7 +28,7 @@ $id = $get->id();
     <link href="<?=Assests("assets/vendor/quill/quill.snow.css")?>" rel="stylesheet">
     <link href="<?=Assests("assets/vendor/quill/quill.bubble.css")?>" rel="stylesheet">
     <link href="<?=Assests("assets/vendor/simple-datatables/style.css")?>" rel="stylesheet">
-    <link rel="stylesheet" href="<?=Assests("assets/css/styleBlue.css")?>">
+    <link rel="stylesheet" href="<?=Assests("assets/css/style.css")?>">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -300,6 +300,14 @@ $(document).ready(function() {
         </a>
       </li>
       </li>-->
+
+
+      <li class="nav-item">
+        <a href="<?=routerConfig()?>/app/perfil " class="nav-link <?=activeMenu(url()."/app/perfil")?>" href="#">
+        <i class='bx bxs-user-circle'></i>
+         <span>Perfil</span>
+        </a>
+      </li>
 
 
   <?php 

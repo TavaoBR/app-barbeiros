@@ -189,7 +189,7 @@ text-decoration:none;
 				<h6 class="mb-0">Estado</h6>
 			  </div>
 			  <div class="col-sm-9 text-secondary">
-			  <select name="uf" id="estadoSelect" onchange="carregarMunicipios()" class="form-control mySelect2">
+			  		<select name="uf" id="estadoSelect" onchange="carregarMunicipios()" class="form-control mySelect2">
                    <option value="">Selecione...</option>
               </select>
 			  </div>
@@ -204,7 +204,7 @@ text-decoration:none;
 				<h6 class="mb-0">Cidade</h6>
 			  </div>
 			  <div class="col-sm-9 text-secondary">
-			 	 <select name="cidade" id="municipioSelect" class="form-control mySelect2">
+			 	    <select name="cidade" id="municipioSelect" class="form-control mySelect2">
                     <option value="">Selecione um estado primeiro</option>
                 </select>
 			  </div>

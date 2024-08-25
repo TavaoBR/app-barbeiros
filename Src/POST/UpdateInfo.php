@@ -11,6 +11,8 @@ class UpdateInfo {
     protected string $usuario;
     protected string $mail;
     protected string $celular;
+    protected string $uf;
+    protected string $cidade;
     protected  $avatar;
 
     public function __construct()
@@ -20,6 +22,8 @@ class UpdateInfo {
         $this->usuario = $_POST['usuario'];
         $this->mail = $_POST['email'];
         $this->celular = $_POST['celular'];
+        $this->uf = $_POST['uf'];
+        $this->cidade = $_POST['cidade'];
         $this->avatar = $_FILES['avatar'];
     }
 
@@ -41,6 +45,8 @@ class UpdateInfo {
                 "usuario" => $this->usuario,
                 "email" => $this->mail,  
                 "celular" => $this->celular,
+                "uf" => $this->uf,
+                "cidade" => $this->cidade,
                 "avatar" => $this->avatar['name']
             ];
 
@@ -49,6 +55,8 @@ class UpdateInfo {
                 "usuario" => $dados->usuario,
                 "email" => $dados->email,  
                 "celular" => $dados->celular,
+                "uf" => $dados->uf,
+                "cidade" => $dados->cidade,
                 "avatar" => $dados->avatar
             ];
         }else{
@@ -57,14 +65,18 @@ class UpdateInfo {
                 "nome" => $this->nome,
                 "usuario" => $this->usuario,
                 "email" => $this->mail,  
-                "celular" => $this->celular
+                "celular" => $this->celular,
+                "uf" => $this->uf,
+                "cidade" => $this->cidade
             ];
 
             $antigosDados = [
                 "nome" => $dados->nome,
                 "usuario" => $dados->usuario,
                 "email" => $dados->email,  
-                "celular" => $dados->celular
+                "celular" => $dados->celular,
+                "uf" => $dados->uf,
+                "cidade" => $dados->cidade
             ];
             
         }
@@ -118,10 +130,10 @@ class UpdateInfo {
        
         
         if($this->avatar['error']){
-            $update = $this->user->update("id", $id, ["nome" => $this->nome, "usuario" => $this->usuario, "email" => $this->mail, "celular" => $this->celular]);
+            $update = $this->user->update("id", $id, ["nome" => $this->nome, "usuario" => $this->usuario, "email" => $this->mail, "celular" => $this->celular, "uf" => $this->uf, "cidade" => $this->cidade]);
         }else{
             $foto = $this->avatar['name'];
-            $update = $this->user->update("id", $id, ["nome" => $this->nome, "usuario" => $this->usuario, "email" => $this->mail, "celular" => $this->celular, "avatar" => $foto]);
+            $update = $this->user->update("id", $id, ["nome" => $this->nome, "usuario" => $this->usuario, "email" => $this->mail, "celular" => $this->celular, "uf" => $this->uf, "cidade" => $this->cidade,"avatar" => $foto]);
         }
         
 

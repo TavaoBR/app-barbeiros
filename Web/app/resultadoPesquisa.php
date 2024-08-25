@@ -1,7 +1,7 @@
 <?=$this->layout('themes/sistemas', ['title' => $title]);?>
 
 <style>
-    body{padding-top:20px;
+body{padding-top:20px;
 background:#f5f5f5;
 }
 .img-fluid {
@@ -124,7 +124,7 @@ a {
 </style>
 
 
-<div class="container">
+<div class="container-fluid">
 
   <div class="tab-content" id="pills-tabContent">
 

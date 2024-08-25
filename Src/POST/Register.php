@@ -11,6 +11,8 @@ class Register
     private Validate $validate;
     private string $nome;
     private string $usuario;
+    protected string $uf;
+    protected string $cidade;
     private string $mail;
     private string $celular;
     private string $senha;
@@ -22,6 +24,8 @@ class Register
         $this->validate = new Validate;
         $this->nome = $_POST['nome'];
         $this->usuario = $_POST['usuario'];
+        $this->uf = $_POST['uf'];
+        $this->cidade = $_POST['cidade'];
         $this->mail = $_POST['email'];
         $this->celular = $_POST['celular'];
         $this->avatar = $_FILES['avatar'];
@@ -48,6 +52,8 @@ class Register
          "Confirma Senha" => $this->confirmarSenha,
          "Email" => $this->mail,
          "Celular" => $this->celular,
+         "Estado" => $this->uf,
+         "Cidade" => $this->cidade,
          "Avatar" => $avatarValue
         ];
  
@@ -114,6 +120,8 @@ class Register
        $create = $this->model->create([
           "nome" => $this->nome,
           "usuario" => $this->usuario,
+          "uf" => $this->uf,
+          "cidade" => $this->cidade,
           "email" => $this->mail,
           "celular" => $this->celular,
           "senha" => md5($this->senha),

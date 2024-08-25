@@ -6,6 +6,11 @@ function routerConfig():string
     return $rota;
 }
 
+function url()
+{
+    return "/app-barbeiros";
+}
+
 function LinkCdn(){
     $link = routerConfig()."/Public/";
     return $link;

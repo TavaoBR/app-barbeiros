@@ -1,5 +1,6 @@
 <?=$this->layout('themes/site', ['title' => $title]);?>
-
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <style>
   body{
@@ -102,10 +103,24 @@
 								<!-- Mobile number -->
 								<div class="col-md-6">
 									<label class="form-label">Celular</label>
-                  <input type="text" name="celular" id="celular" class="form-control" >
+                                    <input type="text" name="celular" id="celular" class="form-control" placeholder="DDD + Numero" >
 								</div>
 
-                <div class="col-md-6">
+                                <div class="col-md-6">
+									                  <label class="form-label">Estado</label>
+                                        <select name="uf" id="estadoSelect" onchange="carregarMunicipios()" class="form-control mySelect2">
+                                        <option value="">Selecione...</option>
+                                      </select>
+								                </div>
+
+                                <div class="col-md-6">
+								                    	<label class="form-label">Cidade</label>
+                                        <select name="cidade" id="municipioSelect" class="form-control mySelect2">
+                                          <option value="">Selecione um estado primeiro</option>
+                                        </select>
+								                </div>
+
+                                <div class="col-md-6">
 									<label for="exampleInputPassword1" class="form-label">Senha </label>
 									<input type="password" name="senha" pattern=".*[-].*" class="form-control" onkeyup="validaSenha(this.value)" id="senha">
 								</div>
@@ -114,8 +129,8 @@
 									<label for="exampleInputPassword3" class="form-label">Confirma Senha </label>
 									<input type="password" name="confirmaSenha" pattern=".*[-].*" class="form-control" id="confirmaSenha" >
 								</div>
-                <div class="col-md-12">
-                <label for="exampleInputPassword1" class="form-label">Regras da Senha </label>
+                                 <div class="col-md-12">
+                                        <label for="exampleInputPassword1" class="form-label">Regras da Senha </label>
                                       <ul style="list-style:none;">
                                             <li ><i class="fa-solid fa-xmark text-danger" id="minimoChar"></i> Precisa conter no minimo 8 caracteres </li>
                                             <li ><i class="fa-solid fa-xmark text-danger" id="numero"></i> Precisa conter número de 1 até 9</li>
@@ -123,7 +138,7 @@
                                             <li ><i class="fa-solid fa-xmark text-danger" id="minuscula"></i> Precisa conter letras Minúsculas (a ... z)</li>
                                             <li ><i class="fa-solid fa-xmark text-danger" id="simbolo"></i> Precisa conter caracter especial (@ ou ! ou & ou ?)</li>
                                         </ul>
-								</div>
+								 </div>
 							</div> <!-- Row END -->
 						</div>
 					</div>
@@ -162,6 +177,13 @@
     <script>
 
         $('#celular').mask("+5599999999999");
+
+        $('.mySelect2').select2();
+
+        // Aqui está a solução
+        $('.mySelect2').on('select2:unselect', function(evt) {
+        console.log(evt.params.data);
+        })
 
         document.getElementById('customFile').addEventListener('change', function(event) {
           const file = event.target.files[0];
@@ -241,6 +263,58 @@
         }
 
       }
+
+
+      const estadoSelect = document.getElementById('estadoSelect');
+    const municipioSelect = document.getElementById('municipioSelect');
+
+    // Carregar estados ao carregar a página
+    window.onload = carregarEstados;
+
+    function carregarEstados() {
+      // Faz a requisição para obter a lista de estados
+      fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
+        .then(response => response.json())
+        .then(estados => {
+          // Preenche o select de estados
+          estados.forEach(estado => {
+            const option = document.createElement('option');
+            option.value = estado.sigla;
+            option.textContent = estado.nome;
+            estadoSelect.appendChild(option);
+          });
+        })
+        .catch(error => console.error('Erro ao carregar estados:', error));
+    }
+
+    function carregarMunicipios() {
+      const uf = estadoSelect.value;
+
+      // Limpa o select de municípios
+      municipioSelect.innerHTML = '<option value="">Carregando...</option>';
+
+      if (uf) {
+        // Faz a requisição para obter a lista de municípios do estado selecionado
+        fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios`)
+          .then(response => response.json())
+          .then(municipios => {
+            // Limpa o select de municípios
+            municipioSelect.innerHTML = '<option value="">Selecione...</option>';
+
+            // Preenche o select de municípios
+            municipios.forEach(municipio => {
+              const option = document.createElement('option');
+              option.value = municipio.nome;
+              option.textContent = municipio.nome;
+              municipioSelect.appendChild(option);
+            });
+          })
+          .catch(error => console.error('Erro ao carregar municípios:', error));
+      } else {
+        // Se nenhum estado estiver selecionado, exibe uma mensagem no select de municípios
+        municipioSelect.innerHTML = '<option value="">Selecione um estado primeiro</option>';
+      }
+    }
 
 
       function handleSubmit() {
