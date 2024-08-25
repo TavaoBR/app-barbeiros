@@ -20,7 +20,7 @@ class ConsultarHorarioDisponivel {
 
         if ($agenda[0] > 0) {
             foreach ($agenda[1] as $consulta) {
-                if($consulta->status != 3 AND $consulta->status != 4){
+                if($consulta->status != 3 AND $consulta->status != 5){
                     $horariosDisponiveis[] = date("H:i", strtotime($consulta->horario));
                 }
                 

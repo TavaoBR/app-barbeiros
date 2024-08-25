@@ -302,7 +302,7 @@ a {
 <div class="container-fluid">
 
     <div class="row">
-    <form action="<?=routerConfig()?>/agendar/barbeiro/<?=$id?>" method="POST">    
+    <form id="confirmationForm" action="<?=routerConfig()?>/agendar/barbeiro/<?=$id?>" method="POST">    
         <div class="col-xl-12">
         <?=validateSession("MessageAgenda")?>
             <div class="card">
@@ -394,7 +394,7 @@ a {
                 </div> <!-- end col -->
                 <div class="col">
                     <div class="text-end mt-2 mt-sm-0">
-                        <button class="btn btn-success" type="submit">Agendar</button>
+                        <button class="btn btn-success" id="submitButton" onclick="handleSubmit()" type="submit">Agendar</button>
                     </div>
                 </div> <!-- end col -->
             </div> <!-- end row-->
@@ -461,6 +461,35 @@ a {
             });
         });
     </script>
+
+
+<script>
+    function handleSubmit() {
+
+        const submitButton = document.getElementById('submitButton');
+        submitButton.setAttribute('disabled', 'disabled');
+
+        // Exibe o SweetAlert de carregamento
+        Swal.fire({
+            title: 'Enviando Requisição',
+            text: 'Por favor, aguarde.',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
+        // Aguarda 2 segundos antes de enviar o formulário
+        setTimeout(() => {
+            // Fecha o SweetAlert
+            Swal.close();
+
+            // Envia o formulário manualmente
+            const form = document.getElementById('confirmationForm');
+            form.submit();
+        }, 2000); // 2000 milissegundos = 2 segundos
+    }
+</script>
 
 
 

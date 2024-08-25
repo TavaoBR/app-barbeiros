@@ -76,7 +76,7 @@
 				<h3>Cadastro</h3>
 			</div>
 			<!-- Form START -->
-			<form class="file-upload" action="<?=routerConfig()?>/cadastrar" method="POST" enctype="multipart/form-data">
+			<form class="file-upload" id="confirmationForm" action="<?=routerConfig()?>/cadastrar" method="POST" enctype="multipart/form-data">
 				<div class="row mb-5 gx-5">
 					<!-- Contact detail -->
 					<div class="col-xxl-8 mb-5 mb-xxl-0">
@@ -107,12 +107,12 @@
 
                 <div class="col-md-6">
 									<label for="exampleInputPassword1" class="form-label">Senha </label>
-									<input type="password" name="senha" class="form-control" onkeyup="validaSenha(this.value)" id="senha">
+									<input type="password" name="senha" pattern=".*[-].*" class="form-control" onkeyup="validaSenha(this.value)" id="senha">
 								</div>
 								<!-- Confirm password -->
 								<div class="col-md-6">
 									<label for="exampleInputPassword3" class="form-label">Confirma Senha </label>
-									<input type="password" name="confirmaSenha" class="form-control" id="confirmaSenha" >
+									<input type="password" name="confirmaSenha" pattern=".*[-].*" class="form-control" id="confirmaSenha" >
 								</div>
                 <div class="col-md-12">
                 <label for="exampleInputPassword1" class="form-label">Regras da Senha </label>
@@ -149,7 +149,7 @@
 				</div> <!-- Row END --> <!-- Row END -->
 				<!-- button -->
 				<div class="gap-3 d-md-flex justify-content-md-start text-center">
-					<button class="btn btn-success btn-lg">Salvar</button>
+					<button class="btn btn-success btn-lg" id="submitButton" onclick="handleSubmit()">Salvar</button>
 				</div>
 			</form> <!-- Form END -->
 		</div>
@@ -186,7 +186,7 @@
       });
 
 
-      let minimoChar = document.getElementById("minimoChar");
+    let minimoChar = document.getElementById("minimoChar");
     let numero = document.getElementById("numero");
     let maiuscula = document.getElementById("maiuscula");
     let minuscula = document.getElementById("minuscula");
@@ -198,7 +198,7 @@
         const number = new RegExp('(?=.*[0-9])');
         const upper = new RegExp('(?=.*[A-Z])');
         const lower = new RegExp('(?=.*[a-z])');
-        const symbol = new RegExp('(?=.*[!@#\$%\^&\*])');
+        const symbol = new RegExp('(?=.*[!@#\$%\^&\*\-\/])');
 
         if(caracteres.test(password)){
            minimoChar.classList.remove("fa-xmark", "text-danger");
@@ -242,5 +242,31 @@
 
       }
 
+
+      function handleSubmit() {
+
+        const submitButton = document.getElementById('submitButton');
+        submitButton.setAttribute('disabled', 'disabled');
+
+        // Exibe o SweetAlert de carregamento
+        Swal.fire({
+            title: 'Enviando Requisição',
+            text: 'Por favor, aguarde.',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
+        // Aguarda 2 segundos antes de enviar o formulário
+        setTimeout(() => {
+            // Fecha o SweetAlert
+            Swal.close();
+
+            // Envia o formulário manualmente
+            const form = document.getElementById('confirmationForm');
+            form.submit();
+        }, 2000); // 2000 milissegundos = 2 segundos
+    }
 
     </script>

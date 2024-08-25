@@ -65,9 +65,10 @@
 				<div class="error-inner">
 					<h1>Confirme Sua presença</h1>
 					<p>Coloque o código gerado pelo agendamento para confirmar sua presença</p>
+					<?=validateSession("ConfPresenca")?>
 					<form class="search-form" id="confirmationForm" action="<?=routerConfig()?>/agenda/confirmar/presenca" method="POST">
 						<input placeholder="Exemplo do codigo: 9CTKZ9U" type="text" name="codigo" >
-						<button class="btn" type="button" onclick="handleSubmit()"><i class="fa-solid fa-check-to-slot"></i></button>
+						<button class="btn" id="submitButton" type="button" onclick="handleSubmit()"><i class="fa-solid fa-check-to-slot"></i></button>
 					</form>
 				</div>
 				<!--/ End Error Inner -->
@@ -80,6 +81,9 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     function handleSubmit() {
+
+		const submitButton = document.getElementById('submitButton');
+        submitButton.setAttribute('disabled', 'disabled');
         // Exibe o SweetAlert de carregamento
         Swal.fire({
             title: 'Enviando Requisição',
@@ -98,6 +102,8 @@
             // Envia o formulário manualmente
             const form = document.getElementById('confirmationForm');
             form.submit();
-        }, 2000); // 2000 milissegundos = 2 segundos
+        }, 2000);
+		
+		// 2000 milissegundos = 2 segundos
     }
 </script>

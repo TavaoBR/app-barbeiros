@@ -80,13 +80,13 @@
             <div class="card mb-4">
                 <div class="card-header">Form</div>
                 <div class="card-body">
-                    <form method="POST" action="<?=routerConfig()?>/barbeiro/perfil/avatar/<?=$id?>" enctype="multipart/form-data">
+                    <form method="POST" id="confirmationForm" action="<?=routerConfig()?>/barbeiro/perfil/avatar/<?=$id?>" enctype="multipart/form-data">
                         <!-- Form Group (username)-->
                         <div class="mb-3">
                             <label class="small mb-1" for="customFile">Procurar Imagem</label>
                             <input class="form-control"  accept="image/*" id="customFile" type="file" name="avatar">
                         </div>
-                        <button class="btn btn-primary" >Upload Avatar</button>
+                        <button class="btn btn-primary" id="submitButton" onclick="handleSubmit()">Upload Avatar</button>
                     </form>
                 </div>
             </div>
@@ -116,4 +116,30 @@
               reader.readAsDataURL(file);
           }
       });
+</script>
+
+<script>
+    function handleSubmit() {
+        const submitButton = document.getElementById('submitButton');
+        submitButton.setAttribute('disabled', 'disabled');
+        // Exibe o SweetAlert de carregamento
+        Swal.fire({
+            title: 'Enviando Requisição',
+            text: 'Por favor, aguarde.',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
+        // Aguarda 2 segundos antes de enviar o formulário
+        setTimeout(() => {
+            // Fecha o SweetAlert
+            Swal.close();
+
+            // Envia o formulário manualmente
+            const form = document.getElementById('confirmationForm');
+            form.submit();
+        }, 2000); // 2000 milissegundos = 2 segundos
+    }
 </script>

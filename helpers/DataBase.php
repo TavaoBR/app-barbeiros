@@ -91,15 +91,33 @@ function horariosAtendimentoBarbeiro(int $fk)
 }
 
 
-function pesquisa(string $nome)
+function pesquisa(string $nome, string $uf, string $cidade)
 {
       $db = new \Src\Database\Connection;
 
       $connect = $db::connect();
 
-    $select = "SELECT * FROM perfilbarbeiro WHERE nomeBarbeiro like :nome ORDER BY nomeBarbeiro ASC";
+    $select = "SELECT * FROM perfilbarbeiro WHERE nomeBarbeiro like :nome AND estado = :uf AND cidade = :city ORDER BY nomeBarbeiro ASC";
     $query = $connect->prepare($select);
     $query->bindValue(":nome", "%$nome%");
+    $query->bindParam(":uf", $uf);
+    $query->bindParam(":city", $cidade);
+    $query->execute();
+    return [$query->rowCount(), $query->fetchAll(\PDO::FETCH_CLASS)];
+
+}
+
+
+function pesquisaTelaProcura(string $uf, string $cidade)
+{
+      $db = new \Src\Database\Connection;
+
+      $connect = $db::connect();
+
+    $select = "SELECT * FROM perfilbarbeiro WHERE estado = :uf AND cidade = :city ORDER BY nomeBarbeiro ASC";
+    $query = $connect->prepare($select);
+    $query->bindParam(":uf", $uf);
+    $query->bindParam(":city", $cidade);
     $query->execute();
     return [$query->rowCount(), $query->fetchAll(\PDO::FETCH_CLASS)];
 

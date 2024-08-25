@@ -62,9 +62,10 @@
 				<div class="error-inner">
 					<h1>Cancele Sua presença</h1>
 					<p>Coloque o código gerado pelo agendamento para cancelar sua presença</p>
+					<?=validateSession("CancelPresenca")?>
 					<form class="search-form" id="confirmationForm" action="<?=routerConfig()?>/agenda/cancelar/presenca" method="POST">
 						<input placeholder="Exemplo do codigo: 9CTKZ9U" type="text" name="codigo" >
-						<button class="btn btn-danger" type="button" onclick="handleSubmit()"><i class="fa-solid fa-circle-xmark"></i></button>
+						<button class="btn btn-danger" id="submitButton" type="button" onclick="handleSubmit()"><i class="fa-solid fa-circle-xmark"></i></button>
 					</form>
 				</div>
 				<!--/ End Error Inner -->
@@ -76,6 +77,10 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     function handleSubmit() {
+
+		const submitButton = document.getElementById('submitButton');
+        submitButton.setAttribute('disabled', 'disabled');
+
         // Exibe o SweetAlert de carregamento
         Swal.fire({
             title: 'Enviando Requisição',

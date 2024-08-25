@@ -22,6 +22,8 @@ class Usuario {
     private ?string $token = ''; 
     private ?string $nivel = '';
     private ?string $avatar = '';
+    private ?string $uf = '';
+    private ?string $cidade = '';
     //private ?int $pontos = '';
 
     public function __construct(int $id = null)
@@ -51,6 +53,8 @@ class Usuario {
         $this->token = $data[1]->token;
         $this->nivel = $data[1]->nivel;
         $this->avatar = $data[1]->avatar;
+        $this->uf = $data[1]->uf;
+        $this->cidade = $data[1]->cidade;
            
     }
 
@@ -108,6 +112,16 @@ class Usuario {
     public function nivel()
     {
         return $this->nivel;
+    }
+
+    public function uf()
+    {
+       return $this->uf;
+    } 
+
+    public function cidade()
+    {
+        return $this->cidade;
     }
 
 

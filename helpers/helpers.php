@@ -210,7 +210,11 @@ function statusAgendamento(int $status){
             $status = "Cancelado";
         break;    
 
-        case 4:
+        case 4: 
+            $status = "Presença Confirmada";
+        break;    
+
+        case 5:
             $status = "Concluido";
         break;    
     }

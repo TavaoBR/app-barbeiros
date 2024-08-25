@@ -80,7 +80,7 @@ session_start();
 
         <div class="card bg-glass">
           <div class="card-body px-4 py-5 px-md-5">
-            <form action="<?=routerConfig()?>/login" method="POST">
+            <form action="<?=routerConfig()?>/login" method="POST" id="confirmationForm">
               <!-- 2 column grid layout with text inputs for the first and last names -->
               <?=validateSession("Mensagem")?>
               <!-- Email input -->
@@ -96,7 +96,7 @@ session_start();
               </div>
 
               <!-- Submit button -->
-              <button type="submit" class="btn btn-primary btn-block mb-4">
+              <button type="submit" id="submitButton" onclick="handleSubmit()" class="btn btn-primary btn-block mb-4">
                 Logar
               </button>
 
@@ -115,7 +115,33 @@ session_start();
 <script src="<?=Assests("outros/libs/js/jquery-3.3.1.min.js")?>"></script>
 <script src="<?=Assests("outros/libs/js/jquery.mask.js")?>"></script>
 
+<script>
+    function handleSubmit() {
 
+        const submitButton = document.getElementById('submitButton');
+        submitButton.setAttribute('disabled', 'disabled');
+
+        // Exibe o SweetAlert de carregamento
+        Swal.fire({
+            title: 'Enviando Requisição',
+            text: 'Por favor, aguarde.',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
+        // Aguarda 2 segundos antes de enviar o formulário
+        setTimeout(() => {
+            // Fecha o SweetAlert
+            Swal.close();
+
+            // Envia o formulário manualmente
+            const form = document.getElementById('confirmationForm');
+            form.submit();
+        }, 2000); // 2000 milissegundos = 2 segundos
+    }
+</script>
 
 </body>
 </html>

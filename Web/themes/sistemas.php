@@ -388,7 +388,7 @@ $(document).ready(function() {
       </li>
 
       <li class="nav-item">
-        <a href="<?=routerConfig()?>/app/barbeiro" class="nav-link collapsed" href="#">
+        <a href="<?=routerConfig()?>/app/procurar" class="nav-link collapsed" href="#">
         <i class='bx bx-map'></i>
          <span>Procurar</span>
         </a>

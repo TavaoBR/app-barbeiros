@@ -192,7 +192,7 @@
                                             ?>
 
                                             <?php 
-                                             if($data->status == 2):
+                                             if($data->status == 2 OR $data->status == 4):
                                             ?>
                                               <button class="btn btn-danger btn-sm" onclick="CancelarAtendimento('<?=$data->codigo?>')"> Cancelar </button>
                                               <button class="btn btn-success btn-sm" onclick="ConcluirAtendimento('<?=$data->codigo?>')"> Concluir </button>

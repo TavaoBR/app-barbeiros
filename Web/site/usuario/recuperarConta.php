@@ -52,7 +52,7 @@
                         <p>Clique no botão para recuperar sua conta, após esse processo, enviaremos uma nova senha de acesso para você</p>
                         <p>Após acessar, atualize a senha para a de seu desejo</p>
                         <form  method="POST" action="<?=routerConfig()?>/usuario/recuperar/conta/<?=$id?>">
-                            <button class="btn btn-primary btn-lg">Recuperar Conta</button>
+                            <button id="submitButton" type="button" onclick="handleSubmit()"  class="btn btn-primary btn-lg">Recuperar Conta</button>
                             </form>
                     </div>
                     <!--/ End Error Inner -->
@@ -62,3 +62,32 @@
     </section>
 
     <script src='https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js'></script>
+
+    <script>
+    function handleSubmit() {
+
+		const submitButton = document.getElementById('submitButton');
+        submitButton.setAttribute('disabled', 'disabled');
+        // Exibe o SweetAlert de carregamento
+        Swal.fire({
+            title: 'Enviando Requisição',
+            text: 'Por favor, aguarde.',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
+        // Aguarda 2 segundos antes de enviar o formulário
+        setTimeout(() => {
+            // Fecha o SweetAlert
+            Swal.close();
+
+            // Envia o formulário manualmente
+            const form = document.getElementById('confirmationForm');
+            form.submit();
+        }, 2000);
+		
+		// 2000 milissegundos = 2 segundos
+    }
+</script>

@@ -66,7 +66,7 @@
             <?=validateSession("Message")?>
 			</div>
 			<!-- Form START -->
-			<form class="file-upload" action="<?=routerConfig()?>/barbeiro/servicos/cadastro/<?=$id?>" method="POST">
+			<form class="file-upload" id="confirmationForm" action="<?=routerConfig()?>/barbeiro/servicos/cadastro/<?=$id?>" method="POST">
 				<div class="row mb-5 gx-5">
 					<!-- Contact detail -->
 					<div class="col-xxl-8 mb-5 mb-xxl-0">
@@ -99,9 +99,38 @@
 				<!-- Social media detail --> <!-- Row END -->
 				<!-- button -->
 				<div class="gap-3 d-md-flex justify-content-md-start text-center">
-					<button  class="btn btn-success btn-lg">Salvar</button>
+					<button  class="btn btn-success btn-lg" id="submitButton" onclick="handleSubmit()">Salvar</button>
 				</div>
 			</form> <!-- Form END -->
 		</div>
 	</div>
 	</div>
+
+    <script>
+    function handleSubmit() {
+
+		const submitButton = document.getElementById('submitButton');
+        submitButton.setAttribute('disabled', 'disabled');
+        // Exibe o SweetAlert de carregamento
+        Swal.fire({
+            title: 'Enviando Requisição',
+            text: 'Por favor, aguarde.',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
+        // Aguarda 2 segundos antes de enviar o formulário
+        setTimeout(() => {
+            // Fecha o SweetAlert
+            Swal.close();
+
+            // Envia o formulário manualmente
+            const form = document.getElementById('confirmationForm');
+            form.submit();
+        }, 2000);
+		
+		// 2000 milissegundos = 2 segundos
+    }
+</script>

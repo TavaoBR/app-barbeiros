@@ -6,7 +6,7 @@ use Src\Database\Filters;
 use Src\Database\Model\AgendaBarbeiro;
 use Src\Database\Model\HorarioAtendimento;
 use Src\GET\Barbeiro\Barbeiro;
-use Src\GET\Usuario\Usuario;
+use Src\GET\Usuario;
 
 class BarbeiroController  extends TemplateConfig{
 

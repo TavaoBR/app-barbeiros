@@ -89,7 +89,7 @@ $pontosFormatados = formatarNumero($pontos);
 
             <div class="col-md-8">
               <?=validateSession("MessageUpdate")?>
-            <form action="<?=routerConfig()?>/atualizar/info/<?=getSession("id")?>" method="POST" enctype="multipart/form-data">
+            <form action="<?=routerConfig()?>/atualizar/info/<?=getSession("id")?>" id="confirmationForm" method="POST" enctype="multipart/form-data">
               <div class="card mb-3">
                 <div class="card-body">
                   <div class="row">
@@ -155,7 +155,7 @@ $pontosFormatados = formatarNumero($pontos);
 
                   <div class="row">
                     <div class="col-sm-12">
-                      <button class="btn btn-info "  type="submit">Salvar</button>
+                      <button class="btn btn-info" id="submitButton" onclick="handleSubmit()"  type="submit">Salvar</button>
                       <a class="btn btn-danger " href="<?=routerConfig()?>/app/perfil/trocar/senha">Trocar senha</a>
                     </div>
                   </div>
@@ -202,6 +202,33 @@ $pontosFormatados = formatarNumero($pontos);
             visualizarSenhaIcon.classList.remove("fa-eye-slash");
             visualizarSenhaIcon.classList.add("fa-eye");
         }
+    }
+
+
+    function handleSubmit() {
+
+        const submitButton = document.getElementById('submitButton');
+        submitButton.setAttribute('disabled', 'disabled');
+
+        // Exibe o SweetAlert de carregamento
+        Swal.fire({
+            title: 'Enviando Requisição',
+            text: 'Por favor, aguarde.',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
+        // Aguarda 2 segundos antes de enviar o formulário
+        setTimeout(() => {
+            // Fecha o SweetAlert
+            Swal.close();
+
+            // Envia o formulário manualmente
+            const form = document.getElementById('confirmationForm');
+            form.submit();
+        }, 2000); // 2000 milissegundos = 2 segundos
     }
     </script>
 

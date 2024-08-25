@@ -75,7 +75,7 @@
 
             <div class="col-md-8">
               <?=validateSession("Message")?>
-            <form action="<?=routerConfig()?>/barbeiro/atendimento/cadastro/horarios/<?=$id?>" method="POST" enctype="multipart/form-data">
+            <form action="<?=routerConfig()?>/barbeiro/atendimento/cadastro/horarios/<?=$id?>" method="POST"  id="confirmationForm">
               <div class="card mb-3">
                 <div class="card-body">
 
@@ -100,7 +100,7 @@
 
                   <div class="row">
                     <div class="col-sm-12">
-                       <button class="btn btn-success"  type="submit">Salvar</button>
+                       <button class="btn btn-success" id="submitButton" onclick="handleSubmit()" type="submit">Salvar</button>
                      </div>
                   </div>
                 </div>
@@ -141,6 +141,32 @@
             removeHalfHourOptions('end-time');
         });
     </script>
+
+<script>
+    function handleSubmit() {
+      const submitButton = document.getElementById('submitButton');
+      submitButton.setAttribute('disabled', 'disabled');
+        // Exibe o SweetAlert de carregamento
+        Swal.fire({
+            title: 'Enviando Requisição',
+            text: 'Por favor, aguarde.',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
+        // Aguarda 2 segundos antes de enviar o formulário
+        setTimeout(() => {
+            // Fecha o SweetAlert
+            Swal.close();
+
+            // Envia o formulário manualmente
+            const form = document.getElementById('confirmationForm');
+            form.submit();
+        }, 2000); // 2000 milissegundos = 2 segundos
+    }
+</script>
 
 <?php 
 else:
