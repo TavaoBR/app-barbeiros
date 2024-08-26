@@ -97,7 +97,7 @@ function pesquisa(string $nome, string $uf, string $cidade)
 
       $connect = $db::connect();
 
-    $select = "SELECT * FROM perfilbarbeiro WHERE nomeBarbeiro like :nome AND estado = :uf AND cidade = :city ORDER BY nomeBarbeiro ASC";
+    $select = "SELECT * FROM perfilbarbeiro WHERE nomeBarbeiro like :nome AND estado = :uf AND cidade = :city ORDER BY valorTotalNotas DESC";
     $query = $connect->prepare($select);
     $query->bindValue(":nome", "%$nome%");
     $query->bindParam(":uf", $uf);
@@ -114,7 +114,7 @@ function pesquisaTelaProcura(string $uf, string $cidade)
 
       $connect = $db::connect();
 
-    $select = "SELECT * FROM perfilbarbeiro WHERE estado = :uf AND cidade = :city ORDER BY nomeBarbeiro ASC";
+    $select = "SELECT * FROM perfilbarbeiro WHERE estado = :uf AND cidade = :city ORDER BY valorTotalNotas DESC";
     $query = $connect->prepare($select);
     $query->bindParam(":uf", $uf);
     $query->bindParam(":city", $cidade);

@@ -3,7 +3,7 @@
 namespace Src\POST;
 use Src\Database\Model\AgendaBarbeiro;
 use Src\Database\Model\Barbeiro;
-use Src\GET\Usuario\Usuario;
+use Src\GET\Usuario;
 use Src\Services\Whatsapp;
 
 class Atendimento {

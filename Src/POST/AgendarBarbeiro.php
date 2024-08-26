@@ -6,7 +6,7 @@ use Src\Database\Model\AgendaBarbeiro;
 use Src\Database\Model\Barbeiro;
 use Src\Database\Model\historicoAgendamento;
 use Src\Database\Model\Usuario as ModelUsuario;
-use Src\GET\Usuario\Usuario;
+use Src\GET\Usuario;
 use Src\Services\CodigoAgendamento;
 use Src\Services\Validate;
 use Src\Services\Whatsapp;

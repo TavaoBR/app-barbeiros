@@ -106,7 +106,7 @@ class AtendimentoUpdate
         echo json_encode($response);
     }
 
-    public function concluirAtendimento($data)
+    public function ConcluirAtendimento($data)
     {
       $codigo = $data['codigo'];
       $select = $this->agenda->findBy("codigo", $codigo);
@@ -114,7 +114,7 @@ class AtendimentoUpdate
       $barbeiro = $selectBarbeiro[1]->nomeBarbeiro;
       $celular = $select[1]->celular;
       $id = $select[1]->id;
-      $status = 4;
+      $status = 5;
       $dataA = date("d/m/Y", strtotime($select[1]->data));
       $hora = date("H:i", strtotime($select[1]->horario));
       $update = $this->agenda->update("id", $id, ["status" => $status]);
@@ -123,7 +123,8 @@ class AtendimentoUpdate
           ✅ Seu atendimento foi concluido por {$barbeiro}:
           \n 📆 Data: {$dataA}
           \n ⏰ Horario: {$hora}
-          \n Entre no sistema e avalie seu atendimento
+          \n 🔣 Codigo : {$codigo}
+          \n Entre no sistema e avalie seu atendimento, use codigo
        ";
        //$this->historicoAgendamento($codigo, $status);
        $this->alertarWhatsap($message, $celular);  

@@ -35,6 +35,7 @@ class Routers {
         $router->get("/agendar/barbeiro/{token}", "IndexController:Barbeiroagendarhoje");
         $router->get("/agenda/confirmar/presenca", "IndexController:confirmarPresenca");
         $router->get("/agenda/cancelar/presenca", "IndexController:cancelarPresenca");
+        $router->get("/atendimento/avaliar", "IndexController:AvaliarAtendimento");
         $router->get("/perfil", "IndexController:perfil");
         $router->get("/perfil/trocar/senha", "IndexController:trocarSenha");
         $router->get("/perfil/historico/solicitacao/acesso/barbeiro", "IndexController:solicitacaoAcessoBarbeiro");
@@ -80,6 +81,7 @@ class Routers {
         $router->post("/agendar/barbeiro/{fk}", "AgendarBarbeiro:Result");
         $router->post("/agenda/confirmar/presenca", "Atendimento:confirmarPresenca");
         $router->post("/agenda/cancelar/presenca", "Atendimento:cancelarPresenca");
+        $router->post("/atendimento/avaliar", "Avaliar:Result");
 
 
         $router->group("solicitacoes")->namespace("Src\POST\Solicitacoes");
@@ -98,6 +100,7 @@ class Routers {
         $router->post("/perfil/avatar/{id}","Avatar:Result");
         $router->post("/agenda/confirmar/{codigo}","AtendimentoUpdate:ConfirmarAtendimento");
         $router->post("/agenda/cancelar/{codigo}","AtendimentoUpdate:CancelarAtendimento");
+        $router->post("/agenda/concluir/{codigo}","AtendimentoUpdate:ConcluirAtendimento");
 
 
         $router->group("oops")->namespace("Src\Controller\Error");

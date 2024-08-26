@@ -144,7 +144,7 @@ a {
               <img src="<?=Assests("img/barbeiro/$id/$avatar")?>" alt="" class="rounded-circle" width="40" height="40">
               <div>
                 <h5 class="fw-semibold mb-0"><?=$dado->nomeBarbeiro?></h5>
-                    <span class="fs-2 d-flex align-items-center"><i class="ti ti-map-pin text-dark fs-3 me-1"></i>Nota: 8.5</span>
+                    <span class="fs-2 d-flex align-items-center"><i class="ti ti-map-pin text-dark fs-3 me-1"></i>Nota: <?=mediaNota($dado->totalAvalicao, $dado->valorTotalNotas)?></span>
                     <span class="fs-2 d-flex align-items-center"><i class="ti ti-map-pin text-dark fs-3 me-1"></i><?=$dado->cidade?> - <?=$dado->estado?></span>
               </div>
               <a href="<?=routerConfig()?>/app/barbeiro/perfil/<?=$dado->token?>" class="btn btn-primary py-1 px-2 ms-auto">Perfil</a>

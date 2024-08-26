@@ -227,3 +227,10 @@ function statusAgendamento(int $status){
     return $status;
 
 } 
+
+
+function mediaNota(int $total, int $valor)
+{
+    $divide = $valor / $total;
+    return number_format($divide, 1);
+}

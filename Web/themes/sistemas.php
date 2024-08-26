@@ -28,7 +28,7 @@ $id = $get->id();
     <link href="<?=Assests("assets/vendor/quill/quill.snow.css")?>" rel="stylesheet">
     <link href="<?=Assests("assets/vendor/quill/quill.bubble.css")?>" rel="stylesheet">
     <link href="<?=Assests("assets/vendor/simple-datatables/style.css")?>" rel="stylesheet">
-    <link rel="stylesheet" href="<?=Assests("assets/css/style.css")?>">
+    <link rel="stylesheet" href="<?=Assests("assets/css/Style.css")?>">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -303,7 +303,7 @@ $(document).ready(function() {
 
 
       <li class="nav-item">
-        <a href="<?=routerConfig()?>/app/perfil " class="nav-link <?=activeMenu(url()."/app/perfil")?>" href="#">
+        <a href="<?=routerConfig()?>/app/perfil " class="nav-link " href="#">
         <i class='bx bxs-user-circle'></i>
          <span>Perfil</span>
         </a>
@@ -414,6 +414,14 @@ $(document).ready(function() {
         <a href="<?=routerConfig()?>/app/agenda/cancelar/presenca" class="nav-link collapsed" href="#">
           <i class='bx bxs-message-alt-x'></i>
          <span>Cancelar Presença</span>
+        </a>
+      </li>
+
+
+      <li class="nav-item">
+        <a href="<?=routerConfig()?>/app/atendimento/avaliar" class="nav-link collapsed" href="#">
+         <i class='bx bx-clipboard'></i>
+         <span>Avaliar Atendimento</span>
         </a>
       </li>
 

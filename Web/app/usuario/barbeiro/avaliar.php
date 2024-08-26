@@ -2,12 +2,10 @@
 
 <style>
     body{margin-top:20px;}
-
-
 .error-page .error-inner h1 {
 	font-size: 60px;
 	text-shadow: 3px 5px 2px #3333;
-	color: #ff3d3d;
+	color: #006DFE;
 	font-weight: 700;
 }
 .error-page .error-inner h1 span {
@@ -26,10 +24,9 @@
 }
 .error-page .search-form input {
 	width: 400px;
-	height: 50px;
+	height: 25px;
 	padding: 0px 78px 0 30px;
 	border: none;
-	background: #f6f6f6;
 	border-radius: 5px;
 	display: inline-block;
 	margin-right: 10px;
@@ -38,13 +35,15 @@
 }
 
 .error-page .search-form .btn {
-	width: 90px;
+	width: 80px;
 	height: 50px;
 	border-radius: 5px;
 	cursor: pointer;
+	background: #006DFE;
 	display: inline-block;
 	position: relative;
 	top: -2px;
+    color: #eee;
 }
 .error-page .search-form .btn i{
 	font-size:16px;
@@ -60,12 +59,18 @@
 			<div class="col-lg-6 offset-lg-3 col-12">
 				<!-- Error Inner -->
 				<div class="error-inner">
-					<h1>Cancele Sua presença</h1>
-					<p>Coloque o código gerado pelo agendamento para cancelar sua presença</p>
-					<?=validateSession("CancelPresenca")?>
-					<form class="search-form" id="confirmationForm" action="<?=routerConfig()?>/agenda/cancelar/presenca" method="POST">
+					<h1>Avalie seu atendimento</h1>
+					<p>Coloque o código gerado pelo agendamento e faça sua avaliação</p>
+					<?=validateSession("Avaliacao")?>
+					<form class="search-form" id="confirmationForm" action="<?=routerConfig()?>/atendimento/avaliar" method="POST">
+                        <label for="codigo">Codigo:&nbsp;&nbsp;</label>
 						<input placeholder="Exemplo do codigo: 9CTKZ9U" type="text" name="codigo" >
-						<button class="btn btn-danger" id="submitButton" type="button" onclick="handleSubmit()"><i class="fa-solid fa-circle-xmark"></i></button>
+                        <hr>
+                        <label for="nota">Nota:&nbsp;&nbsp;&nbsp;</label>
+                        <input type="number" name="nota" placeholder="Nota de 1 a 10" min="1" max="10">
+                        <br>
+                        <br>
+						<button class="btn" id="submitButton" type="button" onclick="handleSubmit()">Avaliar</button>
 					</form>
 				</div>
 				<!--/ End Error Inner -->

@@ -127,7 +127,7 @@ class IndexController extends TemplateConfig{
         if($pesquisa[0] > 0){
           $this->view("app/resultadoPesquisa", ["title" => "Tela Procurar", "result" => $pesquisa[1], "total" => $pesquisa[0]]);
         }else{
-
+          $this->view("error/Procura", ["title" => "Pesquisa não encontrada"]);
         }
     }
 
@@ -142,6 +142,13 @@ class IndexController extends TemplateConfig{
     {
       session_start();
       $this->view("app/usuario/barbeiro/CancelarPresenca", ["title" => "Cancelar Presença"]);
+    }
+
+
+    public function AvaliarAtendimento()
+    {
+      session_start();
+      $this->view("app/usuario/barbeiro/avaliar", ["title" => "Avaliar Atendimento"]);
     }
 
 
