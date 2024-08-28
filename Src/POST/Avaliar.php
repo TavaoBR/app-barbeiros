@@ -3,6 +3,7 @@
 namespace Src\POST;
 use Src\Database\Model\AgendaBarbeiro;
 use Src\Database\Model\Barbeiro;
+use Src\Database\Model\ControleAvaliacao;
 use Src\GET\Usuario;
 use Src\Services\Validate;
 use Src\Services\Whatsapp;
@@ -11,6 +12,7 @@ class Avaliar
 {
     private AgendaBarbeiro $agenda;
     private Barbeiro $barbeiro;
+    private ControleAvaliacao $controle;
     private Validate $validate;
     private string $codigo;
     private string $nota;
@@ -19,6 +21,7 @@ class Avaliar
     {
         $this->barbeiro = new Barbeiro; 
         $this->agenda = new AgendaBarbeiro;
+        $this->controle = new ControleAvaliacao;
         $this->validate = new Validate;
         $this->codigo = $_POST['codigo'];
         $this->nota = $_POST['nota'];
@@ -42,6 +45,11 @@ class Avaliar
 
             switch(true){
 
+              case $this->selectControle() > 0:
+                setSession("Avaliacao", sweetAlertWarning("Você já fez avaliação desse atendimento 🤨", "Oops"));
+                redirectBack();
+              break;  
+
               case $codigo[1]->fkUser != $this->selectCliente():
                 setSession("Avaliacao", sweetAlertWarning("Esse codigo não pertence a você 🤨", "Oops"));
                 redirectBack();
@@ -61,6 +69,7 @@ class Avaliar
 
 
                 if($this->updateTotal($selectBarbeiro->id, $totalAvaliacao, $totalNotas) > 0){
+                    $this->createControle();
                     setSession("Avaliacao", sweetAlertSuccess("Parabéns você avaliou com sucesso seu atendimento, recomende para seus amigos😊", "Sucesso"));
                     redirectBack();
                 }else{
@@ -102,6 +111,22 @@ class Avaliar
         $total = $totalNota + $this->nota;
         $update = $this->barbeiro->update("id", $id, ["totalAvalicao" => $soma, "valorTotalNotas" => $total]);
         return $update;
+    }
+
+
+    private function selectControle()
+    {
+       $select = $this->controle->findBy("codigo", $this->codigo);
+       return $select[0];
+    }
+
+    private function createControle()
+    { 
+         $create = $this->controle->create([
+            "codigo" => $this->codigo
+         ]);
+
+         return $create;
     }
 
     private function selectCodigo()

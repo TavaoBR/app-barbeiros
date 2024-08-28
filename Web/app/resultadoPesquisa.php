@@ -1,5 +1,11 @@
 <?=$this->layout('themes/sistemas', ['title' => $title]);?>
 
+<?php 
+$nota = "";
+?>
+
+
+
 <style>
 body{padding-top:20px;
 background:#f5f5f5;
@@ -82,10 +88,6 @@ background:#f5f5f5;
     margin-bottom: 0.5rem!important;
 }
 
-.d-block {
-    display: block!important;
-}
-
 a {
     text-decoration: none;
 }
@@ -137,14 +139,20 @@ a {
          foreach($result as $dado):
             $id = $dado->id;
             $avatar = $dado->avatarBarbeiro;
-        ?>
+
+            if($dado->totalAvalicao == 0){
+                $nota .= "Nenhuma avaliação";
+            }else{
+               $nota .= mediaNota($dado->totalAvalicao, $dado->valorTotalNotas);
+            } 
+         ?>
         <div class=" col-md-6 col-xl-4">
           <div class="card">
             <div class="card-body p-4 d-flex align-items-center gap-3">
               <img src="<?=Assests("img/barbeiro/$id/$avatar")?>" alt="" class="rounded-circle" width="40" height="40">
               <div>
                 <h5 class="fw-semibold mb-0"><?=$dado->nomeBarbeiro?></h5>
-                    <span class="fs-2 d-flex align-items-center"><i class="ti ti-map-pin text-dark fs-3 me-1"></i>Nota: <?=mediaNota($dado->totalAvalicao, $dado->valorTotalNotas)?></span>
+                    <span class="fs-2 d-flex align-items-center"><i class="ti ti-map-pin text-dark fs-3 me-1"></i>Nota: <?=$nota?></span>
                     <span class="fs-2 d-flex align-items-center"><i class="ti ti-map-pin text-dark fs-3 me-1"></i><?=$dado->cidade?> - <?=$dado->estado?></span>
               </div>
               <a href="<?=routerConfig()?>/app/barbeiro/perfil/<?=$dado->token?>" class="btn btn-primary py-1 px-2 ms-auto">Perfil</a>

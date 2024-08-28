@@ -7,6 +7,7 @@ use Src\GET\Usuario;
 
 class AdminController extends TemplateConfig {
 
+  
     private function verificarNivel()
     {
       $get = new Usuario();

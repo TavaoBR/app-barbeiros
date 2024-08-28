@@ -121,25 +121,24 @@
       $('#itens').select2();
         // Remove as opções de tempo com "30" minutos
         function removeHalfHourOptions(inputId) {
-            const timeInput = document.getElementById(inputId);
-            const dataList = document.createElement('datalist');
-            dataList.id = inputId + '-list';
-            for (let hour = 0; hour < 24; hour++) {
-                for (let minute of [0, 30]) {
-                    if (minute === 30) continue;
-                    const option = document.createElement('option');
-                    option.value = `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
-                    dataList.appendChild(option);
-                }
+        const timeInput = document.getElementById(inputId);
+        const dataList = document.createElement('datalist');
+        dataList.id = inputId + '-list';
+        for (let hour = 0; hour < 24; hour++) {
+            for (let minute = 0; minute < 60; minute += 10) {
+                const option = document.createElement('option');
+                option.value = `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
+                dataList.appendChild(option);
             }
-            timeInput.setAttribute('list', dataList.id);
-            document.body.appendChild(dataList);
         }
+        timeInput.setAttribute('list', dataList.id);
+        document.body.appendChild(dataList);
+    }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            removeHalfHourOptions('start-time');
-            removeHalfHourOptions('end-time');
-        });
+    document.addEventListener('DOMContentLoaded', () => {
+        removeHalfHourOptions('start-time');
+        removeHalfHourOptions('end-time');
+    });
     </script>
 
 <script>

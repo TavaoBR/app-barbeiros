@@ -1,187 +1,114 @@
 <?=$this->layout('themes/sistemas', ['title' => $title]);?>
-<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css'>
 
-<script src='https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.bundle.min.js'></script>
+<?php 
+ $ganhos = [];
+ $pedentes = [];
+ $cancelados = [];
+?>
 
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css'>
 
 
 <style>
     body{
-        margin-top:20px;
-        background:#eee;
-    }
-    .payments-item img.mr-3 {
-        width: 47px;
-    }
-    .order-list .btn {
-        border-radius: 2px;
-        min-width: 121px;
-        font-size: 13px;
-        padding: 7px 0 7px 0;
-    }
-    .osahan-account-page-left .nav-link {
-        padding: 18px 20px;
-        border: none;
-        font-weight: 600;
-        color: #535665;
-    }
-    .osahan-account-page-left .nav-link i {
-        width: 28px;
-        height: 28px;
-        background: #535665;
-        display: inline-block;
-        text-align: center;
-        line-height: 29px;
-        font-size: 15px;
-        border-radius: 50px;
-        margin: 0 7px 0 0px;
-        color: #fff;
-    }
-    .osahan-account-page-left .nav-link.active {
-        background: #f3f7f8;
-        color: #282c3f !important;
-    }
-    .osahan-account-page-left .nav-link.active i {
-        background: #282c3f !important;
-    }
-    .osahan-user-media img {
-        width: 90px;
-    }
-    .card offer-card h5.card-title {
-        border: 2px dotted #000;
-    }
-    .card.offer-card h5 {
-        border: 1px dotted #daceb7;
-        display: inline-table;
-        color: #17a2b8;
-        margin: 0 0 19px 0;
-        font-size: 15px;
-        padding: 6px 10px 6px 6px;
-        border-radius: 2px;
-        background: #fffae6;
-        position: relative;
-    }
-    .card.offer-card h5 img {
-        height: 22px;
-        object-fit: cover;
-        width: 22px;
-        margin: 0 8px 0 0;
-        border-radius: 2px;
-    }
-    .card.offer-card h5:after {
-        border-left: 4px solid transparent;
-        border-right: 4px solid transparent;
-        border-bottom: 4px solid #daceb7;
-        content: "";
-        left: 30px;
-        position: absolute;
-        bottom: 0;
-    }
-    .card.offer-card h5:before {
-        border-left: 4px solid transparent;
-        border-right: 4px solid transparent;
-        border-top: 4px solid #daceb7;
-        content: "";
-        left: 30px;
-        position: absolute;
-        top: 0;
-    }
-    .payments-item .media {
-        align-items: center;
-    }
-    .payments-item .media img {
-        margin: 0 40px 0 11px !important;
-    }
-    .reviews-members .media .mr-3 {
-        width: 56px;
-        height: 56px;
-        object-fit: cover;
-    }
-    .order-list img.mr-4 {
-        width: 70px;
-        height: 70px;
-        object-fit: cover;
-        box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075)!important;
-        border-radius: 2px;
-    }
-    .osahan-cart-item p.text-gray.float-right {
-        margin: 3px 0 0 0;
-        font-size: 12px;
-    }
-    .osahan-cart-item .food-item {
-        vertical-align: bottom;
-    }
+    margin-top:20px;
+    background-color: #f1f3f7;
+}
 
-    .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-        color: #000000;
-    }
+.avatar-lg {
+    height: 5rem;
+    width: 5rem;
+}
 
-    .shadow-sm {
-        box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
-    }
+.font-size-18 {
+    font-size: 18px!important;
+}
 
-    .rounded-pill {
-        border-radius: 50rem!important;
-    }
-    a:hover{
-        text-decoration:none;
-    }
+.text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+a {
+    text-decoration: none!important;
+}
+
+.w-xl {
+    min-width: 160px;
+}
+
+.card {
+    margin-bottom: 24px;
+    -webkit-box-shadow: 0 2px 3px #e4e8f0;
+    box-shadow: 0 2px 3px #e4e8f0;
+}
+
+.card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #eff0f2;
+    border-radius: 1rem;
+}
 </style>
-	
 
-<div class="container-fluid">
+<div class="container">
     <div class="row">
-        <div class="col-md-3">
-            <div class="osahan-account-page-left shadow-sm bg-white h-100">
-                <div class="border-bottom p-4">
-                    <div class="osahan-user text-center">
-                        <div class="osahan-user-media">
-                            <img class="mb-3 rounded-pill shadow-sm mt-1" src="<?=Assests("img/barbeiro/$id/$avatar")?>" alt="gurdeep singh osahan">
-                            <div class="osahan-user-media-body">
-                                <h6 class="mb-2"><?=$nome?></h6>
-                                <p class="mb-0 text-black font-weight-bold">Açoes</p>
+        <div class="col-xl-8">
+
+        <?php 
+         foreach($array as $data):
+            $fkUser = $data->fkUser;
+
+            if($data->status == 5){
+              $ganhos[] = $data->valorTotal;
+            }
+
+            if($data->status == 1 OR $data->status == 2 OR $data->status == 4){
+                $pedentes[] = $data->valorTotal;
+              }
+
+            if($data->status == 3){
+                $cancelados[] = $data->valorTotal;
+              }
+
+        ?>
+
+            <div class="card border shadow-none">
+                <div class="card-body">
+
+                    <div class="d-flex align-items-start border-bottom pb-3">
+                        <div class="me-4">
+                            <img src="<?=Assests("img/avatar/$fkUser/")?><?=avatarUser($fkUser)?>" alt="" class="avatar-lg rounded">
+                        </div>
+                        <div class="flex-grow-1 align-self-center overflow-hidden">
+                            <div>
+                                <h5 class="text-truncate font-size-18"><a href="#" class="text-dark"><?=$data->nome?> </a></h5>
+                                <p class="text-muted mb-0">
+                                    Status: <?=statusAgendamento($data->status)?>
+                                </p>
+                                <p class="mb-0 mt-1">Codigo: <?=$data->codigo?> <i class="icofont-clock-time"></i> </p>
+                                <p class="mb-0 mt-1">Celular: <?=$data->celular?></p>
+                                <p class="mb-0 mt-1">Serviço(s): <?=$data->servicosSolicitados?></p>
+                                <p class="mb-0 mt-1">Horário: <?=date("H:i", strtotime($data->horario))?></p>
                             </div>
                         </div>
                     </div>
-                </div>
-                <ul class="nav nav-tabs flex-column border-0 pt-4 pl-4 pb-4" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link" id="orders-tab" data-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="false"><i class="icofont-food-cart"></i> Orders</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-md-9">
-            <div class="osahan-account-page-right shadow-sm bg-white p-4 h-100">
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane  fade  active show" id="orders" role="tabpanel" aria-labelledby="orders-tab">
-                        <h4 class="font-weight-bold mt-0 mb-4">Agenda <?=$dia?></h4>
-                        <?php 
-                        	foreach($array as $data):
-                          $fkUser = $data->fkUser;
-                        ?>
-                        <div class="bg-white card mb-4 order-list shadow-sm">
-                            <div class="gold-members p-4">
-                                <div class="media">
-                                    <a >
-                                        <img class="mr-4 rounded-pill" src="<?=Assests("img/avatar/$fkUser/")?><?=avatarUser($fkUser)?>" alt="Generic placeholder image">
-                                    </a>
-                                    <div class="media-body">
-                                         <a href="#">
-                                            <span class="float-right text-info">Status:  <?=statusAgendamento($data->status)?></span>
-                                        </a>
-                                        <h6 class="mb-2">
-                                            <a ></a>
-                                            <a class="text-primary"><?=$data->nome?></a>
-                                        </h6>
-                                        <p class="text-dark mb-1"> Codigo <?=$data->codigo?> <i class="icofont-clock-time"></i> </p>
-                                        <p class="text-dark mb-1">Celular : <?=$data->celular?></p>
-                                        <p class="text-dark mb-1">Serviço(s) : <?=$data->servicosSolicitados?></p>
-                                        <p class="text-dark mb-1">Data / Horário : <?=date("d/m/Y", strtotime($data->data))?>, <?=date("H:i", strtotime($data->horario))?></p>
-                                        <p class="mb-0 text-black text-primary pt-2"><span class="text-black font-weight-bold"> Valor total:</span> R$<?=$data->valorTotal?>
-                                        </p>
-                                        <hr>
-                                        <div class="float-right">
+
+                    <div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mt-3">
                                             <?php 
                                               if($data->status == 1):
                                             ?>
@@ -190,8 +117,11 @@
                                             <?php 
                                              endif;
                                             ?>
-
-                                            <?php 
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="mt-3">
+                                <?php 
                                              if($data->status == 2 OR $data->status == 4):
                                             ?>
                                               <button class="btn btn-danger btn-sm" onclick="CancelarAtendimento('<?=$data->codigo?>')"> Cancelar </button>
@@ -199,24 +129,67 @@
                                             <?php 
                                              endif;
                                             ?>
-                                            
-                                        </div>
-                                        
-                                    </div>
                                 </div>
-
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mt-3">
+                                    <p class="text-muted mb-2">Total</p>
+                                    <h5>R$<?=$data->valorTotal?></h5>
+                                </div>
                             </div>
                         </div>
-                        <?php 
-                          endforeach;
-                        ?>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <?php 
+            endforeach;
+            ?>
+             <!-- end row-->
+        </div>
+
+        <div class="col-xl-4">
+            <div class="mt-5 mt-lg-0">
+                <div class="card border shadow-none">
+                    <div class="card-header bg-transparent border-bottom py-3 px-4">
+                        <h5 class="font-size-16 mb-0">Agenda  <span class="float-end"><?=$dia?></span></h5>
+                    </div>
+                    <div class="card-body p-4 pt-2">
+
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <tbody>
+                                    <tr class ="bg-success">
+                                        <td class="text-white">Ganhos do dia :</td>
+                                        <td class="text-end fw-bold text-white">R$ <?=array_sum($ganhos)?></td>
+                                    </tr>
+                                    <tr class="bg-light">
+                                        <td class="text-dark">Ganhos Pendentes : </td>
+                                        <td class="text-end fw-bold text-dark">R$ <?=array_sum($pedentes)?></td>
+                                    </tr>
+                                    <tr class="bg-danger">
+                                        <td class="text-white">Cancelados :</td>
+                                        <td class="text-end fw-bold text-white">R$ <?=array_sum($cancelados)?></td>
+                                    </tr>
+
+                                    <tr class="bg-dark">
+                                        <td class="text-white">Soma de todos :</td>
+                                        <td class="text-end fw-bold text-white">R$ <?=array_sum($ganhos) + array_sum($pedentes) + array_sum($cancelados)?></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- end table-responsive -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- end row -->
+    
 </div>
-
 
 <script>
   var url = "<?=routerConfig()?>";

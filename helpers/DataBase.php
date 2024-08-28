@@ -136,3 +136,31 @@ function codigoGeradoAgendamento(string $codigo)
    $query->execute();
    return [$query->rowCount(), $query->fetch(\PDO::FETCH_OBJ)];
 }
+
+function servicoBarbeiro(int $fk)
+{
+   $db = new \Src\Database\Connection;
+
+   $connect = $db::connect();
+
+   $select = "SELECT * FROM servicosbarbeiro WHERE fk = :fk";
+   $query = $connect->prepare($select);
+   $query->bindParam(":fk", $fk);
+   $query->execute();
+   return [$query->rowCount(), $query->fetchAll(\PDO::FETCH_CLASS)];
+}
+
+
+function servicoIdFk(int $id, int $fk)
+{
+   $db = new \Src\Database\Connection;
+
+   $connect = $db::connect();
+
+   $select = "SELECT * FROM servicosbarbeiro WHERE fk = :fk AND id = :id";
+   $query = $connect->prepare($select);
+   $query->bindParam(":id", $id);
+   $query->bindParam(":fk", $fk);
+   $query->execute();
+   return [$query->rowCount(), $query->fetch(\PDO::FETCH_OBJ)];
+}

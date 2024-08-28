@@ -53,23 +53,36 @@ class CadastroHorarios {
 
 
 
-          for($hora = $inicial; $hora <= $final; $hora++){
-            for($minutos = 0; $minutos < 60; $minutos += 30){
-                $tempoFormatado = str_pad($hora, 2, "0", STR_PAD_LEFT) . ":" . str_pad($minutos, 2, "0", STR_PAD_LEFT). ":" . "00"; 
-                $create = $this->atendimento->create([
-                  "fk" => $id,
-                  "hora" => $tempoFormatado
-                ]);
+       $success = true;
 
-                if($create > 0){
-                    setSession("MessageSuccess",sweetAlertSuccess("Horários de atendimento cadastrados", "Sucesso"));
-                    redirectBack();
-                }else{
-                    setSession("Message", sweetAlertError("Ocorreu algum erro, por favor tente mais tarde ou entre em contato com o suporte"));
-                    redirectBack();
-                }
-            }
+       for($hora = $inicial; $hora <= $final; $hora++){
+           for($minutos = 0; $minutos < 60; $minutos += 10){
+            
+                    // Verifica se o horário atual já passou do horário final
+                    if($hora == $final && $minutos > 0) {
+                        break;
+                    }
+
+               $tempoFormatado = str_pad($hora, 2, "0", STR_PAD_LEFT) . ":" . str_pad($minutos, 2, "0", STR_PAD_LEFT) . ":00"; 
+               $create = $this->atendimento->create([
+                   "fk" => $id,
+                   "hora" => $tempoFormatado
+               ]);
+       
+               if($create <= 0){
+                   $success = false;
+                   break 2;  // Sai dos dois loops se ocorrer um erro
+               }
+           }
        }
+       
+       if($success){
+           setSession("MessageSuccess", sweetAlertSuccess("Horários de atendimento cadastrados", "Sucesso"));
+       } else {
+           setSession("Message", sweetAlertError("Ocorreu algum erro, por favor tente mais tarde ou entre em contato com o suporte"));
+       }
+       
+       redirectBack();
     }
 
     private function replace(string $valor)

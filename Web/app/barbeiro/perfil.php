@@ -1,6 +1,12 @@
 <?=$this->layout('themes/sistemas', ['title' => $title]);?>
 
-
+<?php 
+    if($totalAvaliacao == 0){
+        $nota .= "Nenhuma avaliação";    
+     }else{
+         $nota .= mediaNota($totalAvaliacao, $valorNotas);
+     }
+?>
 
 
 <style>
@@ -385,7 +391,6 @@ ul.friend-list .right p {
                         <li><a >Editar</a></li>
                         <li><a class="active" >Perfil</a></li>
                         <li><a href="<?=routerConfig()?>/app/barbeiro/agenda/<?=$token?>/<?=dataAtual()?>">Agenda</a></li>
-                        <li><a >Horário de Atendimento</a></li>
                         <li><a >Serviços</a></li>
                     </ul>
                 </div>
@@ -444,11 +449,7 @@ ul.friend-list .right p {
                         <div class="col-lg-6">
                             <h4>Nota</h4>
                             <div class="mb-3">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
+                            <?=$nota?>
                             </div>
                         </div>
 
@@ -457,7 +458,7 @@ ul.friend-list .right p {
             </div>
         </div>
     </div>
-    <div class="row">
+    <!--<div class="row">
     <div class="col-lg-6">
             <div class="card info-card">
                 <div class="card-body">
@@ -508,5 +509,5 @@ ul.friend-list .right p {
                 </div>
             </div>
         </div>
-    </div>
+    </div>--->
 </div>

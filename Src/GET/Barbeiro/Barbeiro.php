@@ -20,7 +20,8 @@ class Barbeiro {
     private string $bairro;
     private string $numero;
     private ?int $pontos = null;
-    private ?int $avaliacao = null;
+    private ?int $valorTotalNotas = null;
+    private ?int $totalAvalicao = null;
     private ?int $online = null;
     private string $token;
 
@@ -43,6 +44,8 @@ class Barbeiro {
         $this->numero = $data->numero;
         $this->online = $data->online;
         $this->token = $data->token;
+        $this->valorTotalNotas = $data->valorTotalNotas;
+        $this->totalAvalicao = $data->totalAvalicao;
     }
 
     public function conta()
@@ -112,6 +115,16 @@ class Barbeiro {
     public function token()
     {
         return $this->token;
+    }
+
+    public function totalAvalicao()
+    {
+        return $this->totalAvalicao;
+    }
+
+    public function valorTotalNotas()
+    {
+        return $this->valorTotalNotas;
     }
 
 

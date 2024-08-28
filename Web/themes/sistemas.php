@@ -52,7 +52,7 @@ $id = $get->id();
 
     <div class="search-bar">
       <form class="search-form d-flex align-items-center" id="searchForm">
-        <input type="text" name="nome" id="searchQuery" placeholder="pesquise o nome aqui" title="Enter search keyword">
+        <input type="text" name="nome" id="searchQuery" placeholder="pesquise o nome aqui" title="Enter search keyword" required>
         <button type="submit" title="Search"><i class="bx bx-search"></i></button>
       </form>
     </div> <!--End Search Bar -->
@@ -302,11 +302,44 @@ $(document).ready(function() {
       </li>-->
 
 
+
       <li class="nav-item">
-        <a href="<?=routerConfig()?>/app/perfil " class="nav-link " href="#">
-        <i class='bx bxs-user-circle'></i>
-         <span>Perfil</span>
+        <a class="nav-link " data-bs-target="#cliente" data-bs-toggle="collapse" href="#">
+        <i class='bx bxs-user-circle'></i><span>Cliente</span><i class="bx bx-chevron-down ms-auto"></i>
         </a>
+        <ul id="cliente" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li class="nav-item">
+              <a href="<?=routerConfig()?>/app/perfil "  >
+              <i class='bx bxs-user-circle'></i> <span>Perfil</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?=routerConfig()?>/app/agenda/confirmar/presenca"  href="#">
+                <i class='bx bxs-check-shield'></i><span>Confirmar Presença</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?=routerConfig()?>/app/agenda/cancelar/presenca"  href="#">
+                <i class='bx bxs-message-alt-x'></i><span>Cancelar Presença</span>
+              </a>
+            </li>
+
+
+            <li class="nav-item">
+              <a href="<?=routerConfig()?>/app/atendimento/avaliar"  href="#">
+              <i class='bx bx-clipboard'></i><span>Avaliar Atendimento</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?=routerConfig()?>/sair"  href="#">
+              <i class='bx bx-clipboard'></i><span>Sair</span>
+              </a>
+            </li>
+
+        </ul>
       </li>
 
 
@@ -388,12 +421,18 @@ $(document).ready(function() {
   endif;
   ?>
       
+    <?php 
+     if($nivel == 2):
+    ?>  
       <li class="nav-item">
         <a href="<?=routerConfig()?>/app/solicitar/acesso/barbeiro" class="nav-link collapsed" href="#">
         <i class='bx bxs-lock-open'></i>
           <span>Solicitar acesso</span>
         </a>
       </li>
+      <?php 
+       endif; 
+      ?>
 
       <li class="nav-item">
         <a href="<?=routerConfig()?>/app/procurar" class="nav-link collapsed" href="#">
@@ -402,28 +441,10 @@ $(document).ready(function() {
         </a>
       </li>
 
-
-      <li class="nav-item">
-        <a href="<?=routerConfig()?>/app/agenda/confirmar/presenca" class="nav-link collapsed" href="#">
-          <i class='bx bxs-check-shield'></i>
-          <span>Confirmar Presença</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a href="<?=routerConfig()?>/app/agenda/cancelar/presenca" class="nav-link collapsed" href="#">
-          <i class='bx bxs-message-alt-x'></i>
-         <span>Cancelar Presença</span>
-        </a>
-      </li>
+     
 
 
-      <li class="nav-item">
-        <a href="<?=routerConfig()?>/app/atendimento/avaliar" class="nav-link collapsed" href="#">
-         <i class='bx bx-clipboard'></i>
-         <span>Avaliar Atendimento</span>
-        </a>
-      </li>
+
 
       <!-- End Charts Nav -->
 

@@ -56,6 +56,8 @@ class Routers {
         $router->get("/barbeiro/configuracao/{token}", "BarbeiroController:configuracao");
         $router->get("/barbeiro/perfil/editar/{token}", "BarbeiroController:configuracao");
         $router->get("/barbeiro/perfil/avatar/{token}", "BarbeiroController:addAvatar");
+        $router->get("/barbeiro/servicos/{token}", "BarbeiroController:servicos");
+        $router->get("/barbeiro/servicos/editar/{token}/{id}", "BarbeiroController:editarServico");
     
 
         $router->group("oops")->namespace("Src\Controller\Error");
