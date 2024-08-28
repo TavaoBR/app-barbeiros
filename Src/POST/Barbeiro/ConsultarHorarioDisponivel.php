@@ -33,7 +33,7 @@ class ConsultarHorarioDisponivel {
 
     private function selectHorarios(int $fk, array $horariosDisponiveis = []) {
         $horarios = horariosAtendimentoBarbeiro($fk);
-        $html = "<div class='mb-4'>";
+        $html = "<div class='mb-6'>";
 
         if ($horarios[0] > 0) {
             // Cria uma lista de horários disponíveis para exibir
@@ -58,9 +58,9 @@ class ConsultarHorarioDisponivel {
 
             if (!empty($horariosExibir)) {
                 foreach ($horariosExibir as $hora) {
-                    $html .= "<div class='btn-group' style='margin-right: 20px; margin-top: 10px;'>
+                    $html .= "<div class='btn-group' style='margin-right: 10px; margin-top: 10px;'>
                     <input type='radio' class='btn-check' name='horario' id='horario-$hora' value='$hora' autocomplete='off' />
-                    <label class='btn btn-primary' for='horario-$hora'>$hora</label>
+                    <label class='btn btn-primary btn-sm' for='horario-$hora'>$hora</label>
                     </div>";
                 }
             }

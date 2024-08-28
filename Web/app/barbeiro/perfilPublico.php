@@ -768,7 +768,7 @@ a {
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-lg-12" id="horarios-disponiveis">
+                                                    <div class="col-lg-16" id="horarios-disponiveis">
 
                                                     </div>
 
