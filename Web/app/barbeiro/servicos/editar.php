@@ -70,8 +70,9 @@ color: #9b9ca1;
 				<hr>
 			</div>
 			<!-- Form START -->
-			<form class="file-upload">
+			<form class="file-upload" id="confirmationForm" action="<?=routerConfig()?>/barbeiro/servico/atualizar/<?=$dados->id?>" method="POST">
 				<div class="row mb-5 gx-5">
+                    <?=validateSession("UpdateService")?>
 					<!-- Contact detail -->
 					<div class="col-xxl-8 mb-5 mb-xxl-0">
 						<div class="bg-secondary-soft px-4 py-5 rounded">
@@ -79,26 +80,51 @@ color: #9b9ca1;
 								<!-- First Name -->
 								<div class="col-md-6">
 									<label class="form-label">Serviço *</label>
-									<input type="text" class="form-control" placeholder="" aria-label="First name" value="<?=$dados->nome?>">
+									<input type="text" name="nome" class="form-control" placeholder="" aria-label="First name" value="<?=$dados->nome?>">
 								</div>
 								<!-- Last name -->
 								<div class="col-md-6">
 									<label class="form-label">Valor *</label>
-									<input type="number" class="form-control" placeholder="Exemplo: 30.5" value="<?=$dados->valor?>" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')">
+									<input type="number" name="valor" class="form-control" placeholder="Exemplo: 30.5" value="<?=$dados->valor?>" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')">
 								</div>
 							</div> <!-- Row END -->
 						</div>
 					</div>
                     <div class="gap-3 d-md-flex justify-content-md-start text-center">
-					    <button type="button" class="btn btn-primary btn-lg">Salvar</button>
+					    <button type="submit" id="submitButton" class="btn btn-primary btn-lg" onclick="handleSubmit()">Salvar</button>
 				    </div>
 					<!-- Upload profile -->
 				</div> <!-- Row END -->
-
-                <!-- Row END -->
-				<!-- button -->
-
 			</form> <!-- Form END -->
 		</div>
 	</div>
 	</div>
+
+    <script>
+        function handleSubmit() {
+
+        const submitButton = document.getElementById('submitButton');
+        submitButton.setAttribute('disabled', 'disabled');
+        // Exibe o SweetAlert de carregamento
+        Swal.fire({
+            title: 'Enviando Requisição',
+            text: 'Por favor, aguarde.',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
+        // Aguarda 2 segundos antes de enviar o formulário
+        setTimeout(() => {
+            // Fecha o SweetAlert
+            Swal.close();
+
+            // Envia o formulário manualmente
+            const form = document.getElementById('confirmationForm');
+            form.submit();
+        }, 2000);
+
+        // 2000 milissegundos = 2 segundos
+        }
+    </script>

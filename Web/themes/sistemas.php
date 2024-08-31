@@ -14,8 +14,8 @@ $id = $get->id();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="<?=Assests("workspace/assets/image/logo/AZULPNG.png")?>" rel="icon">
-    <link href="<?=Assests("workspace/assets/image/logo/AZULPNG.png")?>" rel="apple-touch-icon">
+    <link href="<?=Assests("assets/img/logoOf.png")?>" rel="icon">
+    <link href="<?=Assests("assets/img/logoOf.png")?>" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -44,8 +44,8 @@ $id = $get->id();
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="<?=routerConfig()?>/app/perfil" class="logo d-flex align-items-center">
-        <img src="https://cdn-icons-png.flaticon.com/512/5087/5087032.png" alt="">
-        <span class="d-none d-lg-block">CorteApp</span>
+        <img src="<?=Assests("assets/img/logoOf.png")?>" alt="">
+        <span class="d-none d-lg-block">Match Barbearia</span>
       </a>
       <i class='bx bx-menu toggle-sidebar-btn'></i>
     </div><!-- End Logo -->
@@ -402,13 +402,13 @@ $(document).ready(function() {
 
           <li>
             <a href="<?=routerConfig()?>/app/barbeiro/atendimento/cadastro/horarios/<?=$token?>">
-              <i class="bx bx-circle"></i><span>Cadastrar Horarios</span>
+              <i class="bx bx-circle"></i><span>Horarios de atendimento</span>
             </a>
           </li>
 
           <li>
-            <a href="<?=routerConfig()?>/app/barbeiro/servicos/cadastrar/<?=$token?>">
-              <i class="bx bx-circle"></i><span>Cadastrar Serviços</span>
+            <a href="<?=routerConfig()?>/app/barbeiro/servicos/<?=$token?>">
+              <i class="bx bx-circle"></i><span>Serviços</span>
             </a>
           </li>
 

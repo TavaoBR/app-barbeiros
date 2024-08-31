@@ -1,6 +1,12 @@
 <?=$this->layout('themes/sistemas', ['title' => $title]);?>
 
 <div class="container">
+ <a href="<?=routerConfig()?>/app/barbeiro/servicos/cadastrar/<?=$token?>" class="btn btn-primary btn-sm"> Cadastrar </a>
+</div>
+
+<br>
+
+<div class="container">
 <table class="table">
   <thead>
     <tr>
@@ -23,7 +29,7 @@
         <a href="<?=routerConfig()?>/app/barbeiro/servicos/editar/<?=$token?>/<?=$servico->id?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
       </td>
       <td>
-        <a href="#" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></a>
+        <button class="btn btn-danger btn-sm" onclick="Servico(<?=$servico->id?>)"><i class="fa-solid fa-trash-can"></i></button>
       </td>
     </tr>
     <?php 
@@ -32,3 +38,8 @@
   </tbody>
 </table>
 </div>
+
+<script>
+  var url = "<?=routerConfig()?>";
+</script>
+<script src="<?=Assests("assets/js/barbeiro/Deletar.js")?>"></script>
