@@ -228,6 +228,26 @@ function statusAgendamento(int $status){
 
 } 
 
+function statusBarbeiro(int $status)
+{
+
+    switch($status){
+       case 1:
+         $status = "Ativo";
+       break; 
+
+       case 2:
+         $status = "Inativo";
+       break; 
+
+       case 3:
+         $status = "Folga";
+       break; 
+    }
+
+    return $status;
+
+}
 
 function mediaNota(int $total, int $valor)
 {

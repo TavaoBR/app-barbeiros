@@ -384,31 +384,37 @@ $(document).ready(function() {
   ?>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#barbeiro" data-bs-toggle="collapse" href="#">
-        <i class='bx bx-map'></i></i><span>Barbeiro</span><i class="bx bx-chevron-down ms-auto"></i>
+        <a class="nav-link collapsed" data-bs-target="#barbearia" data-bs-toggle="collapse" href="#">
+        <i class='bx bx-map'></i></i><span>Barbearia</span><i class="bx bx-chevron-down ms-auto"></i>
         </a>
-        <ul id="barbeiro" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="barbearia" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="<?=routerConfig()?>/app/barbeiro/perfil/<?=$token?>">
+            <a href="<?=routerConfig()?>/app/barbearia/perfil/<?=$token?>">
               <i class="bx bx-circle"></i><span>Perfil</span>
             </a>
           </li>
 
           <li>
-            <a href="<?=routerConfig()?>/app/barbeiro/configuracao/<?=$token?>">
+            <a href="<?=routerConfig()?>/app/barbearia/configuracao/<?=$token?>">
               <i class="bx bx-circle"></i><span>Configuração</span>
             </a>
           </li>
 
           <li>
-            <a href="<?=routerConfig()?>/app/barbeiro/atendimento/cadastro/horarios/<?=$token?>">
+            <a href="<?=routerConfig()?>/app/barbearia/atendimento/cadastro/horarios/<?=$token?>">
               <i class="bx bx-circle"></i><span>Horarios de atendimento</span>
             </a>
           </li>
 
           <li>
-            <a href="<?=routerConfig()?>/app/barbeiro/servicos/<?=$token?>">
+            <a href="<?=routerConfig()?>/app/barbearia/servicos/<?=$token?>">
               <i class="bx bx-circle"></i><span>Serviços</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="<?=routerConfig()?>/app/barbearia/barbeiros/<?=$token?>">
+              <i class="bx bx-circle"></i><span>Barbeiros</span>
             </a>
           </li>
 

@@ -48,16 +48,18 @@ class Routers {
         $router->get("/admin/barbeiros", "AdminController:barbeiros");
         $router->get("/admin/solicitacoes/acesso/barbeiro", "AdminController:solicitacoesBarbeiro");   
 
-        $router->get("/barbeiro/perfil/{token}", "BarbeiroController:perfil");
-        $router->get("/barbeiro/perfil/galeria/adicionar/imagens/{token}", "BarbeiroController:addImagens");
-        $router->get("/barbeiro/atendimento/cadastro/horarios/{token}", "BarbeiroController:cadastrarHorarios"); 
-        $router->get("/barbeiro/servicos/cadastrar/{token}", "BarbeiroController:cadastrarServicos");
-        $router->get("/barbeiro/agenda/{token}/{data}", "BarbeiroController:agenda");
-        $router->get("/barbeiro/configuracao/{token}", "BarbeiroController:configuracao");
-        $router->get("/barbeiro/perfil/editar/{token}", "BarbeiroController:configuracao");
-        $router->get("/barbeiro/perfil/avatar/{token}", "BarbeiroController:addAvatar");
-        $router->get("/barbeiro/servicos/{token}", "BarbeiroController:servicos");
-        $router->get("/barbeiro/servicos/editar/{token}/{id}", "BarbeiroController:editarServico");
+        $router->get("/barbearia/perfil/{token}", "BarbeiroController:perfil");
+        $router->get("/barbearia/perfil/galeria/adicionar/imagens/{token}", "BarbeiroController:addImagens");
+        $router->get("/barbearia/atendimento/cadastro/horarios/{token}", "BarbeiroController:cadastrarHorarios"); 
+        $router->get("/barbearia/servicos/cadastrar/{token}", "BarbeiroController:cadastrarServicos");
+        $router->get("/barbearia/agenda/{token}/{data}", "BarbeiroController:agenda");
+        $router->get("/barbearia/configuracao/{token}", "BarbeiroController:configuracao");
+        $router->get("/barbearia/perfil/editar/{token}", "BarbeiroController:configuracao");
+        $router->get("/barbearia/perfil/avatar/{token}", "BarbeiroController:addAvatar");
+        $router->get("/barbearia/servicos/{token}", "BarbeiroController:servicos");
+        $router->get("/barbearia/servicos/editar/{token}/{id}", "BarbeiroController:editarServico");
+        $router->get("/barbearia/barbeiro/cadastrar/{token}", "BarbeiroController:cadastroProfissional");
+        $router->get("/barbearia/barbeiros/{token}", "BarbeiroController:profissionais");
     
 
         $router->group("oops")->namespace("Src\Controller\Error");
@@ -105,6 +107,9 @@ class Routers {
         $router->post("/agenda/concluir/{codigo}","AtendimentoUpdate:ConcluirAtendimento");
         $router->post("/servico/atualizar/{id}", "UpdateServico:Result");
         $router->post("/servico/deletar/{id}", "DeletarServico:Deletar");
+        
+        $router->group("profissional")->namespace("Src\POST\ProfissionalBarbearia");
+        $router->post("/cadastrar/{id}", "Cadastro:Result");
 
         $router->group("oops")->namespace("Src\Controller\Error");
         $router->get("/{errocode}", "ErrorController:notFound");

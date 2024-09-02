@@ -99,20 +99,24 @@ abstract class Models {
     }
   }
 
-  public function findBy(string $field = '', string $value = '')
+  public function findBy(string $field = '', string $value = '', bool $singleResult = true)
   {
     try {
       $sql = (empty($this->filters)) ?
         "select {$this->fields} from {$this->table} where {$field} = :{$field}" :
         "select {$this->fields} from {$this->table} {$this->filters?->dump()}";
-
+  
       $connection = Connection::connect();
-
+  
       $prepare = $connection->prepare($sql);
-
+  
       $prepare->execute($this->filters ? $this->filters->getBind() : [$field => $value]);
-
-      return [$prepare->rowCount(), $prepare->fetchObject()];
+  
+      if ($singleResult) {
+        return [$prepare->rowCount(), $prepare->fetchObject()];
+      } else {
+        return [$prepare->rowCount(), $prepare->fetchAll(PDO::FETCH_OBJ)];
+      }
     } catch (PDOException $e) {
       var_dump($e->getMessage());
     }

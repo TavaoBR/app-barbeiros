@@ -11,6 +11,7 @@ class Cadastro {
     private Validate $validate;
     private string $nome;
     private string $celular;
+    private int $status;
     private $avatar;
 
     public function __construct()
@@ -19,6 +20,7 @@ class Cadastro {
         $this->validate = new Validate;
         $this->nome = $_POST['nome'];
         $this->celular = $_POST['celular'];
+        $this->status = $_POST['status'];
         $this->avatar = $_FILES['avatar'];
     }
 
@@ -34,10 +36,11 @@ class Cadastro {
     {
 
         $avatarValue = isset($this->avatar['error']) && $this->avatar['error'] === UPLOAD_ERR_NO_FILE ? null : $this->avatar;
-
+        
         $data = [
           "Nome" => $this->nome,
           "Celular" => $this->celular,
+          "Status" => $this->status,
           "Avatar" => $avatarValue
         ]; 
 
@@ -58,6 +61,7 @@ class Cadastro {
            "nome" => $this->nome,
            "celular" => $this->celular,
            "avatar" => $this->avatar['name'],
+           "status" => $this->status
         ]);
 
         if($create > 0){

@@ -1,7 +1,7 @@
 <?=$this->layout('themes/sistemas', ['title' => $title]);?>
 
 <div class="container">
- <a href="<?=routerConfig()?>/app/barbeiro/servicos/cadastrar/<?=$token?>" class="btn btn-primary btn-sm"> Cadastrar </a>
+ <a href="<?=routerConfig()?>/app/barbearia/servicos/cadastrar/<?=$token?>" class="btn btn-primary btn-sm"> Cadastrar </a>
 </div>
 
 <br>
@@ -26,7 +26,7 @@
       <td><?=$servico->nome?></td>
       <td><?=$servico->valor?></td>
       <td>
-        <a href="<?=routerConfig()?>/app/barbeiro/servicos/editar/<?=$token?>/<?=$servico->id?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
+        <a href="<?=routerConfig()?>/app/barbearia/servicos/editar/<?=$token?>/<?=$servico->id?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
       </td>
       <td>
         <button class="btn btn-danger btn-sm" onclick="Servico(<?=$servico->id?>)"><i class="fa-solid fa-trash-can"></i></button>

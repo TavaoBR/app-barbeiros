@@ -176,7 +176,7 @@
 
     <script>
 
-        $('#celular').mask("+5599999999999");
+        $('#celular').mask("5599999999999");
 
         $('.mySelect2').select2();
 

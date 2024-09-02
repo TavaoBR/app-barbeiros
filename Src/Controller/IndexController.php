@@ -6,6 +6,7 @@ use Config\TemplateConfig;
 use Src\Database\Filters;
 use Src\Database\Model\AgendaBarbeiro;
 use Src\Database\Model\Barbeiro;
+use Src\Database\Model\ProfissionalBarbearia;
 use Src\Database\Model\Usuario;
 use Src\GET\Telegram\DefaultBot;
 use Src\GET\Usuario as UserGet;
@@ -61,9 +62,30 @@ class IndexController extends TemplateConfig{
       $select = $barbeiro->findBy("id", 12);
       dd($select);*/
 
-      $agenda = new AgendaBarbeiro;
-      $select = $agenda->findBy("codigo", "9MEHDHS");
-      dd($select);
+      /*$agenda = new AgendaBarbeiro;
+      $filtro = new Filters;
+      $filtro->where("fkBarbeiro", "=", 12);
+      //$filtro->where("", "", "");
+      $agenda->setFilters($filtro);
+      $select = $agenda->fetchAll();
+      dd($select);*/
+
+      /*$barbeiros = new ProfissionalBarbearia;
+      $filtro = new Filters;
+      $filtro->where("fk", "=", 12);
+      $barbeiros->setFilters($filtro);
+      $select = $barbeiros->fetchAll();
+      dd($select);*/
+
+      /*$estado = "SE";
+      $logica = "and";
+      $cidade = "Aracaju";
+      $barbearia = new Barbeiro;
+      $filtro = new Filters;
+      $filtro->where("estado", "=", $estado);
+      $barbearia->setFilters($filtro);
+      $select = $barbearia->fetchAll();
+      dd($select);*/
 
       /*$data = "2024-08-04";
       $fk = "12";

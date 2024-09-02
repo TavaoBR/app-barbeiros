@@ -7,7 +7,7 @@ class Filters {
   private array $filters = [];
   private array $binds = [];
 
-  public function where(string $field, string $operator, mixed $value, string $logic = '')
+ public function where(string $field, string $operator, mixed $value, string $logic = '')
   {
     $formatter = '';
     if (is_array($value)) {

@@ -83,7 +83,7 @@ class IndexController extends TemplateConfig{
        $nome = $get->nome();
        $celular = $get->celular(); 
 
-       $this->view("app/usuario/barbeiro/agendar", ["title" => "Agendar", "id" => $id, "servicos" => $servico[1], "celular" => $celular, "nome" => $nome]);
+       $this->view("app/usuario/barbearia/agendar", ["title" => "Agendar", "id" => $id, "servicos" => $servico[1], "celular" => $celular, "nome" => $nome]);
          
     }
 
@@ -92,7 +92,7 @@ class IndexController extends TemplateConfig{
         session_start();
         $get = new Usuario();
         $agenda = HistoricoAgendaUsuarioBarbeiro($get->id());
-        $this->view("app/usuario/barbeiro/historico", ["title" => "Historico Agendamento Barbeiro"]);
+        $this->view("app/usuario/barbearia/historico", ["title" => "Historico Agendamento Barbeiro"]);
     }
 
     public function resultaPesquisa($data)
@@ -135,20 +135,20 @@ class IndexController extends TemplateConfig{
     public function confirmarPresenca()
     {
       session_start();
-      $this->view("app/usuario/barbeiro/confirmarPresenca", ["title" => "Confirmar Presença"]);
+      $this->view("app/usuario/barbearia/confirmarPresenca", ["title" => "Confirmar Presença"]);
     }
 
     public function cancelarPresenca()
     {
       session_start();
-      $this->view("app/usuario/barbeiro/CancelarPresenca", ["title" => "Cancelar Presença"]);
+      $this->view("app/usuario/barbearia/CancelarPresenca", ["title" => "Cancelar Presença"]);
     }
 
 
     public function AvaliarAtendimento()
     {
       session_start();
-      $this->view("app/usuario/barbeiro/avaliar", ["title" => "Avaliar Atendimento"]);
+      $this->view("app/usuario/barbearia/avaliar", ["title" => "Avaliar Atendimento"]);
     }
 
 

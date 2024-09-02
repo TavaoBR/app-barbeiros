@@ -4,6 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link href="<?=Assests("assets/img/logoOf.png")?>" rel="icon">
+  <link href="<?=Assests("assets/img/logoOf.png")?>" rel="apple-touch-icon">
 
   <title><?=$this->e($title)?></title>
   <meta content="" name="description">
