@@ -141,9 +141,9 @@ a {
             $avatar = $dado->avatarBarbeiro;
 
             if($dado->totalAvalicao == 0){
-                $nota .= "Nenhuma avaliação";
+                $nota = "Nenhuma avaliação";
             }else{
-               $nota .= mediaNota($dado->totalAvalicao, $dado->valorTotalNotas);
+               $nota = mediaNota($dado->totalAvalicao, $dado->valorTotalNotas);
             } 
          ?>
         <div class=" col-md-6 col-xl-4">
@@ -153,6 +153,7 @@ a {
               <div>
                 <h5 class="fw-semibold mb-0"><?=$dado->nomeBarbeiro?></h5>
                     <span class="fs-2 d-flex align-items-center"><i class="ti ti-map-pin text-dark fs-3 me-1"></i>Nota: <?=$nota?></span>
+                    <span class="fs-2 d-flex align-items-center"><i class="ti ti-map-pin text-dark fs-3 me-1"></i>Avaliações: <?=$dado->totalAvalicao?></span>
                     <span class="fs-2 d-flex align-items-center"><i class="ti ti-map-pin text-dark fs-3 me-1"></i><?=$dado->cidade?> - <?=$dado->estado?></span>
               </div>
               <a href="<?=routerConfig()?>/app/barbearia/perfil/<?=$dado->token?>" class="btn btn-primary py-1 px-2 ms-auto">Perfil</a>
@@ -162,9 +163,7 @@ a {
         <?php
         endforeach;
         ?>
-
       </div>
     </div>
-
   </div>
 </div>

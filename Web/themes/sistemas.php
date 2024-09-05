@@ -412,11 +412,7 @@ $(document).ready(function() {
             </a>
           </li>
 
-          <li>
-            <a href="<?=routerConfig()?>/app/barbearia/barbeiros/<?=$token?>">
-              <i class="bx bx-circle"></i><span>Barbeiros</span>
-            </a>
-          </li>
+
 
 
         </ul>

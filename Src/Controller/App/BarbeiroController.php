@@ -214,4 +214,15 @@ class BarbeiroController  extends TemplateConfig{
       }
     }
 
+    public function editarProfissional($data)
+    {
+      session_start();
+      if(!$this->verificaPeril($data['token'])){
+        $this->verificarNivel();
+        $barbeiro = new ProfissionalBarbearia;
+        $select = $barbeiro->findBy("id", $data['id']);
+        $this->view("app/barbearia/profissional/editar", ["title" => "Editar", "conta" => $select[0], "dados" => $select[1]]);
+      }  
+    }
+
 }

@@ -6,36 +6,45 @@
     <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
       <div class="row justify-content-center">
         <div class="col-xl-7 col-lg-9 text-center">
-          <h1>App Barbeiros </h1>
-          <h2>Encontre o barbeiro, faça agendamento e seja feliz!</h2>
+          <h1>Barbearia Match </h1>
+          <h2>Encontre barbearia, faça agendamento e seja feliz!</h2>
+          <p>Clique no Botão abaixo para procurar Barbearia na sua região</p>
         </div>
       </div>
       <div class="text-center">
-        <a href="#about" class="btn-get-started scrollto">Vamos começar</a>
+        <a href="#about" class="btn-get-started scrollto">Procurar</a>
       </div>
 
       <div class="row icon-boxes">
         <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="200">
           <div class="icon-box">
-            <div class="icon"><i class="ri-stack-line"></i></div>
+            <div class="icon"><i class="fa-solid fa-map-location-dot"></i></div>
             <h4 class="title"><a href="">Localização</a></h4>
-            <p class="description">Ache o barbeiro de acordo com sua localização</p>
+            <p class="description">Ache as barbearias mais avaliadas de acordo com sua localização</p>
           </div>
         </div>
 
         <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="300">
           <div class="icon-box">
-            <div class="icon"><i class="ri-palette-line"></i></div>
+            <div class="icon"><i class="fa-solid fa-calendar-check"></i></div>
             <h4 class="title"><a href="">Agendamento</a></h4>
-            <p class="description">Faça agendamento do seu corte de acordo com os horarios disponíveis</p>
+            <p class="description">Faça seu agendamento de acordo com os horarios disponíveis</p>
           </div>
         </div>
 
         <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="400">
           <div class="icon-box">
-            <div class="icon"><i class="ri-command-line"></i></div>
+            <div class="icon"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
             <h4 class="title"><a href="">Avaliação</a></h4>
             <p class="description">Dê uma nota para seu atendimento </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="400">
+          <div class="icon-box">
+            <div class="icon"><i class="fa-solid fa-user-plus"></i></div>
+            <h4 class="title"><a href="">Seguir</a></h4>
+            <p class="description">Siga sua barbearia favorita para receber alertas sobre a mesma </p>
           </div>
         </div>
 
@@ -50,27 +59,27 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>About Us</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. </p>
+          <h2>Sobre o projeto</h2>
         </div>
 
         <div class="row content">
           <div class="col-lg-6">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
+             A ideia é tornar mais simples e eficiente a busca dos clientes por uma barbearia.
             </p>
             <ul>
-              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
-              <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
-              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
+              <li><i class="ri-check-double-line"></i> Notificações via WhatsApp</li>
+              <li><i class="ri-check-double-line"></i> Agendamento rápido e prático</li>
+              <li><i class="ri-check-double-line"></i> Avaliação de atendimento</li>
+              <li><i class="ri-check-double-line"></i> Opção de seguir a barbearia</li>
+              <li><i class="ri-check-double-line"></i> Busca aprimorada, priorizando as melhores avaliações na região</li>
             </ul>
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0">
             <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum.
+            Para as barbearias, o projeto oferece links rápidos para atendimento, cadastro dos horários de funcionamento, detalhamento dos serviços oferecidos,
+            envio de mensagens personalizadas para seguidores na plataforma,e uma tela para visualizar a agenda do dia, incluindo os ganhos diários.
+            Além disso, o sistema conta com um painel financeiro mais intuitivo, permitindo a visualização dos ganhos totais do mês.
             </p>
             <a href="#" class="btn-learn-more">Learn More</a>
           </div>
@@ -80,7 +89,7 @@
     </section><!-- End About Section -->
 
     <!-- ======= Counts Section ======= -->
-    <section id="counts" class="counts section-bg">
+    <!--<section id="counts" class="counts section-bg">
       <div class="container">
 
         <div class="row justify-content-end">
@@ -116,10 +125,10 @@
         </div>
 
       </div>
-    </section><!-- End Counts Section -->
+    </section>--><!-- End Counts Section -->
 
     <!-- ======= About Video Section ======= -->
-    <section id="about-video" class="about-video">
+    <!--<section id="about-video" class="about-video">
       <div class="container" data-aos="fade-up">
 
         <div class="row">
@@ -151,10 +160,10 @@
         </div>
 
       </div>
-    </section><!-- End About Video Section -->
+    </section>--><!-- End About Video Section -->
 
     <!-- ======= Clients Section ======= -->
-    <section id="clients" class="clients section-bg">
+   <!--<section id="clients" class="clients section-bg">
       <div class="container">
 
         <div class="row">
@@ -186,10 +195,10 @@
         </div>
 
       </div>
-    </section><!-- End Clients Section -->
+    </section>--><!-- End Clients Section -->
 
     <!-- ======= Testimonials Section ======= -->
-    <section id="testimonials" class="testimonials">
+    <!--<section id="testimonials" class="testimonials">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -211,7 +220,7 @@
                 <h3>Saul Goodman</h3>
                 <h4>Ceo &amp; Founder</h4>
               </div>
-            </div><!-- End testimonial item -->
+            </div>
 
             <div class="swiper-slide">
               <div class="testimonial-item">
@@ -224,7 +233,7 @@
                 <h3>Sara Wilsson</h3>
                 <h4>Designer</h4>
               </div>
-            </div><!-- End testimonial item -->
+            </div>
 
             <div class="swiper-slide">
               <div class="testimonial-item">
@@ -237,7 +246,7 @@
                 <h3>Jena Karlis</h3>
                 <h4>Store Owner</h4>
               </div>
-            </div><!-- End testimonial item -->
+            </div>
 
             <div class="swiper-slide">
               <div class="testimonial-item">
@@ -250,7 +259,7 @@
                 <h3>Matt Brandon</h3>
                 <h4>Freelancer</h4>
               </div>
-            </div><!-- End testimonial item -->
+            </div>
 
             <div class="swiper-slide">
               <div class="testimonial-item">
@@ -263,17 +272,17 @@
                 <h3>John Larson</h3>
                 <h4>Entrepreneur</h4>
               </div>
-            </div><!-- End testimonial item -->
+            </div>
 
           </div>
           <div class="swiper-pagination"></div>
         </div>
 
       </div>
-    </section><!-- End Testimonials Section -->
+    </section>--><!-- End Testimonials Section -->
 
     <!-- ======= Services Section ======= -->
-    <section id="services" class="services section-bg">
+    <!--<section id="services" class="services section-bg">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -363,10 +372,10 @@
         </div>
 
       </div>
-    </section><!-- End Sevices Section -->
+    </section>--><!-- End Sevices Section -->
 
     <!-- ======= Cta Section ======= -->
-    <section id="cta" class="cta">
+    <!--<section id="cta" class="cta">
       <div class="container" data-aos="zoom-in">
         <div class="text-center">
           <h3>Call To Action</h3>
@@ -374,10 +383,10 @@
           <a class="cta-btn" href="#">Call To Action</a>
         </div>
       </div>
-    </section><!-- End Cta Section -->
+    </section>--><!-- End Cta Section -->
 
     <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio">
+    <!--<section id="portfolio" class="portfolio">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -527,10 +536,10 @@
         </div>
 
       </div>
-    </section><!-- End Portfolio Section -->
+    </section>--><!-- End Portfolio Section -->
 
     <!-- ======= Team Section ======= -->
-    <section id="team" class="team section-bg">
+    <!--<section id="team" class="team section-bg">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -615,29 +624,28 @@
         </div>
 
       </div>
-    </section><!-- End Team Section -->
+    </section>--><!-- End Team Section -->
 
     <!-- ======= Pricing Section ======= -->
     <section id="pricing" class="pricing">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Pricing</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <h2>Preços</h2>
+          <p>Nossa tabela de preços, não cobramos por quantidade de profissional na Barbearia</p>
         </div>
 
         <div class="row">
 
           <div class="col-lg-4 col-md-6" data-aos="zoom-im" data-aos-delay="100">
             <div class="box">
-              <h3>Free</h3>
-              <h4><sup>$</sup>0<span> / month</span></h4>
+              <h3>Mensal</h3>
+              <h4><sup>R$</sup>60<span> / Mês</span></h4>
               <ul>
-                <li>Aida dere</li>
-                <li>Nec feugiat nisl</li>
-                <li>Nulla at volutpat dola</li>
-                <li class="na">Pharetra massa</li>
-                <li class="na">Massa ultricies mi</li>
+                <li>Painel Financeiro</li>
+                <li>Notificações WhatsApp</li>
+                <li>Funcionalidade de Seguidores</li>
+                <li>Suporte Prioritário</li>
               </ul>
               <div class="btn-wrap">
                 <a href="#" class="btn-buy">Buy Now</a>
@@ -647,14 +655,13 @@
 
           <div class="col-lg-4 col-md-6 mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="100">
             <div class="box featured">
-              <h3>Business</h3>
-              <h4><sup>$</sup>19<span> / month</span></h4>
+              <h3>Trismenstral</h3>
+              <h4><sup>R$</sup>180<span> / month</span></h4>
               <ul>
-                <li>Aida dere</li>
-                <li>Nec feugiat nisl</li>
-                <li>Nulla at volutpat dola</li>
-                <li>Pharetra massa</li>
-                <li class="na">Massa ultricies mi</li>
+                <li>Painel Financeiro</li>
+                <li>Notificações WhatsApp</li>
+                <li>Funcionalidade de Seguidores</li>
+                <li>Suporte Prioritário</li>
               </ul>
               <div class="btn-wrap">
                 <a href="#" class="btn-buy">Buy Now</a>
@@ -664,14 +671,13 @@
 
           <div class="col-lg-4 col-md-6 mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="100">
             <div class="box">
-              <h3>Developer</h3>
-              <h4><sup>$</sup>29<span> / month</span></h4>
+              <h3>Anual</h3>
+              <h4><sup>R$</sup>500<span> / ano</span></h4>
               <ul>
-                <li>Aida dere</li>
-                <li>Nec feugiat nisl</li>
-                <li>Nulla at volutpat dola</li>
-                <li>Pharetra massa</li>
-                <li>Massa ultricies mi</li>
+              <li>Painel Financeiro</li>
+                <li>Notificações WhatsApp</li>
+                <li>Funcionalidade de Seguidores</li>
+                <li>Suporte Prioritário</li>
               </ul>
               <div class="btn-wrap">
                 <a href="#" class="btn-buy">Buy Now</a>

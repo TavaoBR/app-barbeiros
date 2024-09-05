@@ -29,11 +29,11 @@
     foreach($dados as $data):
    ?>
     <tr>
-      <th scope="row"><img src="<?=Assests("img/barbeiro/profissional/$data->id/$data->avatar")?>" alt="" class="rounded-circle" width="40" height="40"></th>
+      <th scope="row"><?=$data->id?></th>
       <td><?=$data->nome?></td>
       <td><?=statusBarbeiro($data->status)?></td>
       <td><a href="#" class="btn btn-secondary btn-sm"><i class="fa-solid fa-user-clock"></i></a></i></td>
-      <td><a href="#" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a></td>
+      <td><a href="<?=routerConfig()?>/app/barbearia/barbeiros/editar/<?=$token?>/<?=$data->id?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a></td>
       <td><button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button></td>
     </tr>
     <?php 

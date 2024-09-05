@@ -60,6 +60,7 @@ class Routers {
         $router->get("/barbearia/servicos/editar/{token}/{id}", "BarbeiroController:editarServico");
         $router->get("/barbearia/barbeiro/cadastrar/{token}", "BarbeiroController:cadastroProfissional");
         $router->get("/barbearia/barbeiros/{token}", "BarbeiroController:profissionais");
+        $router->get("/barbearia/barbeiros/editar/{token}/{id}", "BarbeiroController:editarProfissional");
     
 
         $router->group("oops")->namespace("Src\Controller\Error");
@@ -108,8 +109,9 @@ class Routers {
         $router->post("/servico/atualizar/{id}", "UpdateServico:Result");
         $router->post("/servico/deletar/{id}", "DeletarServico:Deletar");
         
-        $router->group("profissional")->namespace("Src\POST\ProfissionalBarbearia");
+        $router->group("barbeiro")->namespace("Src\POST\ProfissionalBarbearia");
         $router->post("/cadastrar/{id}", "Cadastro:Result");
+        $router->post("/editar/{id}", "Editar:Result");
 
         $router->group("oops")->namespace("Src\Controller\Error");
         $router->get("/{errocode}", "ErrorController:notFound");

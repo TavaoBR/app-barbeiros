@@ -19,7 +19,7 @@ class IndexController extends TemplateConfig{
 
     public function index()
     {
-        $this->view("site/index", ["title" => "App Barbeiros"]);
+        $this->view("site/index", ["title" => "Barbearia Match"]);
     }
 
     public function cadastro()
