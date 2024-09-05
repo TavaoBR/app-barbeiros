@@ -432,7 +432,7 @@ ul.friend-list .right p {
                         <div class="col-6">
                             <div class="social-info">
                                 <i class="fas fa-map-marker-alt mr-2"></i>
-                                <span>Endereço: <?=$endereco?> - <?=$numero?></span>
+                                <span>Endereço: <?=$endereco?></span>
                             </div>
                         </div>
 

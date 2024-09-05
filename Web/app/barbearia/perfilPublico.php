@@ -454,7 +454,7 @@ ul.friend-list .right p {
                 <p>Avaliação: <?=$nota?></p>
                 <p>Whatsapp: <?=$celular?></p>
                 <p>Atendimento: <?=date("H:i", strtotime($horaInicial))?> Às <?=date("H:i", strtotime($horaFinal))?></p>
-                <p>Bairro: <?=$bairro?>, Endereço: <?=$endereco?> - <?=$numero?>, <?=$cidade?>/<?=$estado?></p>
+                <p>Bairro: <?=$bairro?>, Endereço: <?=$endereco?>, <?=$cidade?>/<?=$estado?></p>
                 </div>
             </div>
         </div>
