@@ -640,7 +640,7 @@
           <div class="col-lg-4 col-md-6" data-aos="zoom-im" data-aos-delay="100">
             <div class="box">
               <h3>Mensal</h3>
-              <h4><sup>R$</sup>60<span> / Mês</span></h4>
+              <h4><sup>R$</sup>30<span> / Mês</span></h4>
               <ul>
                 <li>Painel Financeiro</li>
                 <li>Notificações WhatsApp</li>

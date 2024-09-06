@@ -41,7 +41,7 @@ class UpdateInfo
 
     }
 
-    private function Null()
+    private function Null(): Bool
     {
         $data = [
             "Nome Barbearia" => $this->nome,
@@ -62,14 +62,27 @@ class UpdateInfo
            return false;
     }
 
-    private function dadosNovos()
+    private function dadosNovos(): Array
     {
+       $data = [
 
+       ];
+       
+       return $data;
     }
 
-    private function dadosAntigos(int $id)
+    private function dadosAntigos(int $id): Array
     {
+       $select = $this->barbeiro->findBy("id", $id);
+       $dados = $select[1];
 
+       $data = [
+         "Nome Barbearia" => $dados->nomeBarbeiro,
+         "Celular Barbearia" => $dados->celular,
+         ""
+       ];
+
+       return $data;
     }
 
     private function update(int $id)
