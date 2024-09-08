@@ -10,6 +10,7 @@ use Src\GET\Usuario;
 use Src\Services\CodigoAgendamento;
 use Src\Services\Validate;
 use Src\Services\Whatsapp;
+use Src\Services\Whatsapp\Message;
 
 class AgendarBarbeiro {
 
@@ -166,7 +167,7 @@ class AgendarBarbeiro {
            \n 💰 Valor: R$ {$this->valor}
            \n Acesse o sistema e use codigo para confirmar o agendamento ou cancelar 
         ";
-        $api = new Whatsapp($celular, $message);
+        $api = new Message($celular, $message);
         return $api->send();
     }
 

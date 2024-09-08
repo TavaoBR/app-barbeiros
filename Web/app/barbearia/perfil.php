@@ -388,7 +388,7 @@ ul.friend-list .right p {
             <div class="row ">
                 <div class="col-lg-12">
                     <ul class=" nav nav-tabs justify-content-center s-nav">
-                        <li><a >Editar</a></li>
+                        <li><a href="<?=routerConfig()?>/app/barbearia/perfil/editar/<?=$token?>">Editar</a></li>
                         <li><a class="active" >Perfil</a></li>
                         <li><a href="<?=routerConfig()?>/app/barbearia/agenda/<?=$token?>/<?=dataAtual()?>">Agenda</a></li>
                         <li><a >Serviços</a></li>

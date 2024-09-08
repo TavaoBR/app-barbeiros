@@ -3,7 +3,8 @@
 namespace Src\POST;
 
 use Src\Database\Model\Usuario;
-use Src\Services\Whatsapp; 
+use Src\Services\Whatsapp;
+use Src\Services\Whatsapp\Message; 
 
 class RecuperarConta {
 
@@ -44,7 +45,7 @@ class RecuperarConta {
        \n seu usuario: $usuario
        \n nova senha: $senha
        ";
-       $enviar = new Whatsapp($to, $message);
+       $enviar = new Message($to, $message);
        $enviar->send();
     }
 }

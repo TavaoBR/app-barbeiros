@@ -70,7 +70,7 @@ color: #9b9ca1;
 				<hr>
 			</div>
 			<!-- Form START -->
-			<form class="file-upload" id="confirmationForm" action="<?=routerConfig()?>/barbeiro/servico/atualizar/<?=$dados->id?>" method="POST">
+			<form class="file-upload" id="confirmationForm" action="<?=routerConfig()?>/barbearia/servico/atualizar/<?=$dados->id?>" method="POST">
 				<div class="row mb-5 gx-5">
                     <?=validateSession("UpdateService")?>
 					<!-- Contact detail -->

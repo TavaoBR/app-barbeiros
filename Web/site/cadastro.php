@@ -176,7 +176,7 @@
 
     <script>
 
-        $('#celular').mask("5599999999999");
+        $('#celular').mask("559999999999");
 
         $('.mySelect2').select2();
 
@@ -265,7 +265,7 @@
       }
 
 
-      const estadoSelect = document.getElementById('estadoSelect');
+    const estadoSelect = document.getElementById('estadoSelect');
     const municipioSelect = document.getElementById('municipioSelect');
 
     // Carregar estados ao carregar a página

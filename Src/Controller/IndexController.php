@@ -12,6 +12,7 @@ use Src\GET\Telegram\DefaultBot;
 use Src\GET\Usuario as UserGet;
 use Src\Services\CodigoAgendamento;
 use Src\Services\Whatsapp;
+use Src\Services\Whatsapp\Link;
 
 class IndexController extends TemplateConfig{
 
@@ -57,6 +58,54 @@ class IndexController extends TemplateConfig{
     
 
     public function test(){
+
+
+/*$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://apistart02.megaapi.com.br/rest/sendMessage/megastart-MRV06P5o2G2/text',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'GET',
+  CURLOPT_HTTPHEADER => array(
+    'Content-Type: application/json',
+    'Authorization: Bearer MRV06P5o2G2'
+  ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;*/
+
+     //$link = new Link("557991917634", "https://www.youtube.com/watch?v=IKqwRAUrsv8&t=520s&ab_channel=sarahw");
+     //return $link->send();
+
+     $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://apistart02.megaapi.com.br/rest/group/list/megastart-MRV06P5o2G2',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'GET',
+      CURLOPT_HTTPHEADER => array(
+        'Content-Type: application/json',
+        'Authorization: Bearer MRV06P5o2G2'
+      ),
+    ));
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+    echo $response;
 
       /*$barbeiro = new Barbeiro;
       $select = $barbeiro->findBy("id", 12);

@@ -6,6 +6,8 @@ use Src\Database\Model\Usuario;
 use Src\Services\TokenUser;
 use Config\Mail;
 use Src\Services\Whatsapp;
+use Src\Services\Whatsapp\Link;
+use Src\Services\Whatsapp\Message;
 
 class Login {
 
@@ -98,7 +100,7 @@ class Login {
             ->template("usuario/LoginBloqueado", ["user" => $this->usuario, "id" => $id])
             ->subject("Login Bloqueado")
             ->send();*/
-            $this->alertaWhatsapp($dados->celular, $dados->token);
+            $this->zap($dados->celular, $dados->token);
             setSession("Mensagem", sweetAlertError("Login Bloqueado por conta das inumeras tentivas de logar. Enviamos um link para seu Whatsapp ou E-mail com link de recuperação da conta"));
             redirectBack();
             
@@ -113,7 +115,6 @@ class Login {
           $this->token($id);
           $this->resetarTentativas($id);
           setSessions(["id" => $id, "token" => $dados->token]);
-          echo "Aqui 3";
           redirect(routerConfig()."/app/perfil");
 
         }
@@ -121,6 +122,21 @@ class Login {
 
      }
 
+
+     private function zap($celular, $token)
+     {
+        $link = routerConfig()."/recuperar/conta/$token";
+        $message = 
+            "⚠️ Atenção
+            \n 👤 Seu Login foi Bloqueado por conta das inumeras tentivas de logar
+            \n 🔐 Para desbloquear clique no link"
+        ;
+
+        $enviarMessage = new Message($celular, $message);
+        $enviarLink = new Link($celular, $link);
+        $enviarMessage->send();
+        $enviarLink->send();
+     }
 
      public function alertaWhatsapp($celular, $token)
      {

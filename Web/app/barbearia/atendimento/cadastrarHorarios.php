@@ -75,7 +75,7 @@
 
             <div class="col-md-8">
               <?=validateSession("Message")?>
-            <form action="<?=routerConfig()?>/barbeiro/atendimento/cadastro/horarios/<?=$id?>" method="POST"  id="confirmationForm">
+            <form action="<?=routerConfig()?>/barbearia/atendimento/cadastro/horarios/<?=$id?>" method="POST"  id="confirmationForm">
               <div class="card mb-3">
                 <div class="card-body">
 

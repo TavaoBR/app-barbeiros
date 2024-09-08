@@ -49,12 +49,13 @@ class Routers {
         $router->get("/admin/solicitacoes/acesso/barbeiro", "AdminController:solicitacoesBarbeiro");   
 
         $router->get("/barbearia/perfil/{token}", "BarbeiroController:perfil");
+        $router->get("/barbearia/perfil/editar/{token}", "BarbeiroController:editarPerfilBarbearia");
         $router->get("/barbearia/perfil/galeria/adicionar/imagens/{token}", "BarbeiroController:addImagens");
-        $router->get("/barbearia/atendimento/cadastro/horarios/{token}", "BarbeiroController:cadastrarHorarios"); 
+        $router->get("/barbearia/atendimento/cadastro/horarios/{token}", "BarbeiroController:cadastrarHorarios");
+        $router->get("/barbearia/atendimento/horarios/{token}", "BarbeiroController:horarios"); 
         $router->get("/barbearia/servicos/cadastrar/{token}", "BarbeiroController:cadastrarServicos");
         $router->get("/barbearia/agenda/{token}/{data}", "BarbeiroController:agenda");
         $router->get("/barbearia/configuracao/{token}", "BarbeiroController:configuracao");
-        $router->get("/barbearia/perfil/editar/{token}", "BarbeiroController:configuracao");
         $router->get("/barbearia/perfil/avatar/{token}", "BarbeiroController:addAvatar");
         $router->get("/barbearia/servicos/{token}", "BarbeiroController:servicos");
         $router->get("/barbearia/servicos/editar/{token}/{id}", "BarbeiroController:editarServico");
@@ -95,14 +96,15 @@ class Routers {
         $router->post("/acesso/barbeiro/reprovado/{id}", "UpdateSolicitacaoBarbeiro:Reprovado");
        
         
-        $router->group("barbeiro")->namespace("Src\POST\Barbeiro");
-        $router->post("/online/{id}", "UpdateOnOff:Online");
-        $router->post("/offline/{id}", "UpdateOnOff:Offline");
-        $router->post("/galeria/imagens", "GaleriaAddImagens:adicionar");
+        $router->group("barbearia")->namespace("Src\POST\Barbeiro");
+        //$router->post("/online/{id}", "UpdateOnOff:Online");
+        //$router->post("/offline/{id}", "UpdateOnOff:Offline");
+        //$router->post("/galeria/imagens", "GaleriaAddImagens:adicionar");
         $router->post("/atendimento/cadastro/horarios/{id}", "CadastroHorarios:Result");
         $router->post("/servicos/cadastro/{id}", "CadastrarServicos:Result");
         $router->post("/agenda/consultar/{fk}", "ConsultarHorarioDisponivel:Result");
         $router->post("/perfil/avatar/{id}","Avatar:Result");
+        $router->post("/perfil/editar/{id}","UpdateInfo:Result");
         $router->post("/agenda/confirmar/{codigo}","AtendimentoUpdate:ConfirmarAtendimento");
         $router->post("/agenda/cancelar/{codigo}","AtendimentoUpdate:CancelarAtendimento");
         $router->post("/agenda/concluir/{codigo}","AtendimentoUpdate:ConcluirAtendimento");

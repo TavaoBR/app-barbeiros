@@ -13,12 +13,12 @@ class Barbeiro {
     private string $nome;
     private string $celular;
     private string $avatar;
-    private string $cep;
+    private ?string $cep = null;
     private string $endereco;
     private string $cidade;
     private string $estado;
     private string $bairro;
-    private string $numero;
+    private ?string $numero = null;
     private ?int $pontos = null;
     private ?int $valorTotalNotas = null;
     private ?int $totalAvalicao = null;
@@ -36,12 +36,10 @@ class Barbeiro {
         $this->nome = $data->nomeBarbeiro;
         $this->celular = $data->celular;
         $this->avatar = $data->avatarBarbeiro;
-        $this->cep = $data->cep;
         $this->endereco = $data->endereco;
         $this->cidade = $data->cidade;
         $this->estado = $data->estado;
         $this->bairro = $data->bairro;
-        $this->numero = $data->numero;
         $this->online = $data->online;
         $this->token = $data->token;
         $this->valorTotalNotas = $data->valorTotalNotas;

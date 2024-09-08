@@ -200,7 +200,7 @@ $pontosFormatados = formatarNumero($pontos);
 
     <script>
 
-        $('#celular').mask("+9999999999999");
+        $('#celular').mask("559999999999");
 
         $('.mySelect2').select2();
 

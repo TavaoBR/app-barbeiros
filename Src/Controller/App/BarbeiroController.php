@@ -225,4 +225,28 @@ class BarbeiroController  extends TemplateConfig{
       }  
     }
 
+    public function editarPerfilBarbearia($data)
+    {
+      session_start();
+      if(!$this->verificaPeril($data['token'])){
+         $this->verificarNivel();
+         $barbeiro = new \Src\Database\Model\Barbeiro;
+         $select = $barbeiro->findBy('token', $data['token']);
+         $this->view("app/barbearia/editarPerfil", ["title" => "Editar Perfil", "dados" => $select[1]]); 
+      }
+    }
+
+    public function horarios($data)
+    {
+      session_start();
+      if(!$this->verificaPeril($data['token'])){
+         $this->verificarNivel();
+         $barbeiro = new \Src\Database\Model\Barbeiro;
+         $select = $barbeiro->findBy('token', $data['token']);
+         $id = $select[1]->id;
+         $horarios = new HorarioAtendimento;
+         $selectH = $horarios->findBy('fk', $id, false);
+         $this->view("app/barbearia/atendimento/index", ["title" => "Horarios de atendimento", "dados" => $selectH[1]]); 
+      }
+    }
 }

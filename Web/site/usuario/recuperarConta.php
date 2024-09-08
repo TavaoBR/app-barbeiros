@@ -51,7 +51,7 @@
                         <h1><i class="fa fa-envelope"></i><span>Olá <?=$usuario?></span></h1>
                         <p>Clique no botão para recuperar sua conta, após esse processo, enviaremos uma nova senha de acesso para você</p>
                         <p>Após acessar, atualize a senha para a de seu desejo</p>
-                        <form  method="POST" action="<?=routerConfig()?>/usuario/recuperar/conta/<?=$id?>">
+                        <form  method="POST" action="<?=routerConfig()?>/recuperar/conta/<?=$id?>" id="confirmationForm">
                             <button id="submitButton" type="button" onclick="handleSubmit()"  class="btn btn-primary btn-lg">Recuperar Conta</button>
                             </form>
                     </div>
