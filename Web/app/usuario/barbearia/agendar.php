@@ -335,7 +335,7 @@ a {
                                                     <div class="col-lg-4">
                                                         <div class="mb-3">
                                                             <label class="form-label" for="billing-phone">Telefone para contato</label>
-                                                            <input type="text" name="celular" class="form-control" id="celular"  value="<?=$celular?>">
+                                                            <input type="text" name="celular" class="form-control" id="celular"  >
                                                         </div>
                                                     </div>
 
@@ -410,7 +410,7 @@ a {
 <script>
 
 
-    $('#celular').mask("+9999999999999");
+    $('#celular').mask("559999999999");
 
     $(document).ready(function() {
 

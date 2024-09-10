@@ -86,7 +86,38 @@ function horariosAtendimentoBarbeiro(int $fk)
     $query = $connect->prepare($select);
     $query->bindParam(":fk", $fk);
     $query->execute();
-    return [$query->rowCount(), $query->fetchAll(\PDO::FETCH_CLASS)];
+    return [$query->rowCount(), $query->fetch(\PDO::FETCH_CLASS)];
+    
+}
+
+
+function horariosAtendimentoBarbeiroFirst(int $fk)
+{
+
+    $db = new \Src\Database\Connection;
+
+    $connect = $db::connect();
+
+    $select = "SELECT * FROM horariosatendimentobarbeiro WHERE fk = :fk ORDER BY id ASC LIMIT 1";
+    $query = $connect->prepare($select);
+    $query->bindParam(":fk", $fk);
+    $query->execute();
+    return [$query->rowCount(), $query->fetch(\PDO::FETCH_OBJ)];
+    
+}
+
+function horariosAtendimentoBarbeirolast(int $fk)
+{
+
+    $db = new \Src\Database\Connection;
+
+    $connect = $db::connect();
+
+    $select = "SELECT * FROM horariosatendimentobarbeiro WHERE fk = :fk ORDER BY id DESC LIMIT 1";
+    $query = $connect->prepare($select);
+    $query->bindParam(":fk", $fk);
+    $query->execute();
+    return [$query->rowCount(), $query->fetch(\PDO::FETCH_OBJ)];
     
 }
 

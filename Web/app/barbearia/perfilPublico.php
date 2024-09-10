@@ -699,7 +699,7 @@ a {
 <h2>Agendar</h2>
 
     <div class="row">
-    <form id="confirmationForm" action="<?=routerConfig()?>/agendar/barbeiro/<?=$id?>" method="POST">    
+    <form id="confirmationForm" action="<?=routerConfig()?>/agendar/barbearia/<?=$id?>" method="POST">    
         <div class="col-xl-12">
         <?=validateSession("MessageAgenda")?>
             <div class="card">
@@ -817,7 +817,7 @@ a {
 <script>
 
 
-    $('#celular').mask("+5599999999999");
+    $('#celular').mask("559999999999");
 
     $(document).ready(function() {
 
@@ -849,7 +849,7 @@ a {
                 console.log('Data selecionada:', dataSelecionada);
 
                 $.ajax({
-                    url: '<?=routerConfig()?>/barbeiro/agenda/consultar/<?=$id?>',
+                    url: '<?=routerConfig()?>/barbearia/agenda/consultar/<?=$id?>',
                     type: 'POST',
                     data: { data: dataSelecionada },
                     dataType: 'html',

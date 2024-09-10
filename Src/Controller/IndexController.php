@@ -57,6 +57,66 @@ class IndexController extends TemplateConfig{
     }
     
 
+    public function sucesso($data)
+    {
+ 
+      $message = "";
+      switch($data['tipo']){
+         case 1:
+           $message = "Parabéns, você confirmou consulta do seu cliente, enviamos um alerta para o mesmo avisando sobre a confirmação";
+         break; 
+
+         case 2:
+            $message = "Que pena, você acabou de cancelar a consulta com seu cliente, enviamos um alerta para o mesmo avisando sobre";
+         break; 
+
+         case 3:
+           $message = "Parabéns, você confirmou sua presença na barbaearia, enviamos um alerta para o mesmo avisando sobre";
+         break; 
+
+         case 4:
+          $message = "Que pena, você acabou de cancelar sua consulta na Barbearia, enviamos um alerta para o mesmo avisando sobre";
+         break;
+         
+      }
+
+       $this->view("site/webhooks/sucesso", ["title" => "Sucesso", "message" => $message]);
+    }
+
+    public function erro()
+    {
+      $this->view("site/webhooks/error", ["title" => "Erro"]);
+    }
+
+    public function alertaCodigo($data)
+    {
+
+      $message = "";
+        switch($data['tipo']){
+         case 1:
+           $message = "Esse codigo não existe";
+         break; 
+
+         case 2:
+            $message = "Esse codigo já foi atendido";
+         break; 
+
+         case 3:
+           $message = "Esse codigo foi cancelado";
+         break; 
+
+         case 4:
+           $message = "Esse codigo foi confirmado pelo cliente";
+         break;
+         
+         case 5:
+           $message = "Esse codigo já foi concluido";
+         break; 
+        } 
+
+      $this->view("site/webhooks/tela", ["title" => "Alerta Codigo", "message" => $message]);
+    }
+
     public function test(){
 
 

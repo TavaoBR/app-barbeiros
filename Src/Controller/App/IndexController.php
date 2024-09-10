@@ -56,21 +56,12 @@ class IndexController extends TemplateConfig{
 
     }
 
-
-    public function solicitarAcessoBarbeiro()
+    public function cadastrarPerfilBarbearia()
     {
       session_start();
       $get = new Usuario();
-      $this->view("app/solicitarAcessoBarbeiro", 
-      ["title" => "Solicitar Acesso", "email" => $get->mail(), "nome" => $get->nome(), "celular" => $get->celular(),"id" => $get->id()]);
-    }
-
-    public function solicitacaoAcessoBarbeiro()
-    {
-      session_start();
-      $get = new Usuario();
-      $this->view("app/usuario/solicitacaoAcesso/barbeiro", ["title" => "Solicitacao Acesso", "conta" => $get->historicoSolicitacaoAcesso()[0], "data" => $get->historicoSolicitacaoAcesso()[1]]);
-    }
+      $this->view("app/criarPerfilBarbearia", ["title" => "Criar Perfil Barbearia", "token" => $get->token(), "id" => $get->id()]);
+    } 
 
     public function Barbeiroagendarhoje($data)
     {

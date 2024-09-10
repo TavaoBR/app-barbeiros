@@ -2,7 +2,6 @@
 
 namespace Src\Controller\App;
 use Config\TemplateConfig;
-use Src\GET\SolicitacaoAcesso\Barbeiro;
 use Src\GET\Usuario;
 
 class AdminController extends TemplateConfig {
@@ -22,12 +21,6 @@ class AdminController extends TemplateConfig {
       $this->verificarNivel();
     }
 
-    public function barbeiros()
-    {
-      session_start();
-      $this->verificarNivel();
-    }
-
     public function barbearias()
     {
       session_start();
@@ -35,14 +28,5 @@ class AdminController extends TemplateConfig {
 
     }
 
-    public function solicitacoesBarbeiro()
-    {
-        session_start();
-        $this->verificarNivel();
-        $acesso = new Barbeiro();
-        $this->view("app/admin/solicitacoes/acessoBarbeiro",  ["title" => "Solicitações Acesso", 
-        "conta" => $acesso->conta(), "data" => $acesso->getAll(), "pagination" => $acesso->pagination()]);
-       
-    }
 
 }

@@ -10,6 +10,7 @@ class CadastroHorarios {
     protected HorarioAtendimento $atendimento;
     protected string $start;
     protected string $end;
+    protected string $intervalo;
 
     public function __construct()
     {
@@ -17,6 +18,7 @@ class CadastroHorarios {
         $this->atendimento = new HorarioAtendimento;
         $this->start = $_POST['inicial'];
         $this->end = $_POST['final'];
+        $this->intervalo = $_POST['intervalo'];
     }
 
     public function Result($data)
@@ -31,7 +33,8 @@ class CadastroHorarios {
     {
         $request = [
             "Horário Inicial" => $this->start,
-            "Horário Final" => $this->end
+            "Horário Final" => $this->end,
+            "Intervalo" => $this->intervalo
         ];
 
         if($this->validate->validate($request) != false){
@@ -56,7 +59,7 @@ class CadastroHorarios {
        $success = true;
 
        for($hora = $inicial; $hora <= $final; $hora++){
-           for($minutos = 0; $minutos < 60; $minutos += 10){
+           for($minutos = 0; $minutos < 60; $minutos += $this->intervalo){
             
                     // Verifica se o horário atual já passou do horário final
                     if($hora == $final && $minutos > 0) {

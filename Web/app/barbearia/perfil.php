@@ -391,7 +391,8 @@ ul.friend-list .right p {
                         <li><a href="<?=routerConfig()?>/app/barbearia/perfil/editar/<?=$token?>">Editar</a></li>
                         <li><a class="active" >Perfil</a></li>
                         <li><a href="<?=routerConfig()?>/app/barbearia/agenda/<?=$token?>/<?=dataAtual()?>">Agenda</a></li>
-                        <li><a >Serviços</a></li>
+                        <li><a href="<?=routerConfig()?>/app/barbearia/servicos/<?=$token?>">Serviços</a></li>
+                        <li><a href="<?=routerConfig()?>/app/barbearia/atendimento/horarios/<?=$token?>">Horarios</a></li>
                     </ul>
                 </div>
             </div>

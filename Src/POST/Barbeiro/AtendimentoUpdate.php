@@ -85,7 +85,7 @@ class AtendimentoUpdate
         $update = $this->agenda->update("id", $id, ["status" => $status]);
         if($update > 0){
          $message = "
-            ❌ Seu agendamento foi cancelado por {$barbeiro}:
+            \n❌ Seu agendamento foi cancelado por {$barbeiro}:
             \n 📆 Data do seu agendamento: {$dataA}
             \n ⏰ Horario do seu agendamento: {$hora}
             \n Não fique triste 😭, entre no sistema e tente agendar para outro dia

@@ -23,7 +23,13 @@ class Routers {
         $router->get("/login", "IndexController:login");
         $router->get("/sair", "IndexController:sair");
         $router->get("/recuperar/conta/{token}", "IndexController:recuperar");
-        
+        $router->get("/barbearia/confirmar/atendimento/{codigo}", "Publico:BarbeariaConfirmar");
+        $router->get("/barbearia/cancelar/atendimento/{codigo}", "Publico:BarbeariaCancelar");
+        $router->get("/cliente/confirmar/atendimento/{codigo}", "Publico:ClienteConfirmar");
+        $router->get("/cliente/cancelar/atendimento/{codigo}", "Publico:ClienteCancelar");
+        $router->get("/atendimento/sucesso/{tipo}", "IndexController:sucesso");
+        $router->get("/atendimento/erro", "IndexController:erro");
+        $router->get("/alerta/codigo/{tipo}", "IndexController:alertaCodigo");
 
         $router->get("/test", "IndexController:test");
 
@@ -31,6 +37,7 @@ class Routers {
         $router->get("/acesso/negado", "IndexController:acessoNegado");
         $router->get("/", "IndexController:index");
         $router->get("/procurar", "IndexController:telaProcurar");
+        $router->get("/criar/perfil/barbearia", "IndexController:cadastrarPerfilBarbearia");
         $router->get("/pesquisa/resultado/{nome}", "IndexController:resultaPesquisa");
         $router->get("/agendar/barbeiro/{token}", "IndexController:Barbeiroagendarhoje");
         $router->get("/agenda/confirmar/presenca", "IndexController:confirmarPresenca");
@@ -42,12 +49,10 @@ class Routers {
         $router->get("/perfil/publico/{id}", "IndexController:perfilPublico");
         $router->get("/perfil/historico/agenda/barbeiro", "IndexController:historicoAgendaBarbeiro");
         
-        $router->get("/solicitar/acesso/barbeiro", "IndexController:solicitarAcessoBarbeiro");
-        
         $router->get("/admin", "AdminController:index");
-        $router->get("/admin/barbeiros", "AdminController:barbeiros");
-        $router->get("/admin/solicitacoes/acesso/barbeiro", "AdminController:solicitacoesBarbeiro");   
-
+        $router->get("/admin/barbearias", "AdminController:barbearias");
+        
+        
         $router->get("/barbearia/perfil/{token}", "BarbeiroController:perfil");
         $router->get("/barbearia/perfil/editar/{token}", "BarbeiroController:editarPerfilBarbearia");
         $router->get("/barbearia/perfil/galeria/adicionar/imagens/{token}", "BarbeiroController:addImagens");
@@ -80,20 +85,15 @@ class Routers {
         $router->group(null)->namespace("Src\POST");
         $router->post("/login", "Login:result");
         $router->post("/cadastrar", "Register:Result");
-        $router->post("/solicitacao/acesso/barbeiro/{id}", "SolicitarAcessoBarbeiro:Result");
         $router->post("/atualizar/info/{id}", "UpdateInfo:Result");
         $router->post("/atualizar/senha/{id}", "UpdateSenha:Result");
         $router->post("/recuperar/conta/{id}", "RecuperarConta:Recuperar");
-        $router->post("/agendar/barbeiro/{fk}", "AgendarBarbeiro:Result");
+        $router->post("/agendar/barbearia/{fk}", "AgendarBarbeiro:Result");
         $router->post("/agenda/confirmar/presenca", "Atendimento:confirmarPresenca");
         $router->post("/agenda/cancelar/presenca", "Atendimento:cancelarPresenca");
         $router->post("/atendimento/avaliar", "Avaliar:Result");
-
-
-        $router->group("solicitacoes")->namespace("Src\POST\Solicitacoes");
-        $router->post("/acesso/barbeiro/andamento/{id}", "UpdateSolicitacaoBarbeiro:Andamento");
-        $router->post("/acesso/barbeiro/aprovado/{id}", "UpdateSolicitacaoBarbeiro:Aprovado");
-        $router->post("/acesso/barbeiro/reprovado/{id}", "UpdateSolicitacaoBarbeiro:Reprovado");
+        $router->post("/criar/perfil/barbearia", "CadastrarPerfilBarbearia:Result");
+        
        
         
         $router->group("barbearia")->namespace("Src\POST\Barbeiro");
@@ -110,6 +110,8 @@ class Routers {
         $router->post("/agenda/concluir/{codigo}","AtendimentoUpdate:ConcluirAtendimento");
         $router->post("/servico/atualizar/{id}", "UpdateServico:Result");
         $router->post("/servico/deletar/{id}", "DeletarServico:Deletar");
+        $router->post("/atendimento/horario/deletar/{id}", "DeletarHorario:deletar");
+        $router->post("/atendimento/horario/todos/deletar/{fk}", "DeletarHorario:deletarTodos");
         
         $router->group("barbeiro")->namespace("Src\POST\ProfissionalBarbearia");
         $router->post("/cadastrar/{id}", "Cadastro:Result");

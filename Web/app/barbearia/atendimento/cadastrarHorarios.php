@@ -62,9 +62,6 @@
     box-shadow: none!important;
 }
 </style>
-<?php 
- if($contaHorario < 1):
-?>
 
 <div class="container-fluid">
   <h2> Cadastrar Horários de atendimento</h2>
@@ -95,6 +92,22 @@
                     </div>
                     <div class="col-sm-9 text-secondary">
                       <input type="time" name="final" id="end-time" class="form-control" >
+                    </div>
+                  </div>
+<hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Intervalo</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <select name="intervalo" id="" class="form-control">
+                         <option value="">Selecione uma opção</option>
+                         <option value="05">05</option>
+                         <option value="10">10</option>
+                         <option value="15">15</option>
+                         <option value="20">20</option>
+                         <option value="30">30</option>
+                      </select>
                     </div>
                   </div>
 
@@ -167,15 +180,6 @@
     }
 </script>
 
-<?php 
-else:
-?>
-
-<h2> Você ja cadastrou seus horarios de atendimento</h2>
-
-<?php 
-endif;
-?>
 
 
 

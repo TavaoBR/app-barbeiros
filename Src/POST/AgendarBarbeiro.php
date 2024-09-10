@@ -157,6 +157,9 @@ class AgendarBarbeiro {
 
         $data = date("d/m/Y", strtotime($this->data));
 
+        //$link1 = routerConfig()."/barbearia/confirmar/atendimento/$codigo";
+        //$link2 = routerConfig()."/barbearia/cancelar/atendimento/$codigo";
+
         $message = "
            🧏 Você tem um novo agendamento:
            \n 🔣 Codigo : {$codigo}
@@ -165,8 +168,18 @@ class AgendarBarbeiro {
            \n ⏰ Horario: {$horario}
            \n 📋 Serviço: {$this->servicos}
            \n 💰 Valor: R$ {$this->valor}
-           \n Acesse o sistema e use codigo para confirmar o agendamento ou cancelar 
+           \n Entre no sistema para confirmar ou cancelar
+           \n Você pode visualizar acessando sua agenda
         ";
+
+
+        /*
+           \n Clique no link abaixo para confirmar: 
+           \n $link1
+           \n Clique no link abaixo para cancelar: 
+           \n $link2 
+        */
+
         $api = new Message($celular, $message);
         return $api->send();
     }

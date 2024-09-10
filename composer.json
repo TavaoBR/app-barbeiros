@@ -6,7 +6,8 @@
         "phpmailer/phpmailer": "^6.9",
         "symfony/var-dumper": "^7.0",
         "vlucas/phpdotenv": "^5.6",
-        "ultramsg/whatsapp-php-sdk": "^2.0"
+        "ultramsg/whatsapp-php-sdk": "^2.0",
+        "comtele/comtele_sdk": "^1.1"
     },
     "autoload": {
         "files": [

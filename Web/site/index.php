@@ -55,7 +55,7 @@
 
 
         <!-- ======= About Section ======= -->
-        <section id="about" class="about">
+    <section id="about" class="about">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -77,9 +77,9 @@
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0">
             <p>
-            Para as barbearias, o projeto oferece links rápidos para atendimento, cadastro dos horários de funcionamento, detalhamento dos serviços oferecidos,
-            envio de mensagens personalizadas para seguidores na plataforma,e uma tela para visualizar a agenda do dia, incluindo os ganhos diários.
-            Além disso, o sistema conta com um painel financeiro mais intuitivo, permitindo a visualização dos ganhos totais do mês.
+              Para as barbearias, o projeto oferece links rápidos para atendimento, cadastro dos horários de funcionamento, detalhamento dos serviços oferecidos,
+              envio de mensagens personalizadas para seguidores na plataforma,e uma tela para visualizar a agenda do dia, incluindo os ganhos diários.
+              Além disso, o sistema conta com um painel financeiro mais intuitivo, permitindo a visualização dos ganhos totais do mês.
             </p>
             <a href="#" class="btn-learn-more">Learn More</a>
           </div>

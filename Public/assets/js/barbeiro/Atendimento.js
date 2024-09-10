@@ -13,7 +13,7 @@ function ConfirmarAtendimento(codigo)
 
     setTimeout(() => {
         $.ajax({
-            url: `${url}/barbeiro/agenda/confirmar/${codigo}`,
+            url: `${url}/barbearia/agenda/confirmar/${codigo}`,
             type: 'POST',
             dataType: 'json',
             success: function(response) {
@@ -70,7 +70,7 @@ function CancelarAtendimento(codigo)
     });
 
     setTimeout(() => {
-        const requestUrl = `${url}/barbeiro/agenda/cancelar/${codigo}`;
+        const requestUrl = `${url}/barbearia/agenda/cancelar/${codigo}`;
 
         $.ajax({
             url: requestUrl,
@@ -134,7 +134,7 @@ function ConcluirAtendimento(codigo)
 
     setTimeout(() => {
         $.ajax({
-            url: `${url}/barbeiro/agenda/concluir/${codigo}`,
+            url: `${url}/barbearia/agenda/concluir/${codigo}`,
             type: 'POST',
             dataType: 'json',
             success: function(response) {

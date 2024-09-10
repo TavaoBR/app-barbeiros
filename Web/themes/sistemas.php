@@ -401,7 +401,7 @@ $(document).ready(function() {
           </li>
 
           <li>
-            <a href="<?=routerConfig()?>/app/barbearia/atendimento/cadastro/horarios/<?=$token?>">
+            <a href="<?=routerConfig()?>/app/barbearia/atendimento/horarios/<?=$token?>">
               <i class="bx bx-circle"></i><span>Horarios de atendimento</span>
             </a>
           </li>
@@ -427,9 +427,9 @@ $(document).ready(function() {
      if($nivel == 2):
     ?>  
       <li class="nav-item">
-        <a href="<?=routerConfig()?>/app/solicitar/acesso/barbeiro" class="nav-link collapsed" href="#">
+        <a href="<?=routerConfig()?>/app/criar/perfil/barbearia" class="nav-link collapsed" href="#">
         <i class='bx bxs-lock-open'></i>
-          <span>Solicitar acesso</span>
+          <span>Criar Perfil Barbearia</span>
         </a>
       </li>
       <?php 
