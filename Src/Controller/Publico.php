@@ -199,8 +199,10 @@ class Publico
         \n Codigo : {$codigo}
         \n 📆 Data: {$data}
         \n ⏰ Horario: {$hora}
-        \n Entre no sistema para confirmar ou cancelar
-        \n Você pode acessar no seu histórico e verifica pelo status
+        \n Clique no link abaixo para confirmar sua presença:
+        \n $link1
+        \n Clique no link abaixo para cancelar sua consulta: 
+        \n $link2 
        ";
 
        /*

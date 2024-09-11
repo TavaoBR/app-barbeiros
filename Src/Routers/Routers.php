@@ -108,6 +108,7 @@ class Routers {
         $router->post("/agenda/confirmar/{codigo}","AtendimentoUpdate:ConfirmarAtendimento");
         $router->post("/agenda/cancelar/{codigo}","AtendimentoUpdate:CancelarAtendimento");
         $router->post("/agenda/concluir/{codigo}","AtendimentoUpdate:ConcluirAtendimento");
+        $router->post("/agenda/concluir/todos","AtendimentoUpdate:concluirTodos");
         $router->post("/servico/atualizar/{id}", "UpdateServico:Result");
         $router->post("/servico/deletar/{id}", "DeletarServico:Deletar");
         $router->post("/atendimento/horario/deletar/{id}", "DeletarHorario:deletar");

@@ -109,6 +109,7 @@ class CadastrarPerfilBarbearia {
         $this->createFolder();
         $this->updateStatusUsuario();
         $this->alertWhatsapp();
+        $this->alerta($this->celular);
         setSession("CriarPerfilBarbearia", sweetAlertSuccess("Seu perfil foi criado com sucesso, você tem 30 dias para testar", "Sucesso"));
         redirectBack();
        }else{
@@ -165,5 +166,14 @@ class CadastrarPerfilBarbearia {
         ";
         $zap = new Message("557991917634", $message);
         $zap->send();
+    }
+
+    private function alerta($to)
+    {
+       $message = "
+        *Barberia Match*, Parabéns perfil *Barbearia* foi criada com *sucesso*,
+         Estamos enviando essa mensagem para avisar que esse será número que irá notificar sobre a plataforma ";
+       $zap = new Message($to, $message);
+       $zap->send();
     }
 }

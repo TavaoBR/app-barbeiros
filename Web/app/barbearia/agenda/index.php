@@ -89,10 +89,11 @@ a {
     
     <div class="py-3 px-4">
         <h3 class="font-size-16 mb-0">Agenda  <?=$dia?></h3>
-    </div>
 </div>
 
     <div class="row">
+
+    <?=validateSession("ConcluidosAgenda")?>
 
     <div class="col-xl-4">
             <div class="mt-5 mt-lg-0">
@@ -105,27 +106,38 @@ a {
                         <div class="table-responsive">
                             <table class="table mb-0">
                                 <tbody>
-                                    <tr class = "bg-light">
-                                       <td class="fw-bold">Filtro para datas</td>
+
+                                <tr class = "bg-light">
                                        <td class="text-end"><input type="date" id="date" class="form-control" onchange="redirectToPage()"></td>
+                                       <td class="test-end"></td>
                                     </tr>
+
+                                    <tr class = "bg-light">
+                                        <form action="<?=routerConfig()?>/barbearia/agenda/concluir/todos" method="POST" id="confirmationForm">
+                                           <input type="hidden" name="data" value="<?=$data?>">
+                                           <input type="hidden" name="fk" value="<?=$id?>"> 
+                                          <td><button class="btn btn-success" id="submitButton" onclick="handleSubmit()"  type="submit">Concluir Todos</button></td>
+                                        </form>
+                                       <td class="test-end"></td>
+                                    </tr>
+
                                     
                                     <tr class ="bg-success">
-                                        <td class="text-white">Ganhos do dia</td>
-                                        <td class="text-end fw-bold text-white">R$ <?=array_sum($ganhos)?></td>
+                                        <td class=" fw-bold text-white">Ganhos: R$ <?=array_sum($ganhos)?></td>
+                                        <td class="test-end"></td>
                                     </tr>
                                     <tr class="bg-light">
-                                        <td class="text-dark">Pendentes</td>
-                                        <td class="text-end fw-bold text-dark">R$ <?=array_sum($pedentes)?></td>
+                                        <td class="fw-bold text-dark">Pedentes: R$ <?=array_sum($pedentes)?></td>
+                                        <td class="test-end"></td>
                                     </tr>
                                     <tr class="bg-danger">
-                                        <td class="text-white">Cancelados</td>
-                                        <td class="text-end fw-bold text-white">R$ <?=array_sum($cancelados)?></td>
+                                        <td class="fw-bold text-white">Cancelados: R$ <?=array_sum($cancelados)?></td>
+                                        <td class="test-end"></td>
                                     </tr>
 
                                     <tr class="bg-dark">
-                                        <td class="text-white">Soma de todos</td>
-                                        <td class="text-end fw-bold text-white">R$ <?=array_sum($ganhos) + array_sum($pedentes) + array_sum($cancelados)?></td>
+                                        <td class="fw-bold text-white">Soma total: R$ <?=array_sum($ganhos) + array_sum($pedentes) + array_sum($cancelados)?></td>
+                                        <td class="test-end"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -170,7 +182,7 @@ a {
                     <div>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="mt-3  float-end">
+                                <div class="mt-3  float-start">
                                             <?php 
                                               if($data->status == 1):
                                             ?>
@@ -182,7 +194,7 @@ a {
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <div class="mt-3 float-end">
+                                <div class="mt-3 float-start">
                                 <?php 
                                              if($data->status == 2 OR $data->status == 4):
                                             ?>
@@ -227,6 +239,33 @@ a {
         window.location.href = link;
     }   
   }
+
+function handleSubmit() {
+
+const submitButton = document.getElementById('submitButton');
+submitButton.setAttribute('disabled', 'disabled');
+
+// Exibe o SweetAlert de carregamento
+Swal.fire({
+    title: 'Enviando Requisição',
+    text: 'Por favor, aguarde.',
+    allowOutsideClick: false,
+    didOpen: () => {
+        Swal.showLoading();
+    }
+});
+
+// Aguarda 2 segundos antes de enviar o formulário
+setTimeout(() => {
+    // Fecha o SweetAlert
+    Swal.close();
+
+    // Envia o formulário manualmente
+    const form = document.getElementById('confirmationForm');
+    form.submit();
+}, 2000); // 2000 milissegundos = 2 segundos
+}
+
 
 </script>
 <script src="<?=Assests("assets/js/barbeiro/Atendimento.js")?>"></script>

@@ -4,7 +4,7 @@ namespace Src\POST\Barbeiro;
 use Src\Database\Model\AgendaBarbeiro;
 use Src\Database\Model\Barbeiro;
 use Src\Database\Model\historicoAgendamento;
-use Src\Services\Whatsapp;
+use Src\Services\Whatsapp\Message;
 
 class AtendimentoUpdate 
 {
@@ -20,18 +20,54 @@ class AtendimentoUpdate
         $this->historico = new historicoAgendamento;
     }
 
-    public function confirmarTodosAtendimento()
+    /*public function confirmarTodos($data)
     {
-
+         $fk = $data['fk'];
+         $dia = $data['data'];
+         $select = agendaBarbeiroDataOrderDesc($fk, $data);
     }
 
-    public function cancelarTodosAntimendos()
+    public function cancelarTodos($data)
     {
-       
-    }
+      $fk = $data['fk'];
+      $dia = $data['data'];
+      $select = agendaBarbeiroDataOrderDesc($fk, $data);
+    }*/
 
-    public function concluirTodosAtendimentos()
+    public function concluirTodos()
     {
+      session_start();
+      $fk = $_POST['fk'];
+      $dia = $_POST['data'];
+      $select = agendaBarbeiroDataOrderDesc($fk, $dia);
+      $dados = $select[1];
+      $success = true;
+      //$cel = [];
+      $ganhos = [];
+      foreach($dados as $array){
+        if($array->status != 3 AND $array->status != 5){
+          $update =  $this->agenda->update("id", $array->id, ["status" => 5]);  
+          $ganhos[] = $array->valorTotal;
+          if($update <= 0){
+             $success = false;
+             break;
+          }
+        }      
+      }
+
+      if($success){
+        $total = array_sum($ganhos);
+         foreach($dados as $alert){           
+          if($alert->status == 5){
+            $this->alertaConcluido($alert->celular, $alert->codigo);
+          }
+         }
+         setSession("ConcluidosAgenda", sweetAlertSuccess("Agenda Concluida com sucesso, seu ganho foi de: R$ $total ", "Sucesso"));
+      }else{
+        setSession("ConcluidosAgenda", sweetAlertError("Ocorreu algum erro, por favor tente mais tarde ou entre em contato com o suporte"));
+      }
+
+      redirectBack();
 
     }
 
@@ -156,7 +192,21 @@ class AtendimentoUpdate
 
     private function alertarWhatsap(string $message, string $celular)
     {
-        $api = new Whatsapp($celular, $message);
+        $api = new Message($celular, $message);
         return $api->send();
     }
+
+    private function alertaConcluido($to, $codigo)
+    { 
+       $link = routerConfig()."/atendiment/avaliar/$codigo";
+       $message = "
+        Seu atendimento foi concluido com sucesso
+        \n Faça avaliação, clicando no link abaixo
+        \n $link 
+       ";
+       $zap = new Message($to, $message);
+       return $zap->send();
+    }
+
+
 }

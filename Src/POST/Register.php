@@ -4,6 +4,7 @@ namespace Src\POST;
 
 use Src\Database\Model\Usuario;
 use Src\Services\Validate;
+use Src\Services\Whatsapp\Message;
 
 class Register 
 {
@@ -135,12 +136,23 @@ class Register
          $select = $this->model->findBy("usuario", $this->usuario);
          $id = $select[1]->id;
          $this->uploadAvatar($id);
+         $this->alerta($this->celular);
          setSession("Mensagem", sweetAlertSuccess("Agora faça o login com sua conta", "Cadastro realizado"));
          redirect(routerConfig()."/login");
        }else{
          setSession("MessageRegister", sweetAlertError("Ocorreu algum erro, por favor tente mais tarde ou entre em contato com o suporte"));
          redirectBack();
        }
+    }
+
+    private function alerta($to)
+    {
+       $message = "
+        *Barberia Match*, Parabéns sua *conta* foi criada com *sucesso*,
+         Estamos enviando essa mensagem para avisar que esse será número que irá notificar sobre a plataforma 
+       ";
+       $zap = new Message($to, $message);
+       $zap->send();
     }
 
     private function uploadAvatar($id)
