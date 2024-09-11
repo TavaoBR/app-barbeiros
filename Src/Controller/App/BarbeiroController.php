@@ -130,8 +130,9 @@ class BarbeiroController  extends TemplateConfig{
         $this->verificarNivel();
         $barbeiro = new Barbeiro($data['token']);
         $id = $barbeiro->id();
-        $dados = agendaBarbeiroDataOrderDesc($id, $data['data']);
-        $this->view("app/barbearia/agenda/index", ["title" => "Agenda {$data['data']}", "array" => $dados[1], "conta" => $dados[1], "dia" => date("d/m/Y", strtotime($data['data'])), "nome" => $barbeiro->nome(), "avatar" => $barbeiro->avatar(), "id" => $id]);
+        $dados = agendaBarbeiroDataOrderDesc($id, $data['data']);   
+
+        $this->view("app/barbearia/agenda/index", ["title" => "Agenda {$data['data']}", "array" => $dados[1], "conta" => $dados[1], "dia" => date("d/m/Y", strtotime($data['data'])), "nome" => $barbeiro->nome(), "avatar" => $barbeiro->avatar(), "id" => $id, "token" => $data['token']]);
       }
      
     }

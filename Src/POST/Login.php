@@ -4,7 +4,7 @@ namespace Src\POST;
 
 use Src\Database\Model\Usuario;
 use Src\Services\TokenUser;
-use Config\Mail;
+//use Config\Mail;
 use Src\Services\Whatsapp;
 use Src\Services\Whatsapp\Link;
 use Src\Services\Whatsapp\Message;
@@ -21,7 +21,7 @@ class Login {
         $this->usuario = $_POST['usuario'];
         $this->senha = $_POST['senha'];
         $this->user = new Usuario;
-        $this->mail = new Mail;
+        //$this->mail = new Mail;
     }
 
     public function result(){
