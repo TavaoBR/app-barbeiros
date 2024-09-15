@@ -17,13 +17,13 @@ class ConsultarHorarioDisponivel {
     private function selectAgenda(string $data, int $fk) {
         $agenda = agendaBarbeiroData($fk, $data);
         $horariosDisponiveis = [];
-
+    
         if ($agenda[0] > 0) {
             foreach ($agenda[1] as $consulta) {
-                if($consulta->status != 3 AND $consulta->status != 5){
+                // Certifique-se de que $consulta é um objeto
+                if ($consulta->status != 3 && $consulta->status != 5) {
                     $horariosDisponiveis[] = date("H:i", strtotime($consulta->horario));
                 }
-                
             }
             return $this->selectHorarios($fk, $horariosDisponiveis);
         } else {
@@ -32,20 +32,22 @@ class ConsultarHorarioDisponivel {
     }
 
     private function selectHorarios(int $fk, array $horariosDisponiveis = []) {
-        $horarios = horariosAtendimentoBarbeiro($fk);
+        $horarios = horariosAtendimentoBarbeiro($fk);  // Presumo que retorna objetos ou arrays
         $html = "<div class='mb-6'>";
-
+    
         if ($horarios[0] > 0) {
-            // Cria uma lista de horários disponíveis para exibir
             $horariosExibir = [];
-
+    
             if (count($horariosDisponiveis) > 0) {
-                // Filtra horários disponíveis
+                // Verifica se $horarios[1] é array associativo ou objeto
                 $horariosLivres = array_diff(
-                    array_map(function($hora) { return date("H:i", strtotime($hora->hora)); }, $horarios[1]),
+                    array_map(function($hora) { 
+                        // Se $hora é um objeto, acesse como objeto
+                        return date("H:i", strtotime($hora->hora)); 
+                    }, $horarios[1]), 
                     $horariosDisponiveis
                 );
-
+    
                 if (!empty($horariosLivres)) {
                     $horariosExibir = $horariosLivres;
                 } else {
@@ -53,9 +55,11 @@ class ConsultarHorarioDisponivel {
                 }
             } else {
                 // Nenhuma data está agendada para o dia selecionado
-                $horariosExibir = array_map(function($hora) { return date("H:i", strtotime($hora->hora)); }, $horarios[1]);
+                $horariosExibir = array_map(function($hora) { 
+                    return date("H:i", strtotime($hora->hora)); 
+                }, $horarios[1]);
             }
-
+    
             if (!empty($horariosExibir)) {
                 foreach ($horariosExibir as $hora) {
                     $html .= "<div class='btn-group' style='margin-right: 10px; margin-top: 10px;'>
@@ -67,10 +71,11 @@ class ConsultarHorarioDisponivel {
         } else {
             $html .= "<input type='text' class='form-control' value='Nenhum horário foi cadastrado pelo barbeiro.' disabled />";
         }
-
+    
         $html .= "</div>";
         return $html;
     }
+    
 }
 
 

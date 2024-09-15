@@ -57,11 +57,7 @@ class AtendimentoUpdate
 
       if($success){
         $total = array_sum($ganhos);
-         foreach($dados as $alert){           
-          if($alert->status == 5){
-            $this->alertaConcluido($alert->celular, $alert->codigo);
-          }
-         }
+         $this->alertaConcluido($fk, $dia);
          setSession("ConcluidosAgenda", sweetAlertSuccess("Agenda Concluida com sucesso, seu ganho foi de: R$ $total ", "Sucesso"));
       }else{
         setSession("ConcluidosAgenda", sweetAlertError("Ocorreu algum erro, por favor tente mais tarde ou entre em contato com o suporte"));
@@ -196,16 +192,28 @@ class AtendimentoUpdate
         return $api->send();
     }
 
-    private function alertaConcluido($to, $codigo)
+    private function alertaConcluido($fk, $data)
     { 
-       $link = routerConfig()."/atendiment/avaliar/$codigo";
-       $message = "
-        Seu atendimento foi concluido com sucesso
-        \n Faça avaliação, clicando no link abaixo
-        \n $link 
-       ";
-       $zap = new Message($to, $message);
-       return $zap->send();
+       
+
+       $select = agendaBarbeiroDataStatus($fk, $data, 5);
+       $dados = $select[1];
+
+       foreach($dados as $alert){
+        $to = $alert->celular;
+        $codigo = $alert->codigo;
+        $link = routerConfig()."/atendiment/avaliar/$codigo";
+
+        $message = "
+          Seu atendimento foi concluido com sucesso
+          \n Faça avaliação, clicando no link abaixo
+          \n $link 
+        ";
+        $zap = new Message($to, $message);
+        return $zap->send();         
+       }
+
+
     }
 
 

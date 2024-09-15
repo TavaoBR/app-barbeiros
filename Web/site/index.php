@@ -12,14 +12,14 @@
         </div>
       </div>
       <div class="text-center">
-        <a href="#about" class="btn-get-started scrollto">Procurar</a>
+           <a href="<?=routerConfig()?>/procurar" class="btn-get-started scrollto">Procurar</a>
       </div>
 
       <div class="row icon-boxes">
         <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="200">
           <div class="icon-box">
             <div class="icon"><i class="fa-solid fa-map-location-dot"></i></div>
-            <h4 class="title"><a href="">Localização</a></h4>
+            <h4 class="title"><a href="#">Localização</a></h4>
             <p class="description">Ache as barbearias mais avaliadas de acordo com sua localização</p>
           </div>
         </div>
@@ -27,7 +27,7 @@
         <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="300">
           <div class="icon-box">
             <div class="icon"><i class="fa-solid fa-calendar-check"></i></div>
-            <h4 class="title"><a href="">Agendamento</a></h4>
+            <h4 class="title"><a href="#">Agendamento</a></h4>
             <p class="description">Faça seu agendamento de acordo com os horarios disponíveis</p>
           </div>
         </div>
@@ -35,7 +35,7 @@
         <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="400">
           <div class="icon-box">
             <div class="icon"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-            <h4 class="title"><a href="">Avaliação</a></h4>
+            <h4 class="title"><a href="#">Avaliação</a></h4>
             <p class="description">Dê uma nota para seu atendimento </p>
           </div>
         </div>
@@ -43,7 +43,7 @@
         <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="400">
           <div class="icon-box">
             <div class="icon"><i class="fa-solid fa-user-plus"></i></div>
-            <h4 class="title"><a href="">Seguir</a></h4>
+            <h4 class="title"><a href="#">Seguir</a></h4>
             <p class="description">Siga sua barbearia favorita para receber alertas sobre a mesma </p>
           </div>
         </div>
@@ -691,7 +691,7 @@
     </section><!-- End Pricing Section -->
 
     <!-- ======= Frequently Asked Questions Section ======= -->
-    <section id="faq" class="faq section-bg">
+    <!--<section id="faq" class="faq section-bg">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -750,10 +750,10 @@
         </div>
 
       </div>
-    </section><!-- End Frequently Asked Questions Section -->
+    </section>--><!-- End Frequently Asked Questions Section -->
 
     <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
+    <!--<section id="contact" class="contact">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -821,4 +821,83 @@
         </div>
 
       </div>
-    </section><!-- End Contact Section -->
+    </section>--><!-- End Contact Section -->
+
+
+    <footer id="footer">
+
+<!--<div class="footer-top">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-lg-3 col-md-6 footer-contact">
+        <h3>OnePage</h3>
+        <p>
+          A108 Adam Street <br>
+          New York, NY 535022<br>
+          United States <br><br>
+          <strong>Phone:</strong> +1 5589 55488 55<br>
+          <strong>Email:</strong> info@example.com<br>
+        </p>
+      </div>
+
+      <div class="col-lg-2 col-md-6 footer-links">
+        <h4>Useful Links</h4>
+        <ul>
+          <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-3 col-md-6 footer-links">
+        <h4>Our Services</h4>
+        <ul>
+          <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-4 col-md-6 footer-newsletter">
+        <h4>Join Our Newsletter</h4>
+        <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+        <form action="" method="post">
+          <input type="email" name="email"><input type="submit" value="Subscribe">
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>-->
+
+<div class="container d-md-flex py-4">
+
+  <div class="me-md-auto text-center text-md-start">
+    <div class="copyright">
+      &copy; Copyright <strong><span>OnePage</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      <!--All the links in the footer should remain intact. 
+       You can delete the links only if you purchased the pro version. 
+      Licensing information: https://bootstrapmade.com/license/ 
+      Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/onepage-multipurpose-bootstrap-template/ 
+      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>-->
+    </div>
+  </div>
+  <div class="social-links text-center text-md-right pt-3 pt-md-0">
+    <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+    <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+    <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+    <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+    <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+  </div>
+</div>
+</footer><!-- End Footer -->
+
+<div id="preloader"></div>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

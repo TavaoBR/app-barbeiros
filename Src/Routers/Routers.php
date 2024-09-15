@@ -30,7 +30,11 @@ class Routers {
         $router->get("/atendimento/sucesso/{tipo}", "IndexController:sucesso");
         $router->get("/atendimento/erro", "IndexController:erro");
         $router->get("/alerta/codigo/{tipo}", "IndexController:alertaCodigo");
-
+        $router->get("/atendiment/avaliar/{codigo}", "IndexController:avaliar");
+        $router->get("/procurar",  "IndexController:procurar");
+        $router->get("/resultado/{uf}/{cidade}",  "IndexController:resultado");
+        $router->get("/barbearia/perfil/{token}", "IndexController:perfil");
+        
         $router->get("/test", "IndexController:test");
 
         $router->group("app")->namespace("Src\Controller\App");
@@ -92,9 +96,15 @@ class Routers {
         $router->post("/agenda/confirmar/presenca", "Atendimento:confirmarPresenca");
         $router->post("/agenda/cancelar/presenca", "Atendimento:cancelarPresenca");
         $router->post("/atendimento/avaliar", "Avaliar:Result");
+        $router->post("/atendimento/publico/avaliar", "AvaliarPublico:Result");
         $router->post("/criar/perfil/barbearia", "CadastrarPerfilBarbearia:Result");
+        $router->post("/agendar", "AgendarPublico:Result");
+        $router->post("/barbearia/confirmar/{codigo}", "ClienteAtendimento:BarbeariaConfirmar");
+        $router->post("/barbearia/cancelar/{codigo}", "ClienteAtendimento:BarbeariaCancelar");
+        $router->post("/cliente/confirmar/{codigo}", "ClienteAtendimento:ClienteConfirmar");
+        $router->post("/cliente/cancelar/{codigo}", "ClienteAtendimento:ClienteCancelar");
         
-       
+               
         
         $router->group("barbearia")->namespace("Src\POST\Barbeiro");
         //$router->post("/online/{id}", "UpdateOnOff:Online");

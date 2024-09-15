@@ -15,7 +15,7 @@ function agendaBarbeiroData(int $fk, string $data)
 
 }
 
-function agendaBarbeiroDataStatus(int $fk, string $data, string $status)
+function agendaBarbeiroDataStatus(int $fk, string $data, int $status)
 {
    $db = new \Src\Database\Connection;
 
@@ -61,6 +61,21 @@ function UsuarioagendaBarbeiroData(int $fk, string $data)
 
 }
 
+function verificaTelefonetemagendamento(string $celular, string $data)
+{
+   $db = new \Src\Database\Connection;
+
+   $connect = $db::connect();
+
+   $select = "SELECT * FROM agendabarbeiro WHERE celular = :celular AND data = :data";
+   $query = $connect->prepare($select);
+   $query->bindParam(":celular", $celular);
+   $query->bindParam(":data", $data);
+   $query->execute();
+   return [$query->rowCount(), $query->fetchAll(\PDO::FETCH_CLASS)];
+
+}
+
 function HistoricoAgendaUsuarioBarbeiro(int $fk)
 {
    $db = new \Src\Database\Connection;
@@ -86,7 +101,7 @@ function horariosAtendimentoBarbeiro(int $fk)
     $query = $connect->prepare($select);
     $query->bindParam(":fk", $fk);
     $query->execute();
-    return [$query->rowCount(), $query->fetch(\PDO::FETCH_CLASS)];
+    return [$query->rowCount(), $query->fetchAll(\PDO::FETCH_CLASS)];
     
 }
 
@@ -102,7 +117,7 @@ function horariosAtendimentoBarbeiroFirst(int $fk)
     $query = $connect->prepare($select);
     $query->bindParam(":fk", $fk);
     $query->execute();
-    return [$query->rowCount(), $query->fetch(\PDO::FETCH_OBJ)];
+    return [$query->rowCount(), $query->fetchAll(\PDO::FETCH_CLASS)];
     
 }
 
@@ -125,32 +140,32 @@ function horariosAtendimentoBarbeirolast(int $fk)
 function pesquisa(string $nome, string $uf, string $cidade)
 {
       $db = new \Src\Database\Connection;
-
       $connect = $db::connect();
-
-    $select = "SELECT * FROM perfilbarbeiro WHERE nomeBarbeiro like :nome AND estado = :uf AND cidade = :city ORDER BY valorTotalNotas DESC";
-    $query = $connect->prepare($select);
-    $query->bindValue(":nome", "%$nome%");
-    $query->bindParam(":uf", $uf);
-    $query->bindParam(":city", $cidade);
-    $query->execute();
-    return [$query->rowCount(), $query->fetchAll(\PDO::FETCH_CLASS)];
+      $status = 1;
+      $select = "SELECT * FROM perfilbarbeiro WHERE nomeBarbeiro like :nome AND estado = :uf AND cidade = :city AND status = :status ORDER BY valorTotalNotas DESC";
+      $query = $connect->prepare($select);
+      $query->bindValue(":nome", "%$nome%");
+      $query->bindParam(":uf", $uf);
+      $query->bindParam(":city", $cidade);
+      $query->bindParam(":status", $status);
+      $query->execute();
+      return [$query->rowCount(), $query->fetchAll(\PDO::FETCH_CLASS)];
 
 }
 
 
 function pesquisaTelaProcura(string $uf, string $cidade)
 {
-      $db = new \Src\Database\Connection;
-
-      $connect = $db::connect();
-
-    $select = "SELECT * FROM perfilbarbeiro WHERE estado = :uf AND cidade = :city ORDER BY valorTotalNotas DESC";
-    $query = $connect->prepare($select);
-    $query->bindParam(":uf", $uf);
-    $query->bindParam(":city", $cidade);
-    $query->execute();
-    return [$query->rowCount(), $query->fetchAll(\PDO::FETCH_CLASS)];
+   $db = new \Src\Database\Connection;
+   $connect = $db::connect();
+   $status = 1;
+   $select = "SELECT * FROM perfilbarbeiro WHERE estado = :uf AND cidade = :city AND status = :status ORDER BY valorTotalNotas DESC";
+   $query = $connect->prepare($select);
+   $query->bindParam(":uf", $uf);
+   $query->bindParam(":city", $cidade);
+   $query->bindParam(":status", $status);
+   $query->execute();
+   return [$query->rowCount(), $query->fetchAll(\PDO::FETCH_CLASS)];
 
 }
 

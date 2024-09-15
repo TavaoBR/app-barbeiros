@@ -1,66 +1,56 @@
-<?php 
+<?php
 
 namespace Src\POST;
-
+use Src\Services\Whatsapp\Link;
+use Src\Services\Whatsapp\Message;
 use Src\Database\Model\AgendaBarbeiro;
 use Src\Database\Model\Barbeiro;
-use Src\Database\Model\historicoAgendamento;
-use Src\Database\Model\Usuario as ModelUsuario;
-use Src\GET\Usuario;
 use Src\Services\CodigoAgendamento;
 use Src\Services\Validate;
-use Src\Services\Whatsapp;
-use Src\Services\Whatsapp\Message;
 
-class AgendarBarbeiro {
-
-    private ModelUsuario $usuario;
+class AgendarPublico {
     private Barbeiro $barbeiro;
     private AgendaBarbeiro $agenda;
     private Validate $validate;
     private CodigoAgendamento $codigo;
-    private historicoAgendamento $historico;
     private string $data;
     private string $valor;
     private string $servicos;
     private string $nome;
     private string $celular;
+    private ?string $hora;
+    private ?int $fk;
 
     public function __construct(){
-        $this->usuario = new ModelUsuario;
         $this->barbeiro = new Barbeiro;
         $this->agenda = new AgendaBarbeiro;
         $this->validate = new Validate;
         $this->codigo = new CodigoAgendamento;
-        $this->historico = new historicoAgendamento;
         $this->data = $_POST['data'];
         $this->nome = $_POST['nome'];
         $this->servicos = $_POST['itensEscolhidos'];
         $this->valor = $_POST['valorTotal'];
         $this->celular = $_POST['celular'];
+        $this->hora = $_POST['horario'];
+        $this->fk = $_POST['fk'];
     }
 
-
-    public function Result($data)
+    public function Result()
     {
-        session_start();
-        $id = $data['fk'];
-        $horario = $_POST['horario'];
-
-        if(!$this->request($horario) && !$this->verificaSeTemAgendaDataUsuario()){
-            $this->agendar($id, $horario);
-        }
+      session_start();
+      if(!$this->request() AND !$this->verificaTelefonetemagendamento()){
+          $this->agendar();
+      }
     }
 
-    private function request($horario)
+    private function request()
     {
-        
         $request = [
             "Nome" => $this->nome,
             "Celular" => $this->celular,
             "Serviço" => $this->servicos,
             "Data" => $this->data,
-            "Horario" => $horario,
+            "Horario" => $this->hora,
         ];
 
         if($this->validate->validate($request) != false){
@@ -69,21 +59,15 @@ class AgendarBarbeiro {
             redirectBack();
             return true;
         }
-    
-      
+
         return false;
     }
 
-    private function verificaSeTemAgendaDataUsuario()
+    private function verificaTelefonetemagendamento()
     {
-        $get = new Usuario;
-        $fkUser = $get->id();
-
-        $verifica = UsuarioagendaBarbeiroData($fkUser, $this->data);
-
+        $verifica = verificaTelefonetemagendamento($this->celular, $this->data);
         if($verifica[0] > 0){
-
-             if($verifica[1]->status == 1){
+            if($verifica[1]->status == 1){
                 $dataFormatada = date("d/m/Y", strtotime($this->data));
                 setSession("MessageAgenda", sweetAlertWarning("A data $dataFormatada já tem um agendamento seu, escolha outra data", "Você já fez um agendamento"));
                 redirectBack();
@@ -92,64 +76,52 @@ class AgendarBarbeiro {
         }
 
         return false;
-
     }
 
-    private function selectBarbeiro(int $id)
+    private function selectBarbeiro()
     {
-        $select = $this->barbeiro->findBy("id", $id); 
+        $select = $this->barbeiro->findBy("id", $this->fk); 
 
         return $select[1]->celular;
     }
 
-    private function selectUsuarioCelular(int $id)
+    private function agendar()
     {
-       $select = $this->usuario->findBy("id", $id);
-       return $select[1]->celular;
-    }
-
-    private function agendar(int $fkBarbeiro, string $horario)
-    {
-        $get = new Usuario;
-        $fkUser = $get->id();
         $codigo = $this->codigo->result();
 
         $create = $this->agenda->create([
-         "fkBarbeiro" => $fkBarbeiro,
-         "fkUser" => $fkUser,
-         "codigo" => $codigo,
-         "nome" => $this->nome,
-         "celular" => $this->celular,
-         "data" => $this->data,
-         "horario" => $horario,
-         "servicosSolicitados" => $this->servicos,
-          "valorTotal" => $this->valor,
-          "status" => 1
-        ]); 
+            "fkBarbeiro" => $this->fk,
+            "codigo" => $codigo,
+            "nome" => $this->nome,
+            "celular" => $this->celular,
+            "data" => $this->data,
+            "horario" => $this->hora,
+            "servicosSolicitados" => $this->servicos,
+            "valorTotal" => $this->valor,
+            "status" => 1
+       ]); 
 
-        if($create > 0){
-         setSession("MessageAgenda", sweetAlertSuccess("Você acabou de agendar seu corte, por favor aguarde a confirmação Barbeiro 😁", "Sucesso ao Agendar"));
-         $celular = $this->selectBarbeiro($fkBarbeiro);
-         $this->alertarWhatsappBarbeiro($celular, $horario, $codigo);
-         //$this->historicoAgendamento($codigo, $horario, 1);
-         //$this->historicoAgendamento($codigo, $horario, 2);
-         redirectBack();
-        }else{
-          setSession("MessageAgenda", sweetAlertError("Ocorreu algum erro, por favor tente mais tarde ou entre em contato com o suporte"));  
-          redirectBack();
-        }
+       if($create > 0){
+        setSession("MessageAgenda", sweetAlertSuccess("Você acabou de agendar seu corte, por favor aguarde a confirmação Barbeiro 😁", "Sucesso ao Agendar"));
+        $celular = $this->selectBarbeiro();
+        $this->alertCelularCliente();
+        $this->alertarWhatsappBarbeiro($celular, $this->hora, $codigo);
+        redirectBack();
+       }else{
+        setSession("MessageAgenda", sweetAlertError("Ocorreu algum erro, por favor tente mais tarde ou entre em contato com o suporte"));  
+        redirectBack();
+       }
     }
 
-    private function historicoAgendamento(string $codigo, string $horario, int $status)
+    private function alertCelularCliente()
     {
-         $create = $this->historico->create([
-           "codigo" => $codigo,
-           "status" =>  $status,
-           "dateCreated" => $this->data,
-           "timeCreated" => $horario
-         ]);
 
-         return $create;
+        $message = "
+        *Barbearia Match*, Parabéns você acabou de agendar seu *corte* com *sucesso*,
+         Estamos enviando essa mensagem para avisar que esse será número que irá notificar sobre a plataforma 
+        ";
+        $zap = new Message($this->celular, $message);
+        $zap->send();
     }
 
     private function alertarWhatsappBarbeiro(string $celular, string $horario, string $codigo)
@@ -185,6 +157,4 @@ class AgendarBarbeiro {
         $api = new Message($celular, $message);
         return $api->send();
     }
-
-
 }

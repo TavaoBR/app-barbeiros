@@ -109,7 +109,7 @@ class IndexController extends TemplateConfig{
 
     public function telaProcurar()
     {
-       session_start();
+        session_start();
         $get = new Usuario();
         $uf = $get->uf();
         $cidade = $get->cidade();

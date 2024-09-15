@@ -5,7 +5,7 @@ use Config\TelegramBot;
 use Config\TemplateConfig;
 use Src\Database\Filters;
 use Src\Database\Model\AgendaBarbeiro;
-use Src\Database\Model\Barbeiro;
+use Src\GET\Barbeiro\Barbeiro;
 use Src\Database\Model\ProfissionalBarbearia;
 use Src\Database\Model\Usuario;
 use Src\GET\Telegram\DefaultBot;
@@ -13,10 +13,21 @@ use Src\GET\Usuario as UserGet;
 use Src\Services\CodigoAgendamento;
 use Src\Services\Whatsapp;
 use Src\Services\Whatsapp\Link;
+use Src\Database\Model\ServicoBarbeiro;
+use Src\Database\Model\HorarioAtendimento;
 
 class IndexController extends TemplateConfig{
 
     protected $_smane;
+
+    protected HorarioAtendimento $atendimento;
+    protected ServicoBarbeiro $servicos;
+
+    public function __construct()
+    {
+       $this->atendimento = new HorarioAtendimento;
+       $this->servicos = new ServicoBarbeiro;
+    }
 
     public function index()
     {
@@ -115,6 +126,45 @@ class IndexController extends TemplateConfig{
         } 
 
       $this->view("site/webhooks/tela", ["title" => "Alerta Codigo", "message" => $message]);
+    }
+
+
+    public function avaliar($data)
+    {
+       session_start();
+       $this->view("site/avaliar", ["title" => "Avaliar Atendimento", "codigo" => $data['codigo']]);
+    }
+
+    public function procurar()
+    {
+      $this->view("site/busca/index", ["title"=> "Procurar"]);
+    }
+
+    public function resultado($data)
+    {
+      $uf = $data['uf'];
+      $cidade = $data['cidade']; 
+      $pesquisa = pesquisaTelaProcura($uf, $cidade);
+      if($pesquisa[0] > 0){
+        $this->view("site/busca/resultado", ["title"=> "Resultado", "result" => $pesquisa[1], "total" => $pesquisa[0]]);
+      }else{
+        $this->view("site/busca/naoEncontrado", ["title"=> "Resultado"]);
+      }
+      
+    }
+
+
+    public function perfil($data)
+    {
+        session_start();
+        $barbeiro = new Barbeiro($data['token']);
+        $servico = $this->servicos->fetchAll();
+        $this->view("site/barbearia/index", 
+        ["title" => "Perfil", "id" => $barbeiro->id(),"fk" => $barbeiro->fk(), "token" => $barbeiro->token(), "celular" => $barbeiro->celular(), "avatar" => $barbeiro->avatar(), "nome" => $barbeiro->nome(),
+        "endereco" => $barbeiro->endereco(), "bairro" => $barbeiro->bairro(), "numero" => $barbeiro->numero(), "cidade" => $barbeiro->cidade(), "estado" => $barbeiro->estado(), "online" => $barbeiro->online(),
+        "totalAvaliacao" => $barbeiro->totalAvalicao(), "valorNotas" => $barbeiro->valorTotalNotas(), "servicos" => $servico[1],
+        "horaInicial" => horariosAtendimentoBarbeiroFirst($barbeiro->id())[1]->hora, "horaFinal" => horariosAtendimentoBarbeirolast($barbeiro->id())[1]->hora
+      ]);
     }
 
     public function test(){
