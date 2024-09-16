@@ -632,7 +632,8 @@
 
         <div class="section-title">
           <h2>Preços</h2>
-          <p>Nossa tabela de preços, não cobramos por quantidade de profissional na Barbearia</p>
+          <p> Nossa tabela de preços, não cobramos por quantidade de profissional na Barbearia </p>
+          <p> Lembrete, os plano mensal irá sofrer um ajuste assim que tivemos 100 barbearias </p>
         </div>
 
         <div class="row">
@@ -647,9 +648,6 @@
                 <li>Funcionalidade de Seguidores</li>
                 <li>Suporte Prioritário</li>
               </ul>
-              <div class="btn-wrap">
-                <a href="#" class="btn-buy">Buy Now</a>
-              </div>
             </div>
           </div>
 
@@ -663,9 +661,6 @@
                 <li>Funcionalidade de Seguidores</li>
                 <li>Suporte Prioritário</li>
               </ul>
-              <div class="btn-wrap">
-                <a href="#" class="btn-buy">Buy Now</a>
-              </div>
             </div>
           </div>
 
@@ -679,9 +674,6 @@
                 <li>Funcionalidade de Seguidores</li>
                 <li>Suporte Prioritário</li>
               </ul>
-              <div class="btn-wrap">
-                <a href="#" class="btn-buy">Buy Now</a>
-              </div>
             </div>
           </div>
 
