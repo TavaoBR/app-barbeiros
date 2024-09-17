@@ -90,9 +90,9 @@ a {
     <div class="py-3 px-4">
         <h3 class="font-size-16 mb-0">Agenda  <?=$dia?></h3>
         <hr>
-        <div class="p-6">
-  <input type="date" id="date" class="form-control w-auto" onchange="redirectToPage()">
-</div>
+        <div class="p-8">
+            <input type="date" id="date" class="form-control w-auto" onchange="redirectToPage()">
+         </div>
         
         <hr>
 
