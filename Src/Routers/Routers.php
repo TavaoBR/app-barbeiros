@@ -30,7 +30,7 @@ class Routers {
         $router->get("/atendimento/sucesso/{tipo}", "IndexController:sucesso");
         $router->get("/atendimento/erro", "IndexController:erro");
         $router->get("/alerta/codigo/{tipo}", "IndexController:alertaCodigo");
-        $router->get("/atendiment/avaliar/{codigo}", "IndexController:avaliar");
+        $router->get("/atendimento/avaliar/{codigo}", "IndexController:avaliar");
         $router->get("/procurar",  "IndexController:procurar");
         $router->get("/resultado/{uf}/{cidade}",  "IndexController:resultado");
         $router->get("/barbearia/perfil/{token}", "IndexController:perfil");
@@ -118,6 +118,8 @@ class Routers {
         $router->post("/agenda/confirmar/{codigo}","AtendimentoUpdate:ConfirmarAtendimento");
         $router->post("/agenda/cancelar/{codigo}","AtendimentoUpdate:CancelarAtendimento");
         $router->post("/agenda/concluir/{codigo}","AtendimentoUpdate:ConcluirAtendimento");
+        $router->post("/agenda/confirmar/todos","AtendimentoUpdate:confirmarTodos");
+        $router->post("/agenda/cancelar/todos","AtendimentoUpdate:cancelarTodos");
         $router->post("/agenda/concluir/todos","AtendimentoUpdate:concluirTodos");
         $router->post("/servico/atualizar/{id}", "UpdateServico:Result");
         $router->post("/servico/deletar/{id}", "DeletarServico:Deletar");

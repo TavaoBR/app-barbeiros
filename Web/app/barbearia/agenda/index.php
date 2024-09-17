@@ -81,7 +81,7 @@ a {
 }
 </style>
 
-<div class="container-fluid">
+<div class="container">
 
 
 
@@ -89,101 +89,72 @@ a {
     
     <div class="py-3 px-4">
         <h3 class="font-size-16 mb-0">Agenda  <?=$dia?></h3>
+        <hr>
+        <div class="p-6">
+  <input type="date" id="date" class="form-control w-auto" onchange="redirectToPage()">
+</div>
+        
+        <hr>
+
+      <div style="display: flex; gap: 10px;">
+        <form action="<?=routerConfig()?>/barbearia/agenda/confirmar/todos" method="POST" id="confirmationForm1">
+            <input type="hidden" name="data" value="<?=$data?>">
+            <input type="hidden" name="fk" value="<?=$id?>"> 
+            <button class="btn btn-secondary" id="submitButton1" onclick="handleSubmit1()"  type="submit">Confirmar Todos</button>
+        </form>
+
+        <form action="<?=routerConfig()?>/barbearia/agenda/cancelar/todos" method="POST" id="confirmationForm2">
+            <input type="hidden" name="data" value="<?=$data?>">
+            <input type="hidden" name="fk" value="<?=$id?>"> 
+            <button class="btn btn-danger" id="submitButton2" onclick="handleSubmit2()" type="submit">Cancelar Todos</button>
+        </form>
+
+        <form action="<?=routerConfig()?>/barbearia/agenda/concluir/todos" method="POST" id="confirmationForm">
+            <input type="hidden" name="data" value="<?=$data?>">
+            <input type="hidden" name="fk" value="<?=$id?>"> 
+            <button class="btn btn-success" id="submitButton" onclick="handleSubmit()" type="submit">Concluir Todos</button>
+        </form>
+      </div>
+
+
+        <hr>
+        <div style="display: flex; gap: 10px;">
+        <h2><span class="badge text-bg-secondary">R$<?=array_sum($pedentes)?></span></h2>
+       <h2><span class="badge text-bg-success">R$ <?=array_sum($ganhos)?></span></h2>
+       <h2><span class="badge text-bg-danger">R$ <?=array_sum($cancelados)?></span></h2>
+        </div>
+      
 </div>
 
     <div class="row">
 
     <?=validateSession("ConcluidosAgenda")?>
 
-    <div class="col-xl-4">
-            <div class="mt-5 mt-lg-0">
-                <div class="card border shadow-none">
-                    <div class="card-header bg-transparent border-bottom py-3 px-4">
-                        <h5 class="font-size-16 mb-0">Resultados e Filtro </h5>
-                    </div>
-                    <div class="card-body p-4 pt-2">
-
-                        <div class="table-responsive">
-                            <table class="table mb-0">
-                                <tbody>
-
-                                <tr class = "bg-light">
-                                       <td class="text-end"><input type="date" id="date" class="form-control" onchange="redirectToPage()"></td>
-                                       <td class="test-end"></td>
-                                    </tr>
-
-                                    <tr class = "bg-light">
-                                        <form action="<?=routerConfig()?>/barbearia/agenda/concluir/todos" method="POST" id="confirmationForm">
-                                           <input type="hidden" name="data" value="<?=$data?>">
-                                           <input type="hidden" name="fk" value="<?=$id?>"> 
-                                          <td><button class="btn btn-success" id="submitButton" onclick="handleSubmit()"  type="submit">Concluir Todos</button></td>
-                                        </form>
-                                       <td class="test-end"></td>
-                                    </tr>
-
-                                    
-                                    <tr class ="bg-success">
-                                        <td class=" fw-bold text-white">Ganhos: R$ <?=array_sum($ganhos)?></td>
-                                        <td class="test-end"></td>
-                                    </tr>
-                                    <tr class="bg-light">
-                                        <td class="fw-bold text-dark">Pedentes: R$ <?=array_sum($pedentes)?></td>
-                                        <td class="test-end"></td>
-                                    </tr>
-                                    <tr class="bg-danger">
-                                        <td class="fw-bold text-white">Cancelados: R$ <?=array_sum($cancelados)?></td>
-                                        <td class="test-end"></td>
-                                    </tr>
-
-                                    <tr class="bg-dark">
-                                        <td class="fw-bold text-white">Soma total: R$ <?=array_sum($ganhos) + array_sum($pedentes) + array_sum($cancelados)?></td>
-                                        <td class="test-end"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- end table-responsive -->
-                    </div>
-                </div>
+<div class="col-xl-8">
+<div class="row">
+    <?php 
+     foreach($array as $data):
+      $fkUser = $data->fkUser;
+    ?>
+  <div class="col-xl-6 mb-4">
+    <div class="card">
+      <div class="card-body" style="<?=statusAgendamentoColor($data->status)?>">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center">
+            <div class="ms-3">
+             <p class="fw-bold mb-0"><?=$data->nome?></p>
+              <p class="fw-bold mb-0">Status: <?=statusAgendamento($data->status)?></p>
+              <p class="mb-0">Celular: <?=$data->celular?></p>
+              <p class="mb-0">Serviço(s): <?=$data->servicosSolicitados?></p>
+              <p class="mb-0">Horário: <?=date("H:i", strtotime($data->horario))?></p>
+              <p class="fw-bold mb-0">Valor: R$<?=$data->valorTotal?></p>
             </div>
+          </div>
+          
         </div>
-
-        <div class="col-xl-8">
-
-        <?php 
-         foreach($array as $data):
-            $fkUser = $data->fkUser;
-
-           
-        ?>
-
-            <div class="card border shadow-none">
-                <div class="card-body">
-
-                    <div class="d-flex align-items-start border-bottom pb-3">
-                        <div class="me-4">
-                            <img src="<?=Assests("img/avatar/$fkUser/")?><?=avatarUser($fkUser)?>" alt="" class="avatar-lg rounded">
-                        </div>
-                        <div class="flex-grow-1 align-self-center overflow-hidden">
-                            <div>
-                                <h5 class="text-truncate font-size-18"><a href="#" class="text-dark"><?=$data->nome?> </a></h5>
-                                <p class="text-muted mb-0">
-                                    Status: <?=statusAgendamento($data->status)?>
-                                </p>
-                                <p class="mb-0 mt-1">Codigo: <?=$data->codigo?> <i class="icofont-clock-time"></i> </p>
-                                <p class="mb-0 mt-1">Celular: <?=$data->celular?></p>
-                                <p class="mb-0 mt-1">Serviço(s): <?=$data->servicosSolicitados?></p>
-                                <p class="mb-0 mt-1">Horário: <?=date("H:i", strtotime($data->horario))?></p>
-                                <p class="mb-0 mt-1">Total: R$<?=$data->valorTotal?></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="mt-3  float-start">
-                                            <?php 
+      </div>
+      <div class="card-footer border-0 bg-body-tertiary p-2 d-flex justify-content-around">
+      <?php 
                                               if($data->status == 1):
                                             ?>
                                             <button class="btn btn-primary " onclick="ConfirmarAtendimento('<?=$data->codigo?>')"> Confirmar </button>
@@ -191,11 +162,7 @@ a {
                                             <?php 
                                              endif;
                                             ?>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="mt-3 float-start">
-                                <?php 
+    <?php 
                                              if($data->status == 2 OR $data->status == 4):
                                             ?>
                                               <button class="btn btn-danger " onclick="CancelarAtendimento('<?=$data->codigo?>')"> Cancelar </button>
@@ -203,18 +170,16 @@ a {
                                             <?php 
                                              endif;
                                             ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                </div>
-            </div>
+      </div>
+    </div>
+  </div>
+  <?php 
+   endforeach;
+  ?>
+</div>
 
 
-            <?php 
-            endforeach;
-            ?>
              <!-- end row-->
         </div>
 
@@ -262,6 +227,58 @@ setTimeout(() => {
 
     // Envia o formulário manualmente
     const form = document.getElementById('confirmationForm');
+    form.submit();
+}, 2000); // 2000 milissegundos = 2 segundos
+}
+
+function handleSubmit1() {
+
+const submitButton = document.getElementById('submitButton1');
+submitButton.setAttribute('disabled', 'disabled');
+
+// Exibe o SweetAlert de carregamento
+Swal.fire({
+    title: 'Enviando Requisição',
+    text: 'Por favor, aguarde.',
+    allowOutsideClick: false,
+    didOpen: () => {
+        Swal.showLoading();
+    }
+});
+
+// Aguarda 2 segundos antes de enviar o formulário
+setTimeout(() => {
+    // Fecha o SweetAlert
+    Swal.close();
+
+    // Envia o formulário manualmente
+    const form = document.getElementById('confirmationForm1');
+    form.submit();
+}, 2000); // 2000 milissegundos = 2 segundos
+}
+
+function handleSubmit2() {
+
+const submitButton = document.getElementById('submitButton2');
+submitButton.setAttribute('disabled', 'disabled');
+
+// Exibe o SweetAlert de carregamento
+Swal.fire({
+    title: 'Enviando Requisição',
+    text: 'Por favor, aguarde.',
+    allowOutsideClick: false,
+    didOpen: () => {
+        Swal.showLoading();
+    }
+});
+
+// Aguarda 2 segundos antes de enviar o formulário
+setTimeout(() => {
+    // Fecha o SweetAlert
+    Swal.close();
+
+    // Envia o formulário manualmente
+    const form = document.getElementById('confirmationForm2');
     form.submit();
 }, 2000); // 2000 milissegundos = 2 segundos
 }

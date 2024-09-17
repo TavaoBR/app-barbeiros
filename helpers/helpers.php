@@ -228,6 +228,35 @@ function statusAgendamento(int $status){
 
 } 
 
+function statusAgendamentoColor(int $status){
+
+    switch($status){
+        case 1:
+            $status = "background-color: #6C757D; color:#fff";
+        break;
+        
+        case 2:
+           $status = "background-color: #6C757D; color:#fff";
+        break;
+
+        case 3:
+            $status = "background-color: #DC3545; color:#fff";
+        break;    
+
+        case 4: 
+            $status = "background-color: #6C757D; color:#fff";
+        break;    
+
+        case 5:
+            $status = "background-color: #198754; color:#fff";
+        break;    
+    }
+
+    return $status;
+
+} 
+
+
 function statusBarbeiro(int $status)
 {
 

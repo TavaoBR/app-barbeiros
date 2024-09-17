@@ -117,7 +117,7 @@ function horariosAtendimentoBarbeiroFirst(int $fk)
     $query = $connect->prepare($select);
     $query->bindParam(":fk", $fk);
     $query->execute();
-    return [$query->rowCount(), $query->fetchAll(\PDO::FETCH_CLASS)];
+    return [$query->rowCount(), $query->fetch(\PDO::FETCH_OBJ)];
     
 }
 
@@ -207,6 +207,19 @@ function servicoIdFk(int $id, int $fk)
    $query = $connect->prepare($select);
    $query->bindParam(":id", $id);
    $query->bindParam(":fk", $fk);
+   $query->execute();
+   return [$query->rowCount(), $query->fetch(\PDO::FETCH_OBJ)];
+}
+
+
+function perfilBarberio(int $id){
+   $db = new \Src\Database\Connection;
+
+   $connect = $db::connect();
+
+   $select = "SELECT * FROM perfilbarbeiro WHERE id = :id";
+   $query = $connect->prepare($select);
+   $query->bindParam(":id",$id);
    $query->execute();
    return [$query->rowCount(), $query->fetch(\PDO::FETCH_OBJ)];
 }

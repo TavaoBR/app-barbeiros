@@ -1,6 +1,6 @@
 <?=$this->layout('themes/sistemas', ['title' => $title]);?>
 
-<?php 
+<button?php 
     if($totalAvaliacao == 0){
         $nota .= "Nenhuma avaliação";    
      }else{
@@ -388,6 +388,7 @@ ul.friend-list .right p {
             <div class="row ">
                 <div class="col-lg-12">
                     <ul class=" nav nav-tabs justify-content-center s-nav">
+                        <li><button class="btn btn-primary" onclick="copiarLink()">Link Para agendamento</button></li>
                         <li><a href="<?=routerConfig()?>/app/barbearia/perfil/editar/<?=$token?>">Editar</a></li>
                         <li><a class="active" >Perfil</a></li>
                         <li><a href="<?=routerConfig()?>/app/barbearia/agenda/<?=$token?>/<?=dataAtual()?>">Agenda</a></li>
@@ -512,3 +513,14 @@ ul.friend-list .right p {
         </div>
     </div>--->
 </div>
+
+<script>
+    function copiarLink() {
+    const link = "<?=routerConfig()?>/barbearia/perfil/<?=$token?>"; // Substitua com o link desejado
+    navigator.clipboard.writeText(link).then(() => {
+        alert("Link copiado com sucesso!");
+    }).catch(err => {
+        alert("Falha ao copiar o link: " + err);
+    });
+}
+</script>

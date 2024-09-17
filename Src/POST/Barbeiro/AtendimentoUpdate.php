@@ -20,51 +20,124 @@ class AtendimentoUpdate
         $this->historico = new historicoAgendamento;
     }
 
-    /*public function confirmarTodos($data)
+    public function confirmarTodos($data)
     {
+         session_start();
          $fk = $data['fk'];
          $dia = $data['data'];
-         $select = agendaBarbeiroDataOrderDesc($fk, $data);
+         $select = agendaBarbeiroDataStatus($fk, $dia, 1);
+         if($select[0] > 0){
+           $dados = $select[1];
+           $success = true;
+           foreach($dados as $array){
+            $update = $this->agenda->update("id", $array->id, ["status" => 2]);
+            if($update <= 0){
+              $success = false;
+              break;
+            }
+
+            if($success){
+              setSession("ConcluidosAgenda", sweetAlertSuccess("Você confirmou os atendimentos com sucesso!", "Sucesso"));
+              $this->alertaConfirmado($fk, $dia);
+            }else{
+              setSession("ConcluidosAgenda", sweetAlertError("Ocorreu algum erro, por favor tente mais tarde ou entre em contato com o suporte"));
+            }
+
+            redirectBack();
+           }
+         }else{
+          setSession("ConcluidosAgenda", sweetAlertWarning("Você não tem nenhum agendamento para confirmar", "Ops"));
+          redirectBack();
+        }
     }
 
     public function cancelarTodos($data)
     {
+      session_start();
+        if (!isset($_POST['fk']) || !isset($_POST['data'])) {
+            setSession("ConcluidosAgenda", sweetAlertError("Dados inválidos, tente novamente."));
+            redirectBack();
+            return;
+      }
       $fk = $data['fk'];
       $dia = $data['data'];
-      $select = agendaBarbeiroDataOrderDesc($fk, $data);
-    }*/
-
-    public function concluirTodos()
-    {
-      session_start();
-      $fk = $_POST['fk'];
-      $dia = $_POST['data'];
       $select = agendaBarbeiroDataOrderDesc($fk, $dia);
       $dados = $select[1];
       $success = true;
-      //$cel = [];
-      $ganhos = [];
+
       foreach($dados as $array){
-        if($array->status != 3 AND $array->status != 5){
-          $update =  $this->agenda->update("id", $array->id, ["status" => 5]);  
-          $ganhos[] = $array->valorTotal;
-          if($update <= 0){
-             $success = false;
-             break;
-          }
-        }      
+         if($array->status == 3 || $array->status == 5){
+          setSession("ConcluidosAgenda", sweetAlertWarning("Você tem nenhum agendamento para cancelar hoje", "Ops"));
+          redirectBack();
+          return;
+         }
       }
 
+      foreach($dados as $array){
+        $update = $this->agenda->update("id", $array->id, ["status" => 3]);
+        if($update <= 0){
+          $success = false;
+          break;
+        }
+      }
+
+
       if($success){
-        $total = array_sum($ganhos);
-         $this->alertaConcluido($fk, $dia);
-         setSession("ConcluidosAgenda", sweetAlertSuccess("Agenda Concluida com sucesso, seu ganho foi de: R$ $total ", "Sucesso"));
+        setSession("ConcluidosAgenda", sweetAlertSuccess("Que pena, você cancelou seus compromissos de hoje", "Sucesso"));
+        $this->alertCancelado($fk, $dia);
       }else{
         setSession("ConcluidosAgenda", sweetAlertError("Ocorreu algum erro, por favor tente mais tarde ou entre em contato com o suporte"));
       }
 
       redirectBack();
+      
+    }
 
+    public function concluirTodos()
+    {
+        session_start();
+        if (!isset($_POST['fk']) || !isset($_POST['data'])) {
+            setSession("ConcluidosAgenda", sweetAlertError("Dados inválidos, tente novamente."));
+            redirectBack();
+            return;
+        }
+    
+        $fk = $_POST['fk'];
+        $dia = $_POST['data'];
+        $select = agendaBarbeiroDataOrderDesc($fk, $dia);
+        $dados = $select[1];
+        $success = true;
+        $ganhos = [];
+    
+        // Verifica se há agendamentos já concluídos
+        foreach ($dados as $array) {
+            if ($array->status == 3 || $array->status == 5) {
+                setSession("ConcluidosAgenda", sweetAlertWarning("Você tem nenhum agendamento para concluir hoje", "Ops"));
+                redirectBack();
+                return; // Finaliza o processamento
+            }
+        }
+    
+        // Atualiza o status dos agendamentos e calcula ganhos
+        foreach ($dados as $array) {
+            $update = $this->agenda->update("id", $array->id, ["status" => 5]);
+            $ganhos[] = $array->valorTotal;
+    
+            if ($update <= 0) {
+                $success = false;
+                break;
+            }
+        }
+    
+        if ($success) {
+            $total = number_format(array_sum($ganhos), 2, ',', '.');
+            $this->alertaConcluido($fk, $dia);
+            setSession("ConcluidosAgenda", sweetAlertSuccess("Agenda Concluída com sucesso! Seu ganho foi de: R$ $total", "Sucesso"));
+        } else {
+            setSession("ConcluidosAgenda", sweetAlertError("Ocorreu algum erro, por favor tente mais tarde ou entre em contato com o suporte"));
+        }
+    
+        redirectBack();
     }
 
     public function ConfirmarAtendimento($data)
@@ -192,6 +265,55 @@ class AtendimentoUpdate
         return $api->send();
     }
 
+    private function alertaConfirmado($fk, $data)
+    {
+      $select = agendaBarbeiroDataStatus($fk, $data, 2);
+      $selectBarbeiro = perfilBarberio($fk);
+      $nome = $selectBarbeiro[1]->nomeBarbeiro;
+      $dados = $select[1];
+      foreach($dados as $alert){
+        $to = $alert->celular;
+        $codigo = $alert->codigo;
+        $link1 = routerConfig()."/cliente/confirmar/atendimento/$codigo";
+        $link2 = routerConfig()."/cliente/cancelar/atendimento/$codigo";
+        $dia = date("d/m/Y", strtotime($alert->data));
+        $hora = date("H:i", strtotime($alert->horario));
+        $message = "
+        ✅ Seu agendamento foi confirmado pela Barbearia {$nome}
+        \n Codigo : {$codigo}
+        \n 📆 Data: {$dia}
+        \n ⏰ Horario: {$hora}
+        \n Clique no link abaixo para confirmar sua presença:
+        \n $link1
+        \n Clique no link abaixo para cancelar sua consulta: 
+        \n $link2 
+       ";
+        $zap = new Message($to, $message);
+        $zap->send();         
+       }
+    }
+
+    private function alertCancelado($fk, $data)
+    {
+      $select = agendaBarbeiroDataStatus($fk, $data, 3);
+      $selectBarbeiro = perfilBarberio($fk);
+      $nome = $selectBarbeiro[1]->nomeBarbeiro;
+      $dados = $select[1];
+      foreach($dados as $alert){
+        $to = $alert->celular;
+        $dia = date("d/m/Y", strtotime($alert->data));
+        $hora = date("H:i", strtotime($alert->horario));
+        $message = "
+        ❌ Seu agendamento foi cancelado pela Barbearia {$nome}
+        \n 📆 Na Data: {$dia}
+        \n ⏰ No Horario: {$hora}
+        \n Não fique triste 😭, entre no sistema e tente agendar para outro dia com o mesmo ou procure outra barbearia
+       ";
+        $zap = new Message($to, $message);
+        $zap->send();         
+       }
+    }
+
     private function alertaConcluido($fk, $data)
     { 
        
@@ -202,7 +324,7 @@ class AtendimentoUpdate
        foreach($dados as $alert){
         $to = $alert->celular;
         $codigo = $alert->codigo;
-        $link = routerConfig()."/atendiment/avaliar/$codigo";
+        $link = routerConfig()."/atendimento/avaliar/$codigo";
 
         $message = "
           Seu atendimento foi concluido com sucesso
@@ -210,7 +332,7 @@ class AtendimentoUpdate
           \n $link 
         ";
         $zap = new Message($to, $message);
-        return $zap->send();         
+        $zap->send();         
        }
 
 
