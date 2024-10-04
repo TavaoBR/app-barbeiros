@@ -20,7 +20,7 @@ class Publico extends TemplateConfig
     public function BarbeariaConfirmar($data)
     {
        $codigo = $data['codigo'];
-       $this->view("site/barbearia/confirmar", ["tilte" => "Confirmar", "codigo" => $codigo]);
+       $this->view("site/barbearia/confirma", ["tilte" => "Confirmar", "codigo" => $codigo]);
        
        
     }
@@ -35,7 +35,7 @@ class Publico extends TemplateConfig
     public function ClienteConfirmar($data)
     {
       $codigo = $data['codigo'];
-      $this->view("site/usuario/confirmar", ["tilte" => "Confirmar", "codigo" => $codigo]);
+      $this->view("site/usuario/confirma", ["tilte" => "Confirmar", "codigo" => $codigo]);
     }
 
     public function ClienteCancelar($data)

@@ -37,11 +37,11 @@
 }
 
 .error-page .search-form .btn {
-	width: 80px;
+	width: auto;
 	height: 50px;
 	border-radius: 5px;
 	cursor: pointer;
-	background: #006DFE;
+	background: #DC3545;
 	display: inline-block;
 	position: relative;
 	top: -2px;

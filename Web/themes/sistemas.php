@@ -309,6 +309,7 @@ $(document).ready(function() {
         <i class='bx bxs-user-circle'></i><span>Cliente</span><i class="bx bx-chevron-down ms-auto"></i>
         </a>
         <ul id="cliente" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            
             <li class="nav-item">
               <a href="<?=routerConfig()?>/app/perfil "  >
               <i class='bx bxs-user-circle'></i> <span>Perfil</span>
@@ -316,26 +317,32 @@ $(document).ready(function() {
             </li>
 
             <li class="nav-item">
-              <a href="<?=routerConfig()?>/app/agenda/confirmar/presenca"  href="#">
+              <a href="<?=routerConfig()?>/app/perfil/historico/agenda/barbeiro" >
+                <i class='bx bxs-check-shield'></i><span>Historico</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?=routerConfig()?>/app/agenda/confirmar/presenca" >
                 <i class='bx bxs-check-shield'></i><span>Confirmar Presença</span>
               </a>
             </li>
 
             <li class="nav-item">
-              <a href="<?=routerConfig()?>/app/agenda/cancelar/presenca"  href="#">
+              <a href="<?=routerConfig()?>/app/agenda/cancelar/presenca" >
                 <i class='bx bxs-message-alt-x'></i><span>Cancelar Presença</span>
               </a>
             </li>
 
 
             <li class="nav-item">
-              <a href="<?=routerConfig()?>/app/atendimento/avaliar"  href="#">
+              <a href="<?=routerConfig()?>/app/atendimento/avaliar"  >
               <i class='bx bx-clipboard'></i><span>Avaliar Atendimento</span>
               </a>
             </li>
 
             <li class="nav-item">
-              <a href="<?=routerConfig()?>/sair"  href="#">
+              <a href="<?=routerConfig()?>/sair"  >
               <i class='bx bx-clipboard'></i><span>Sair</span>
               </a>
             </li>

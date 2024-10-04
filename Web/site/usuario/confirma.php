@@ -37,11 +37,11 @@
 }
 
 .error-page .search-form .btn {
-	width: 80px;
+	width: auto;
 	height: 50px;
 	border-radius: 5px;
 	cursor: pointer;
-	background: #006DFE;
+	background: #198754;
 	display: inline-block;
 	position: relative;
 	top: -2px;
@@ -68,7 +68,7 @@
 						<input placeholder="Exemplo do codigo: 9CTKZ9U" type="text" class="form-control" value="<?=$codigo?>" disabled>
                         <br>
                         <br>
-						<button class="btn" id="submitButton" type="button" onclick="handleSubmit()">Cancelar</button>
+						<button class="btn" id="submitButton" type="button" onclick="handleSubmit()">Confirmar</button>
 					</form>
 				</div>
 				<!--/ End Error Inner -->
